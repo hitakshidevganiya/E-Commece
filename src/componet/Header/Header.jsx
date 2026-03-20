@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../Css/header.css'
+import '../../Css/header.css'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -60,7 +60,7 @@ function Header() {
                 <ShoppingCartOutlinedIcon />
               </IconButton>
               <IconButton>
-                <AccountCircleOutlinedIcon className='icon'/>
+                <AccountCircleOutlinedIcon className='icon' />
               </IconButton>
             </Box>
 

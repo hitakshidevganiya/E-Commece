@@ -1,14 +1,9 @@
-
-import AboutOffer from './AboutOffer/AboutOffer'
 import './App.css'
-import Customer from './Customer/Customer'
-import Footer from './Footer/Footer'
-import Header from "./Header/Header"
-import HeroSection from './HeroSection/HeroSection'
-import Mens from './Mens/Mens'
-import NewArrive from './NewArriival/NewArrival'
-import Style from './Style/Style'
-import TopSelling from './TopSelling/TopSelling'
+import Footer from './componet/Footer/Footer'
+import Header from './componet/Header/Header'
+import Home from './componet/Home/Home'
+import Mens from './componet/Mens/Mens'
+
 
 function App() {
   
@@ -16,14 +11,9 @@ function App() {
   return (
     <>
       <Header />
-      <HeroSection />
-      <NewArrive />
-      <TopSelling />
+      <Home />
       <Mens />
-      {/* <Style />
-      <Customer />
-      <AboutOffer />
-      <Footer /> */}
+      <Footer />
     </>
   )
 }
