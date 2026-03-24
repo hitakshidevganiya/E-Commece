@@ -1,4 +1,5 @@
 import './App.css'
+import Cart from './componet/Cart/Cart'
 import Footer from './componet/Footer/Footer'
 import Header from './componet/Header/Header'
 import Home from './componet/Home/Home'
@@ -11,8 +12,9 @@ function App() {
   return (
     <>
       <Header />
-      <Home />
-      <Mens />
+      {/* <Home />
+      <Mens /> */}
+      <Cart />
       <Footer />
     </>
   )

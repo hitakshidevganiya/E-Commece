@@ -56,21 +56,21 @@ const products = [
         price: 212,
         oldPrice: 242,
         discount: "-20%",
-        rating: 4.0 / 5,
-        image: "../../public/images/image 7.png",
+        rating: 4.0,
+        image: "../../public/images/image 7 (3).png",
     },
     {
         name: "Gradient Graphic T-shirt",
         price: 145,
 
         rating: 3.5,
-        image: "../../public/images/image 8.png",
+        image: "../../public/images/image 8 (3).png",
     },
     {
         name: "Polo with Tipping Details",
         price: 180,
         rating: 4.5,
-        image: "../../public/images/image 9.png",
+        image: "../../public/images/image 9 (3).png",
     },
     {
         name: "Black Striped T-shirt",
@@ -78,7 +78,7 @@ const products = [
         oldPrice: 150,
         discount: "-30%",
         rating: 5.0,
-        image: "../../public/images/image 10.png",
+        image: "../../public/images/image 10 (3).png",
     },
 ];
 
@@ -274,7 +274,7 @@ function Mens() {
                         </section>
 
                         <section className="likeProduct">
-                            <Box className="arrivals">
+                            <Box className="product">
                                 <Typography className="maintitle">
                                     You might also like
                                 </Typography>
@@ -326,7 +326,6 @@ function Mens() {
                                             </Grid>
                                         ))
                                     }
-
                                 </Grid>
                                 <Box className="buttonWrapper">
                                     <Button variant="outlined" className="viewBtn">

@@ -1,10 +1,15 @@
 import React from "react";
 import '../../Css/header.css'
-import { Box, Button, Grid, Typography, Card, CardContent, CardMedia, Rating, TextField, } from "@mui/material";
+import { Box, Button, Grid, Typography, Card, CardContent, CardMedia, Rating, TextField, IconButton, } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from 'swiper/modules';
+import { FreeMode, Navigation, Pagination } from 'swiper/modules';
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6"
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 
 const brands = [
     "VERSACE",
@@ -46,32 +51,32 @@ const products = [
     },
 ];
 
-const productsTop = [
+const productsTop = [           
     {
         name: "Vertical Striped Shirt",
         price: 212,
         rating: 5.0,
         oldPrice: 232,
         discount: "-20%",
-        image: "../../public/images/image 7 (1).png",
+        image: "../../public/images/image 7 (2).png",
     },
     {
         name: "Courage Graphic T-Shirt",
         price: 145,
         rating: 4.0,
-        image: "../../public/images/image 8 (1).png",
+        image: "../../public/images/image 8 (2).png",
     },
     {
         name: "Loose Fit Bermuda Shorts",
         price: 80,
         rating: 3.0,
-        image: "../../public/images/image 9 (1).png",
+        image: "../../public/images/image 9 (2).png",
     },
     {
         name: "Faded Skinny Jeans",
         price: 210,
         rating: 4.5,
-        image: "../../public/images/image 10 (1).png",
+        image: "../../public/images/image 10 (2).png",
     },
 ];
 
@@ -175,8 +180,8 @@ function Home() {
                         <Box className="brand-strip">
                             <Grid container>
                                 <Box className="brand-container">
-                                    {brands.map((brand, index) => (
-                                        <Typography key={index} className="brand-item">
+                                    {brands.map((brand, i) => (
+                                        <Typography key={i} className="brand-v">
                                             {brand}
                                         </Typography>
                                     ))}
@@ -387,75 +392,81 @@ function Home() {
                 </section>
 
                 <section className="customer-section">
-                    <Box className="maincustomer" sx={{ padding: "50px" }}>
-
-                        {/* Heading */}
-                        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
-                            <Typography variant="h4" fontWeight="bold">
-                                OUR HAPPY CUSTOMERS
-                            </Typography>
-
-                            {/* Arrows (UI only) */}
-                            <Box>
-                                ← →
-                            </Box>
-                        </Box>
-
-                        {/* Cards */}
-                        <Box
+                    <Box sx={{ px: 4, py: 8 }} >
+                        <Box className="custMain">
+                            <Box
                             sx={{
                                 display: "flex",
-                                gap: 3,
-                                overflowX: "auto",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                mb: 4,
+                            }}
+                        >
+                            <Typography
+                                variant="h3"
+                                sx={{ fontWeight: 800, textTransform: "uppercase" }}
+                            >
+                                Our Happy Customers
+                            </Typography>
+
+                            <Box className="swiper-nav">
+                                <IconButton className="prev-btn"><FaArrowLeftLong /></IconButton>
+                                <IconButton className="next-btn"><FaArrowRightLong /></IconButton>
+                            </Box>
+
+                        </Box>
+                        </Box>
+                        <Swiper
+                            modules={[Navigation]}
+                            spaceBetween={20}
+                            slidesPerView={3}
+                            navigation={{
+                                nextEl: ".next-btn",
+                                prevEl: ".prev-btn",
+                            }}
+                            breakpoints={{
+                                0: { slidesPerView: 1 },
+                                768: { slidesPerView: 2 },
+                                1200: { slidesPerView: 3 },
                             }}
                         >
 
-                            <Swiper
-                                slidesPerView={3}
-                                spaceBetween={30}
-                                freeMode={true}
-                                pagination={{
-                                    clickable: true,
-                                }}
-                                modules={[FreeMode, Pagination]}
-                                className="mySwiper"
-                            ></Swiper>
                             {testimonials.map((v, i) => (
-                                <SwiperSlide>
+                                <SwiperSlide key={i}  className="cardall">
                                     <Card
-                                        key={i}
                                         sx={{
-                                            minWidth: 300,
                                             borderRadius: "16px",
-                                            boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-                                        }}
+                                            boxShadow: "none",
+                                            border: "1px solid #eee",
+                                            height: "100%",
+                                        }} 
+                                       
                                     >
-
                                         <CardContent>
-
-                                            {/* Stars */}
-                                            <Box sx={{ display: "flex", color: "#f5a623", mb: 1 }}>
+                                            <Box sx={{ display: "flex", mb: 1 }}>
                                                 {[...Array(5)].map((_, i) => (
-                                                    <StarIcon key={i} fontSize="small" />
+                                                    <StarIcon key={i} sx={{ color: "#f5a623" }} />
                                                 ))}
                                             </Box>
 
-                                            {/* Name */}
                                             <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                                                <Typography fontWeight="bold">{v.name}</Typography>
-                                                <CheckCircleIcon
-                                                    sx={{ color: "green", fontSize: 18, ml: 1 }}
-                                                />
+                                                <Typography sx={{ fontWeight: 600, mr: 1 }}>
+                                                    {v.name}
+                                                </Typography>
+                                                <CheckCircleIcon sx={{ color: "green", fontSize: 18 }} />
                                             </Box>
 
-                                            {/* Text */}
-                                            <Typography variant="body2" color="text.secondary">
-                                                "{v.text}"
+                                            <Typography
+                                                variant="body2"
+                                                sx={{ color: "#555", lineHeight: 1.6 }}
+                                            >
+                                                {v.text}
                                             </Typography>
                                         </CardContent>
-                                    </Card></SwiperSlide>
+                                    </Card>
+                                </SwiperSlide>
                             ))}
-                        </Box>
+                        </Swiper>
                     </Box>
                 </section>
 
@@ -480,7 +491,7 @@ function Home() {
                         </Box>
                     </div>
                 </section>
-                
+
             </main>
         </div>
     );
