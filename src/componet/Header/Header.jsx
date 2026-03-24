@@ -31,7 +31,7 @@ function Header() {
               <CloseIcon />
             </IconButton>
           </Box>
-        )}
+        )}  
 
         <AppBar position="static" className="navbar">
           <Toolbar className="toolbar">
