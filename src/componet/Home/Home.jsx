@@ -392,7 +392,7 @@ function Home() {
                 </section>
 
                 <section className="customer-section">
-                    <Box sx={{ px: 4, py: 8 }} >
+                    <Box sx={{ px: 4, py: 8 , mb:15}}  >
                         <Box className="custMain">
                             <Box
                             sx={{
@@ -470,27 +470,7 @@ function Home() {
                     </Box>
                 </section>
 
-                <section className="about-section">
-                    <div className="aboutmain">
-                        <Box className="newsletter-container">
-                            <Typography className="newsletter-title">
-                                Stay upto date about our latest offers
-                            </Typography>
-                            <Box className="newsletter-form">
-                                <TextField
-                                    placeholder="Enter your email address"
-                                    variant="outlined"
-                                    fullWidth
-                                    className="newsletter-input"
-                                />
-
-                                <Button className="newsletter-button">
-                                    Subscribe to Newsletter
-                                </Button>
-                            </Box>
-                        </Box>
-                    </div>
-                </section>
+                
 
             </main>
         </div>

@@ -265,7 +265,6 @@
 }
 
 .footer {
-
     padding: 50px 0 20px;
     border-top: 1px solid #ddd;
     width: 80%;
@@ -276,6 +275,7 @@
 
 .foooooter {
     align-items: start;
+    margin-top: 100px;
 }
 
 .logo {
@@ -344,6 +344,19 @@ li:hover {
     border-radius: 5px;
 }
 
+.allbrand {
+    display: inline-block;
+    padding: 7px 10px;
+    background-color: #fff;
+    margin: 0 8px;
+    border-radius: 6px;
+
+}
+
+.master {
+    padding: 6px 10px;
+}
+
 
 .css-kqg16c-MuiGrid-root {
     /* gap: 20px !important; */
@@ -361,9 +374,14 @@ li:hover {
 .aboutmain {
     width: 80%;
     margin: 0 auto;
+    position: relative;
 }
 
 .newsletter-container {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
     background-color: #000;
     color: #fff;
     border-radius: 30px;
@@ -671,8 +689,9 @@ li:hover {
     border: 1px solid #ddd;
     border-radius: 40px;
     padding: 1px 1px;
-     background: #e9e9e9;
+    background: #e9e9e9;
 }
+
 .btnn {
     color: #000 !important;
     font-size: 20px !important;
@@ -759,3 +778,40 @@ li:hover {
     margin-left: 10px;
     font-size: 30px;
 }
+
+
+
+/* ---casual--- */
+
+.casualmain {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* .main-container {
+    padding: 20px;
+}
+
+.sidebar {
+    border: 0.5px solid gray;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.filter-section {
+    margin-top: 15px;
+}
+
+.color-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: #777;
+} */

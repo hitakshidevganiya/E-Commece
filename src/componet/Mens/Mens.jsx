@@ -274,7 +274,7 @@ function Mens() {
                         </section>
 
                         <section className="likeProduct">
-                            <Box className="product">
+                            <Box className="product" sx={{mb:20}}>
                                 <Typography className="maintitle">
                                     You might also like
                                 </Typography>
@@ -327,11 +327,7 @@ function Mens() {
                                         ))
                                     }
                                 </Grid>
-                                <Box className="buttonWrapper">
-                                    <Button variant="outlined" className="viewBtn">
-                                        View All
-                                    </Button>
-                                </Box>
+
                             </Box>
                         </section>
                     </main>

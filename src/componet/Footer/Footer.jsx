@@ -11,9 +11,9 @@ function Footer() {
     return (
         <div className="container">
             <div className="mainfoot">
-                <Box className="footer">
+                <Box className="footer" >
 
-                    <Grid container spacing={4} className="foooooter">
+                    <Grid container spacing={4} className="foooooter" >
                         <Grid xs={12} md={4}>
                             <Typography className="logo">SHOP.CO</Typography>
                             <Typography className="desc">
@@ -76,14 +76,13 @@ function Footer() {
                         </Typography>
 
                         <Box className="payments">
-                            <span>VISA</span>
-                            <span>Mastercard</span>
-                            <span>PayPal</span>
-                            <span>
-                                
-                                Apple Pay
-                                </span>
-                            <span>G Pay</span>
+                            <a href="#" className="allbrand">
+                                <img src="../../public/images/Visa.png" alt="" />
+                            </a>
+                            <a href="#" className="allbrand master"><img src="../../public/images/Mastercard (1).png" alt="" /></a>
+                            <a href="#" className="allbrand"><img src="../../public/images/Paypal.png" alt="" /></a>
+                            <a href="#" className="allbrand"><img src="../../public/images/Pay.png" alt="" /></a>
+                            <a href="#" className="allbrand"><img src="../../public/images/G Pay.png" alt="" /></a>
                         </Box>
                     </Box>
                 </Box>
