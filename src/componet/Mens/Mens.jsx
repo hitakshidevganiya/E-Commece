@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import Header from "../Header/Header";
 import Remove from '@mui/icons-material/Remove';
 import Add from '@mui/icons-material/Add';
-import { Avatar, Box, Button, Card, CardContent, CardMedia, Grid, IconButton, Rating, Tab, Tabs, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { IoIosArrowDown } from "react-icons/io";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { MdOutlineTune } from "react-icons/md";
+import { BsThreeDots } from "react-icons/bs";
+import { Avatar, Box, Button, Card, CardContent, CardMedia, Divider, Grid, IconButton, Rating, Tab, Tabs, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 
 const images = [
     "../../../public/images/image 2.png",
     "../../../public/images/image 5.png",
-    "../../../public/images/image 6.png"
+    "../../../public/images/image 6 (1).png"
 ];
 
 const reviews = [
@@ -62,7 +66,6 @@ const products = [
     {
         name: "Gradient Graphic T-shirt",
         price: 145,
-
         rating: 3.5,
         image: "../../public/images/image 8 (3).png",
     },
@@ -84,50 +87,53 @@ const products = [
 
 function Mens() {
 
-    const [selectedImage, setSelectedImage] = useState(images[0]);
     const [size, setSize] = useState("Large");
     const [qty, setQty] = useState(1);
+
     return (
         <>
 
             <div className="container">
                 <div className="mainmen">
+                    <Divider />
                     <main>
                         <section className="men-product">
-                            <Box sx={{ p: 4 }}>
-                                <Grid container spacing={4}>
-                                    <Grid xs={12} md={6}>
-                                        <Grid container>
-                                            <Grid xs={3}>
-                                                {images.map((v, i) => (
-                                                    <Card
-                                                        key={i}
-                                                        onClick={() => setSelectedImage(v)}
-                                                        sx={{ mb: 2, cursor: "pointer" }}
-                                                    >
-                                                        <CardMedia
-                                                            component="img"
-                                                            image={v}
-                                                            alt="thumb"
-                                                        />
-                                                    </Card>
-                                                ))}
+                            <Box sx={{mt: 10}} >
+                                <Grid container spacing={4} >
+                                    <Grid container size={7} alignItems="stretch" >
+
+                                        <Grid size={3} rowSpacing={6} container display="flex" direction="column" >
+
+                                            <Grid>
+                                                <Box sx={{ width: '100%', overflow: 'hidden' }}>
+                                                    <img src="../../../public/images/image 2.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                </Box>
                                             </Grid>
+                                            <Grid>
+                                                <Box sx={{ width: '100%', overflow: 'hidden' }}>
+                                                    <img src="../../../public/images/image 5.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                </Box>
+                                            </Grid>
+                                            <Grid >
+                                                <Box sx={{ width: '100%', overflow: 'hidden' }}>
+                                                    <img src="../../../public/images/image 6 (1).png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                </Box>
+                                            </Grid>
+
+
                                         </Grid>
-                                        <Grid xs={9}>
-                                            <Card>
-                                                <CardMedia
-                                                    component="img"
-                                                    image={selectedImage}
-                                                    alt="product"
-                                                />
-                                            </Card>
+
+                                        <Grid size={9} display='flex'>
+                                            <Box sx={{ height: "87%", width: "100%", }}>
+                                                <img src="../../../public/images/image 1.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 25 }} />
+                                            </Box>
                                         </Grid>
+
+
                                     </Grid>
 
-
-                                    <Grid item xs={12} md={6}>
-                                        <Typography variant="h4" fontWeight="bold" gutterBottom>
+                                    <Grid size={5}>
+                                        <Typography variant="h4" fontWeight="bold" gutterBottom mt={2}>
                                             ONE LIFE GRAPHIC T-SHIRT
                                         </Typography>
 
@@ -137,21 +143,22 @@ function Mens() {
                                         </Box>
 
                                         <Box display="flex" alignItems="center" gap={2} mb={2}>
-                                            <Typography variant="h5" fontWeight="bold">
+                                            <Typography variant="h5" fontWeight="bold" sx={{ fontSize: '30px' }}>
                                                 $260
                                             </Typography>
                                             <Typography
-                                                sx={{ textDecoration: "line-through", color: "gray" }}
+                                                sx={{ textDecoration: "line-through", color: "gray", fontSize: '30px' }}
                                             >
                                                 $300
                                             </Typography>
-                                            <Typography color="error">-40%</Typography>
+                                            <Typography color="error" className="discount">-40%</Typography>
                                         </Box>
 
                                         <Typography color="text.secondary" mb={3}>
-                                            This graphic t-shirt is perfect for any occasion. Crafted from a soft
-                                            and breathable fabric.
+                                            This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
                                         </Typography>
+
+                                        <Divider />
 
                                         <Box sx={{ mt: 3 }}>
                                             <Typography>
@@ -164,8 +171,9 @@ function Mens() {
                                             </Box>
                                         </Box>
 
-                                        {/* Size Selection */}
-                                        <Typography mb={1}>Choose Size</Typography>
+                                        <Divider sx={{ mt: 3 }} />
+
+                                        <Typography mb={1} mt={3}>Choose Size</Typography>
                                         <ToggleButtonGroup
                                             value={size}
                                             exclusive
@@ -173,14 +181,16 @@ function Mens() {
                                             sx={{ mb: 3 }}
                                         >
                                             {["Small", "Medium", "Large", "X-Large"].map((s) => (
-                                                <ToggleButton key={s} value={s}>
+                                                <ToggleButton key={s} value={s} sx={{ borderRadius: 2 }}>
                                                     {s}
                                                 </ToggleButton>
                                             ))}
                                         </ToggleButtonGroup>
 
+                                        <Divider sx={{ mt: 3 }} />
+
                                         {/* Quantity */}
-                                        <Box display="flex" alignItems="center" gap={2} mb={3}>
+                                        <Box display="flex" alignItems="center" gap={2} mb={3} >
                                             <IconButton onClick={() => setQty(Math.max(1, qty - 1))}>
                                                 <Remove />
                                             </IconButton>
@@ -198,7 +208,9 @@ function Mens() {
                                             sx={{
                                                 borderRadius: "30px",
                                                 py: 1.5,
-                                                fontWeight: "bold"
+                                                fontWeight: "bold",
+                                                display: 'flex',
+                                                bgcolor: 'black'
                                             }}
                                         >
                                             Add to Cart
@@ -209,7 +221,7 @@ function Mens() {
                         </section>
 
                         <section className="allReviews">
-                            <Box sx={{ p: 4 }}>
+                            <Box >
                                 {/* Tabs */}
                                 <Tabs value={1} centered>
                                     <Tab label="Product Details" />
@@ -225,36 +237,54 @@ function Mens() {
                                     mt={4}
                                     mb={2}
                                 >
-                                    <Typography variant="h6" fontWeight="bold">
-                                        All Reviews (451)
+                                    <Typography variant="h6" fontWeight="bold" sx={{ fontSize: 22 }}>
+                                        All Reviews <span style={{ fontSize: 15, color: 'gray', fontWeight: 'lighter' }}> (451)</span>
                                     </Typography>
+
+                                    <Box>
+                                        <Button
+                                        variant="contained"
+                                        sx={{ borderRadius: '360px' , bgcolor: '#e9e9e9', color: 'black' , fontSize: 25}}
+                                    >
+                                        <MdOutlineTune />
+                                    </Button>
 
                                     <Button
                                         variant="contained"
-                                        sx={{ borderRadius: "20px", textTransform: "none" }}
+                                        sx={{ borderRadius: "20px", textTransform: "none", bgcolor: '#e9e9e9', color: 'black', margin: 2}}
+                                    >
+                                        Latest
+                                        <span style={{ marginLeft: "20px" }}><IoIosArrowDown /></span>
+                                    </Button>
+
+                                    <Button
+                                        variant="contained"
+                                        sx={{ borderRadius: "20px", textTransform: "none", bgcolor: 'black' }}
                                     >
                                         Write a Review
                                     </Button>
+                                    </Box>
                                 </Box>
                                 <Grid container spacing={3}>
                                     {reviews.map((v, i) => (
-                                        <Grid xs={12} md={6} key={i}>
-                                            <Card sx={{ borderRadius: "16px" }}>
-                                                <CardContent>
-                                                    <Rating value={v.rating} precision={0.5} readOnly />
-
-                                                    <Box display="flex" alignItems="center" mt={1} mb={1}>
-                                                        <Avatar sx={{ width: 32, height: 32, mr: 1 }}>
-                                                            {v.name[0]}
-                                                        </Avatar>
-                                                        <Typography fontWeight="bold">{v.name}</Typography>
+                                        <Grid size={6} key={i}>
+                                            <Card sx={{ borderRadius: "16px", p:2 }}>
+                                                <CardContent >
+                                                    <Box justifyContent="space-between" >
+                                                        <Rating value={v.rating} precision={0.5} readOnly />
+                                                        <BsThreeDots />
                                                     </Box>
 
-                                                    <Typography variant="body2" color="text.secondary" mb={2}>
-                                                        {v.text}
+                                                    <Box display="flex" alignItems="center" mt={1} mb={1}>
+                                                        <Typography fontWeight="bold" sx={{fontSize: 20}}>{v.name}</Typography>
+                                                        <CheckCircleIcon sx={{ color: "green", fontSize: 23, ml:1 }} />
+                                                    </Box>
+
+                                                    <Typography variant="body2" color="gray" mb={2} sx={{fontSize: 19, width:'630px'}}>
+                                                        "{v.text}"
                                                     </Typography>
 
-                                                    <Typography variant="caption" color="text.secondary">
+                                                    <Typography variant="caption" color="text.secondary" sx={{fontSize: 19}}>
                                                         Posted on {v.date}
                                                     </Typography>
                                                 </CardContent>
@@ -265,7 +295,7 @@ function Mens() {
                                 <Box textAlign="center" mt={4}>
                                     <Button
                                         variant="outlined"
-                                        sx={{ borderRadius: "30px", px: 4, textTransform: "none" }}
+                                        sx={{ borderRadius: "30px", px: 4, textTransform: "none", color: 'black' , borderColor: 'gray', marginTop: 4}}
                                     >
                                         Load More Reviews
                                     </Button>
@@ -274,7 +304,7 @@ function Mens() {
                         </section>
 
                         <section className="likeProduct">
-                            <Box className="product" sx={{mb:20}}>
+                            <Box className="product" sx={{ mb: 20 }}>
                                 <Typography className="maintitle">
                                     You might also like
                                 </Typography>
