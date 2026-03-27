@@ -98,7 +98,7 @@ function Mens() {
                     <Divider />
                     <main>
                         <section className="men-product">
-                            <Box sx={{mt: 10}} >
+                            <Box sx={{ mt: 10 }} >
                                 <Grid container spacing={4} >
                                     <Grid container size={7} alignItems="stretch" >
 
@@ -124,7 +124,7 @@ function Mens() {
                                         </Grid>
 
                                         <Grid size={9} display='flex'>
-                                            <Box sx={{ height: "87%", width: "100%", }}>
+                                            <Box sx={{ height: "84%", width: "100%", }}>
                                                 <img src="../../../public/images/image 1.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 25 }} />
                                             </Box>
                                         </Grid>
@@ -223,11 +223,14 @@ function Mens() {
                         <section className="allReviews">
                             <Box >
                                 {/* Tabs */}
-                                <Tabs value={1} centered>
-                                    <Tab label="Product Details" />
-                                    <Tab label="Rating & Reviews" />
-                                    <Tab label="FAQs" />
-                                </Tabs>
+                                <Box width="100%" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                    <Tabs value={1} centered aria-label="basic tabs example" >
+                                        <Tab label="Product Details" />
+                                        <Tab label="Rating & Reviews" />
+                                        <Tab label="FAQs" /> 
+                                    </Tabs>
+                                </Box>
+
 
                                 {/* Header */}
                                 <Box
@@ -243,48 +246,48 @@ function Mens() {
 
                                     <Box>
                                         <Button
-                                        variant="contained"
-                                        sx={{ borderRadius: '360px' , bgcolor: '#e9e9e9', color: 'black' , fontSize: 25}}
-                                    >
-                                        <MdOutlineTune />
-                                    </Button>
+                                            variant="contained"
+                                            sx={{ borderRadius: '360px', bgcolor: '#e9e9e9', color: 'black', fontSize: 25 }}
+                                        >
+                                            <MdOutlineTune />
+                                        </Button>
 
-                                    <Button
-                                        variant="contained"
-                                        sx={{ borderRadius: "20px", textTransform: "none", bgcolor: '#e9e9e9', color: 'black', margin: 2}}
-                                    >
-                                        Latest
-                                        <span style={{ marginLeft: "20px" }}><IoIosArrowDown /></span>
-                                    </Button>
+                                        <Button
+                                            variant="contained"
+                                            sx={{ borderRadius: "20px", textTransform: "none", bgcolor: '#e9e9e9', color: 'black', margin: 2 }}
+                                        >
+                                            Latest
+                                            <span style={{ marginLeft: "20px" }}><IoIosArrowDown /></span>
+                                        </Button>
 
-                                    <Button
-                                        variant="contained"
-                                        sx={{ borderRadius: "20px", textTransform: "none", bgcolor: 'black' }}
-                                    >
-                                        Write a Review
-                                    </Button>
+                                        <Button
+                                            variant="contained"
+                                            sx={{ borderRadius: "20px", textTransform: "none", bgcolor: 'black' }}
+                                        >
+                                            Write a Review
+                                        </Button>
                                     </Box>
                                 </Box>
                                 <Grid container spacing={3}>
                                     {reviews.map((v, i) => (
                                         <Grid size={6} key={i}>
-                                            <Card sx={{ borderRadius: "16px", p:2 }}>
+                                            <Card sx={{ borderRadius: "16px", p: 2 }}>
                                                 <CardContent >
-                                                    <Box justifyContent="space-between" >
+                                                    <Box justifyContent="space-between" display="flex" alignItems="center" >
                                                         <Rating value={v.rating} precision={0.5} readOnly />
-                                                        <BsThreeDots />
+                                                        <BsThreeDots fontSize="20px" color="gray" />
                                                     </Box>
 
                                                     <Box display="flex" alignItems="center" mt={1} mb={1}>
-                                                        <Typography fontWeight="bold" sx={{fontSize: 20}}>{v.name}</Typography>
-                                                        <CheckCircleIcon sx={{ color: "green", fontSize: 23, ml:1 }} />
+                                                        <Typography fontWeight="bold" sx={{ fontSize: 20 }}>{v.name}</Typography>
+                                                        <CheckCircleIcon sx={{ color: "green", fontSize: 23, ml: 1 }} />
                                                     </Box>
 
-                                                    <Typography variant="body2" color="gray" mb={2} sx={{fontSize: 19, width:'630px'}}>
+                                                    <Typography variant="body2" color="gray" mb={2} sx={{ fontSize: 19, width: '630px' }}>
                                                         "{v.text}"
                                                     </Typography>
 
-                                                    <Typography variant="caption" color="text.secondary" sx={{fontSize: 19}}>
+                                                    <Typography variant="caption" color="text.secondary" sx={{ fontSize: 19 }}>
                                                         Posted on {v.date}
                                                     </Typography>
                                                 </CardContent>
@@ -295,7 +298,7 @@ function Mens() {
                                 <Box textAlign="center" mt={4}>
                                     <Button
                                         variant="outlined"
-                                        sx={{ borderRadius: "30px", px: 4, textTransform: "none", color: 'black' , borderColor: 'gray', marginTop: 4}}
+                                        sx={{ borderRadius: "30px", px: 5, textTransform: "none", color: 'black', borderColor: 'gray', marginTop: 4 }}
                                     >
                                         Load More Reviews
                                     </Button>

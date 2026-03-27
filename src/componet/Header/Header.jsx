@@ -6,13 +6,22 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, IconButton, InputBase, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
 
 
 
 function Header() {
 
   const [showBanner, setShowBanner] = useState(true);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className="container">
@@ -31,16 +40,34 @@ function Header() {
               <CloseIcon />
             </IconButton>
           </Box>
-        )}  
+        )}
 
         <AppBar position="static" className="navbar">
           <Toolbar className="toolbar">
 
             <Box className="leftSection">
-              <Typography className="logo">SHOP.CO</Typography>
+              <Typography variant='h2' className="logo">SHOP.CO</Typography>
 
               <Box className="menu">
-                <span>Shop <KeyboardArrowDownIcon fontSize="small" /></span>
+                <span onClick={handleClick}>
+                  Shop
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </span>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  slotProps={{
+                    list: {
+                      'aria-labelledby': 'basic-button',
+                    },
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>Men</MenuItem>
+                  <MenuItem onClick={handleClose}>Women</MenuItem>
+                  <MenuItem onClick={handleClose}>Children</MenuItem>
+                </Menu>
                 <span>On Sale</span>
                 <span>New Arrivals</span>
                 <span>Brands</span>
@@ -63,7 +90,6 @@ function Header() {
                 <AccountCircleOutlinedIcon className='icon' />
               </IconButton>
             </Box>
-
           </Toolbar>
         </AppBar>
       </div>

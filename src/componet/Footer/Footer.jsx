@@ -15,7 +15,7 @@ function Footer() {
 
                     <Grid container spacing={4} className="foooooter" >
                         <Grid xs={12} md={4}>
-                            <Typography className="logo">SHOP.CO</Typography>
+                            <Typography className="footerlogo">SHOP.CO</Typography>
                             <Typography className="desc">
                                 We have clothes that suits your style and which you’re proud to
                                 wear. From women to men.

@@ -51,7 +51,7 @@ const products = [
     },
 ];
 
-const productsTop = [           
+const productsTop = [
     {
         name: "Vertical Striped Shirt",
         price: 212,
@@ -135,9 +135,9 @@ function Home() {
                 <section className="hero-section">
                     <div className="mainhero">
                         <Box className="hero">
-                            <Grid container>
-                                <Grid xs={12} md={6} className="heroleft">
-                                    <Typography variant="h2" className="hero-title">
+                            <Grid container display="flex" spacing={3} alignItems="center">
+                                <Grid size={{xs:12,sm:6}}>
+                                    <Typography variant="h1" className="hero-title">
                                         FIND CLOTHES THAT MATCHES YOUR STYLE
                                     </Typography>
 
@@ -166,10 +166,12 @@ function Home() {
                                             <Typography variant="body2">Happy Customers</Typography>
                                         </Box>
                                     </Box>
-                                    <Grid xs={12} md={6}>
-                                        <Box className="hero-image" />
-                                        <img src="../../../public/images/heroimg.png" alt="" className="heroimg" />
-                                    </Grid>
+
+                                </Grid>
+                                <Grid  size={{xs:12,sm:6}}>
+                                    <Box className="hero-image" >
+                                    <img src="../../../public/images/heroimg.png" alt="" className="heroimg"  />
+                                    </Box>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -392,29 +394,29 @@ function Home() {
                 </section>
 
                 <section className="customer-section">
-                    <Box sx={{ px: 4, py: 8 , mb:15}}  >
+                    <Box sx={{ px: 4, py: 8, mb: 15 }}  >
                         <Box className="custMain">
                             <Box
-                            sx={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                mb: 4,
-                            }}
-                        >
-                            <Typography
-                                variant="h3"
-                                sx={{ fontWeight: 800, textTransform: "uppercase" }}
+                                sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    mb: 4,
+                                }}
                             >
-                                Our Happy Customers
-                            </Typography>
+                                <Typography
+                                    variant="h3"
+                                    sx={{ fontWeight: 800, textTransform: "uppercase" }}
+                                >
+                                    Our Happy Customers
+                                </Typography>
 
-                            <Box className="swiper-nav">
-                                <IconButton className="prev-btn"><FaArrowLeftLong /></IconButton>
-                                <IconButton className="next-btn"><FaArrowRightLong /></IconButton>
+                                <Box className="swiper-nav">
+                                    <IconButton className="prev-btn"><FaArrowLeftLong /></IconButton>
+                                    <IconButton className="next-btn"><FaArrowRightLong /></IconButton>
+                                </Box>
+
                             </Box>
-
-                        </Box>
                         </Box>
                         <Swiper
                             modules={[Navigation]}
@@ -432,15 +434,15 @@ function Home() {
                         >
 
                             {testimonials.map((v, i) => (
-                                <SwiperSlide key={i}  className="cardall">
+                                <SwiperSlide key={i} className="cardall">
                                     <Card
                                         sx={{
                                             borderRadius: "16px",
                                             boxShadow: "none",
                                             border: "1px solid #eee",
                                             height: "100%",
-                                        }} 
-                                       
+                                        }}
+
                                     >
                                         <CardContent>
                                             <Box sx={{ display: "flex", mb: 1 }}>
@@ -470,7 +472,7 @@ function Home() {
                     </Box>
                 </section>
 
-                
+
 
             </main>
         </div>
