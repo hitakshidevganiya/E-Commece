@@ -1,3 +1,4 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import About from './componet/About/About'
 import Cart from './componet/Cart/Cart'
@@ -13,12 +14,17 @@ function App() {
 
   return (
     <>
-      {/* <Header /> */}
-      <Home />
+
+      {/* <Home /> */}
       {/* <Mens /> */}
       {/* <Cart /> */}
       {/* <Casual /> */}
-      <About />
+      {/* <About /> */}
+
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
       <Footer />
     </>
   )
