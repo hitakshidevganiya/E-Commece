@@ -1,0 +1,258 @@
+@media screen and (max-width: 576px) {
+    .hero-title {
+        font-size: 33px !important;
+        /* text-align: center; */
+        width: 100%;
+    }
+
+    .hero-subtitle {
+        font-size: 11px !important;
+        margin: 15px 0 !important;
+
+    }
+
+    .stats {
+        gap: 16px !important;
+        justify-content: space-between;
+        /* display: block; */
+    }
+
+    .stats h4 {
+        font-size: 25px;
+    }
+
+    .stats p {
+        font-size: 10px;
+    }
+
+    .hero-btn {
+        padding: 4px;
+        margin-bottom: 12px !important;
+        width: 100%;
+
+    }
+
+    .hero {
+        width: 90%;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+
+}
+
+@media screen and (min-width: 576px) {
+    .hero-title {
+        font-size: 44px !important;
+        /* text-align: center; */
+        width: 90%;
+    }
+
+    .hero-subtitle {
+        font-size: 14px !important;
+        margin: 17px 0 !important;
+
+    }
+
+    .stats {
+        /* gap: 27px !important; */
+        /* justify-content: space-between; */
+    }
+
+    .stats h4 {
+        font-size: 32px;
+    }
+
+    .stats p {
+        font-size: 12px;
+    }
+
+    .hero-btn {
+        width: 40%;
+        margin-bottom: 12px !important;
+
+    }
+    
+    .hero {
+        width: 90%;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+
+    .brand-item {
+        font-size: 22px !important;
+    }
+
+    .brand-container {
+        gap: 4px;
+        
+    }
+
+
+}
+
+@media screen and (min-width: 768px) {
+    .hero-title {
+        font-size: 35px !important;
+        /* width: 80%; */
+    }
+
+    .hero-subtitle {
+        font-size: 10px !important;
+        margin: 15px 0 !important;
+
+    }
+
+    .stats {
+        gap: 27px !important;
+    }
+
+    .stats h4 {
+        font-size: 25px;
+    }
+
+    .stats p {
+        font-size: 9px;
+    }
+
+    .hero-btn {
+        padding: 6px 24px !important;
+        margin-bottom: 12px !important;
+        font-size: 10px !important;
+    }
+
+    .hero {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    .brand-item {
+        font-size: 22px !important;
+    }
+
+    .brand-container {
+        gap: 40px;
+        
+    }
+
+    
+
+}
+
+@media screen and (min-width: 992px) {
+    .hero-title {
+        font-size: 40px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 11px !important;
+        margin: 17px 0 !important;
+
+    }
+
+    .stats {
+        gap: 26px !important;
+    }
+
+    .stats h4 {
+        font-size: 25px;
+    }
+
+    .stats p {
+        font-size: 10px;
+    }
+
+    .hero-btn {
+        padding: 7px 29px !important;
+        margin-bottom: 16px !important;
+        font-size: 11px !important;
+    }
+
+    .hero {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .brand-item {
+        font-size: 30px !important;
+    }
+
+    .brand-container {
+        gap: 45px;
+    }
+
+}
+
+@media screen and (min-width: 1200PX) {
+    .hero-title {
+        font-size: 48px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 14px !important;
+        margin: 20px 0 !important;
+
+    }
+
+    .stats h4 {
+        font-size: 32px;
+    }
+
+    .stats p {
+        font-size: 12px;
+    }
+
+    .hero-btn {
+        padding: 8px 38px !important;
+        margin-bottom: 22px !important;
+        font-size: 13px;
+    }
+    .brand-item {
+        font-size: 31px !important;
+    }
+
+    .brand-container {
+        gap: 82px;
+    }
+
+
+}
+
+@media screen and (min-width: 1400px) {
+    .hero-title {
+        font-size: 55px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 15px !important;
+        max-width: 530px !important;
+    }
+
+    .stats {
+        gap: 47px !important;
+    }
+
+    .stats h4 {
+        font-size: 35px;
+    }
+
+    .stats p {
+        font-size: 14px;
+    }
+
+    .hero-btn {
+        padding: 10px 50px !important;
+        border-radius: 25px !important;
+        font-size: 15px !important;
+    }
+
+    .brand-item {
+        font-size: 33px !important;
+    }
+
+    .brand-container {
+        gap: 112px;
+    }
+
+}

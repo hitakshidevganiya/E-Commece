@@ -1,5 +1,5 @@
 import React from "react";
-import '../../Css/header.css'
+// import '../../Css/header.css'
 import { Box, Button, Grid, Typography, Card, CardContent, CardMedia, Rating, TextField, IconButton, } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -150,7 +150,7 @@ function Home() {
                                     <Button variant="contained" className="hero-btn">
                                         Shop Now
                                     </Button>
-                                    <Box className="stats">
+                                    <Box className="stats" width="50%">
                                         <Box>
                                             <Typography variant="h4">200+</Typography>
                                             <Typography variant="body2">International Brands</Typography>
@@ -183,7 +183,7 @@ function Home() {
                             <Grid container>
                                 <Box className="brand-container">
                                     {brands.map((brand, i) => (
-                                        <Typography key={i} className="brand-v">
+                                        <Typography key={i} className="brand-item">
                                             {brand}
                                         </Typography>
                                     ))}
@@ -393,7 +393,7 @@ function Home() {
                     </Box>
                 </section>
 
-                <section className="customer-section">
+                {/* <section className="customer-section">
                     <Box sx={{ px: 4, py: 8, mb: 15 }}  >
                         <Box className="custMain">
                             <Box
@@ -470,7 +470,7 @@ function Home() {
                             ))}
                         </Swiper>
                     </Box>
-                </section>
+                </section> */}
 
 
 

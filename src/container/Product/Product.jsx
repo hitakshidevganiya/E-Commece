@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../Header/Header";
+import Header from "../../componet/Header/Header";
 import Remove from '@mui/icons-material/Remove';
 import Add from '@mui/icons-material/Add';
 import { IoIosArrowDown } from "react-icons/io";
@@ -85,7 +85,7 @@ const products = [
     },
 ];
 
-function Mens() {
+function Product() {
 
     const [size, setSize] = useState("Large");
     const [qty, setQty] = useState(1);
@@ -371,4 +371,4 @@ function Mens() {
 }
 
 
-export default Mens;
+export default Product;

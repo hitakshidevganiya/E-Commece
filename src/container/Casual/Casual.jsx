@@ -1,7 +1,7 @@
 import { Box, Button, Card, CardContent, CardMedia, Chip, colors, Divider, Grid, Slide, Slider, Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import usePagination from "@mui/material/usePagination";
-import '../../Css/header.css'
+// import '../../Css/header.css'
 import React from "react";
 
 const products = [
