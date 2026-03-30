@@ -43,7 +43,7 @@
 
 @media screen and (min-width: 576px) {
     .hero-title {
-        font-size: 44px !important;
+        font-size: 49px !important;
         /* text-align: center; */
         width: 90%;
     }
@@ -54,13 +54,13 @@
 
     }
 
-    .stats {
-        /* gap: 27px !important; */
-        /* justify-content: space-between; */
-    }
+    /* .stats {
+        gap: 27px !important;
+        justify-content: space-between;
+    } */
 
     .stats h4 {
-        font-size: 32px;
+        font-size: 35px;
     }
 
     .stats p {
@@ -72,7 +72,7 @@
         margin-bottom: 12px !important;
 
     }
-    
+
     .hero {
         width: 90%;
         margin: 0 auto;
@@ -86,7 +86,7 @@
 
     .brand-container {
         gap: 4px;
-        
+
     }
 
 
@@ -133,10 +133,55 @@
 
     .brand-container {
         gap: 40px;
-        
+
     }
 
-    
+    .maintitle {
+        font-size: 35px !important;
+        margin-top: 50px !important;
+        margin-bottom: 40px !important;
+    }
+
+    .image {
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+    .productName {
+        font-size: 14px !important;
+    }
+
+    .rating {
+        gap: 3px;
+    }
+
+    .ratingsize {
+        font-size: 20px !important;
+    }
+
+    .price,
+    .oldPrice {
+        font-size: 17px !important;
+    }
+
+    .content {
+        padding: 13px 5px !important;
+    }
+
+    .viewBtn {
+        margin-bottom: 50px !important;
+    }
+
+    .discount {
+        font-size: 12px;
+
+        padding: 3px 8px;
+    }
+
+    .ratingText {
+        font-size: 13px !important;
+
+    }
 
 }
 
@@ -182,6 +227,64 @@
         gap: 45px;
     }
 
+    .maintitle {
+        font-size: 35px !important;
+        margin-top: 50px !important;
+        margin-bottom: 40px !important;
+    }
+
+    .image {
+        height: 200px !important;
+        width: 174px !important;
+    }
+
+    .productName {
+        font-size: 14px !important;
+    }
+
+    .rating {
+        gap: 3px;
+    }
+
+    .ratingsize {
+        font-size: 20px !important;
+    }
+
+    .price,
+    .oldPrice {
+        font-size: 17px !important;
+    }
+
+    .content {
+        padding: 13px 5px !important;
+    }
+
+    .viewBtn {
+        margin-bottom: 50px !important;
+    }
+
+    .discount {
+        font-size: 12px;
+
+        padding: 3px 8px;
+    }
+
+    .ratingText {
+        font-size: 13px !important;
+
+    }
+
+     .newsletter-title {
+        font-size: 32px !important;
+        max-width: 400px;
+    }
+
+    .newsletter-form {
+        width: 250px;
+        gap: 12px;
+    }
+
+
 }
 
 @media screen and (min-width: 1200PX) {
@@ -208,12 +311,69 @@
         margin-bottom: 22px !important;
         font-size: 13px;
     }
+
     .brand-item {
         font-size: 31px !important;
     }
 
     .brand-container {
         gap: 82px;
+    }
+
+    .maintitle {
+        font-size: 40px !important;
+        margin-top: 55px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .image {
+        height: 240px !important;
+        width: 212px !important;
+    }
+
+    .productName {
+        font-size: 17px !important;
+    }
+
+    .rating {
+        gap: 4px;
+    }
+
+    .ratingsize {
+        font-size: 20px !important;
+    }
+
+    .price,
+    .oldPrice {
+        font-size: 20px !important;
+    }
+
+    .content {
+        padding: 13px 5px !important;
+    }
+
+    .viewBtn {
+        margin-bottom: 55px !important;
+    }
+
+    .discount {
+        font-size: 14px;
+        padding: 4px 10px;
+    }
+
+    .ratingText {
+        font-size: 15px !important;
+
+    }
+
+     .newsletter-title {
+        font-size: 33px !important;
+        max-width: 450px;
+    }
+
+    .newsletter-form {
+        width: 300px;
+        gap: 15px;
     }
 
 
@@ -253,6 +413,55 @@
 
     .brand-container {
         gap: 112px;
+    }
+
+    .maintitle {
+        font-size: 44px !important;
+        margin-top: 70px !important;
+        margin-bottom: 50px !important;
+    }
+
+    .image {
+        height: 290px !important;
+        width: 250px !important;
+    }
+
+    .productName {
+        font-size: 19px !important;
+    }
+
+    .rating {
+        gap: 5px;
+    }
+
+    .ratingsize {
+        font-size: 22px !important;
+    }
+
+    .price,
+    .oldPrice {
+        font-size: 22px !important;
+    }
+
+    .content {
+        padding: 15px 5px !important;
+    }
+
+    .viewBtn {
+        margin-bottom: 70px !important;
+    }
+
+    .boxSize {
+        max-width: 1121px;
+    }
+
+    .newsletter-title {
+        font-size: 35px !important;
+        max-width: 500px ;
+    }
+
+    .newsletter-form {
+        width: 350px;
     }
 
 }

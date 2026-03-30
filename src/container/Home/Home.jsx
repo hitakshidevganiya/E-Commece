@@ -150,7 +150,7 @@ function Home() {
                                     <Button variant="contained" className="hero-btn">
                                         Shop Now
                                     </Button>
-                                    <Box className="stats" width="50%">
+                                    <Box className="stats">
                                         <Box>
                                             <Typography variant="h4">200+</Typography>
                                             <Typography variant="body2">International Brands</Typography>
@@ -200,10 +200,10 @@ function Home() {
                         <Typography className="maintitle">
                             NEW ARRIVALS
                         </Typography>
-                        <Grid container spacing={4} justifyContent="space-between">
+                        <Grid container spacing={{xs: 2,lg:4}} justifyContent="space-between">
                             {
                                 products.map((v, i) => (
-                                    <Grid xs={12} sm={6} md={3} key={i}>
+                                    <Grid size={{xs:12 ,sm:6,  md:3}} key={i}>
                                         <Card className="card">
                                             <CardMedia
                                                 component="img"
@@ -220,7 +220,7 @@ function Home() {
                                                     <Rating
                                                         value={v.rating}
                                                         precision={0.5}
-                                                    // size="small"
+                                                        className="ratingsize"
                                                     />
                                                     <Typography className="ratingText">
                                                         {v.rating}/5
@@ -266,7 +266,7 @@ function Home() {
                         <Grid container spacing={4} justifyContent="space-between">
                             {
                                 productsTop.map((v, i) => (
-                                    <Grid xs={12} sm={6} md={3} key={i}>
+                                    <Grid size={{xs:12 ,sm:6,  md:3}} key={i}>
                                         <Card className="card">
                                             <CardMedia
                                                 component="img"
@@ -283,7 +283,7 @@ function Home() {
                                                     <Rating
                                                         value={v.rating}
                                                         precision={0.5}
-                                                    // size="small"
+                                                        className="ratingsize"
                                                     />
                                                     <Typography className="ratingText">
                                                         {v.rating}/5
@@ -323,15 +323,7 @@ function Home() {
                 </section>
 
                 <section className="style-section">
-                    <Box
-                        sx={{
-                            backgroundColor: "#f2f2f2",
-                            borderRadius: "20px",
-                            padding: { xs: 2, md: 8 },
-                            maxWidth: "1518px",
-                            margin: "80px auto",
-                        }}
-                    >
+                    <Box className="boxSize">
                         <Typography
                             sx={{
                                 fontWeight: 800,
@@ -359,7 +351,7 @@ function Home() {
 
                                             <CardMedia
                                                 component="img"
-                                                image={v.image}
+                                                image= {v.image}
                                                 alt={v.title}
                                                 sx={{
                                                     width: "100%",
