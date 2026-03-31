@@ -383,12 +383,12 @@
     font-size: 18px !important;
 }
 
-ul {
+.footerli {
     list-style: none;
     padding: 0;
 }
 
-li {
+.footerli li {
     margin-bottom: 8px;
     color: #555;
     font-size: 15px;
@@ -397,7 +397,7 @@ li {
 
 }
 
-li:hover {
+.footerli li:hover {
     color: black;
 }
 

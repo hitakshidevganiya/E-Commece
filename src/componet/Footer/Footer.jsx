@@ -31,7 +31,7 @@ function Footer() {
 
                         <Grid xs={6} md={2}>
                             <Typography className="title">COMPANY</Typography>
-                            <ul>
+                            <ul className="footerli">
                                 <li>About</li>
                                 <li>Features</li>
                                 <li>Works</li>
@@ -41,7 +41,7 @@ function Footer() {
 
                         <Grid xs={6} md={2}>
                             <Typography className="title">HELP</Typography>
-                            <ul>
+                            <ul className="footerli">
                                 <li>Customer Support</li>
                                 <li>Delivery Details</li>
                                 <li>Terms & Conditions</li>
@@ -51,7 +51,7 @@ function Footer() {
 
                         <Grid xs={6} md={2}>
                             <Typography className="title">FAQ</Typography>
-                            <ul>
+                            <ul className="footerli">
                                 <li>Account</li>
                                 <li>Manage Deliveries</li>
                                 <li>Orders</li>
@@ -59,9 +59,9 @@ function Footer() {
                             </ul>
                         </Grid>
 
-                        <Grid xs={6} md={2}>
+                        <Grid xs={6} md={2} >
                             <Typography className="title">RESOURCES</Typography>
-                            <ul>
+                            <ul className="footerli">
                                 <li>Free eBooks</li>
                                 <li>Development Tutorial</li>
                                 <li>How to - Blog</li>
