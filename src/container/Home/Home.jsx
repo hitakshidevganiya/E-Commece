@@ -385,7 +385,7 @@ function Home() {
                     </Box>
                 </section>
 
-                {/* <section className="customer-section">
+                <section className="customer-section">
                     <Box sx={{ px: 4, py: 8, mb: 15 }}  >
                         <Box className="custMain">
                             <Box
@@ -397,8 +397,7 @@ function Home() {
                                 }}
                             >
                                 <Typography
-                                    variant="h3"
-                                    sx={{ fontWeight: 800, textTransform: "uppercase" }}
+                                    className="custmTitle"
                                 >
                                     Our Happy Customers
                                 </Typography>
@@ -462,7 +461,7 @@ function Home() {
                             ))}
                         </Swiper>
                     </Box>
-                </section> */}
+                </section>
 
 
 

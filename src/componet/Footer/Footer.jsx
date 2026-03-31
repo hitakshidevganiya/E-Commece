@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Grid } from "@mui/system";
 import { IconButton, Typography } from "@mui/material";
 import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import { BiLogoFacebook } from "react-icons/bi";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
@@ -15,7 +15,7 @@ function Footer() {
 
                     <Grid container spacing={4} className="foooooter" >
                         <Grid xs={12} md={4}>
-                            <Typography className="footerlogo">SHOP.CO</Typography>
+                            <Typography className="footerlogo" variant="h5">SHOP.CO</Typography>
                             <Typography className="desc">
                                 We have clothes that suits your style and which you’re proud to
                                 wear. From women to men.
@@ -23,14 +23,14 @@ function Footer() {
 
                             <Box className="socials">
                                 <IconButton><TwitterIcon /></IconButton>
-                                <IconButton><FacebookIcon /></IconButton>
+                                <IconButton><BiLogoFacebook /></IconButton>
                                 <IconButton><InstagramIcon /></IconButton>
                                 <IconButton><GitHubIcon /></IconButton>
                             </Box>
                         </Grid>
 
                         <Grid xs={6} md={2}>
-                            <Typography className="title">COMPANY</Typography>
+                            <Typography className="title" variant="body2">COMPANY</Typography>
                             <ul className="footerli">
                                 <li>About</li>
                                 <li>Features</li>
@@ -40,7 +40,7 @@ function Footer() {
                         </Grid>
 
                         <Grid xs={6} md={2}>
-                            <Typography className="title">HELP</Typography>
+                            <Typography className="title" variant="body2">HELP</Typography>
                             <ul className="footerli">
                                 <li>Customer Support</li>
                                 <li>Delivery Details</li>
@@ -50,7 +50,7 @@ function Footer() {
                         </Grid>
 
                         <Grid xs={6} md={2}>
-                            <Typography className="title">FAQ</Typography>
+                            <Typography className="title" variant="body2">FAQ</Typography>
                             <ul className="footerli">
                                 <li>Account</li>
                                 <li>Manage Deliveries</li>
@@ -60,7 +60,7 @@ function Footer() {
                         </Grid>
 
                         <Grid xs={6} md={2} >
-                            <Typography className="title">RESOURCES</Typography>
+                            <Typography className="title" variant="body2">RESOURCES</Typography>
                             <ul className="footerli">
                                 <li>Free eBooks</li>
                                 <li>Development Tutorial</li>
@@ -71,7 +71,7 @@ function Footer() {
                     </Grid>
 
                     <Box className="footer-bottom">
-                        <Typography>
+                        <Typography className="footershop">
                             Shop.co © 2000-2023, All Rights Reserved
                         </Typography>
 

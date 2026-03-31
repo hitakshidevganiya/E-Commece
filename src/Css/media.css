@@ -33,9 +33,59 @@
     }
 
     .hero {
-        width: 90%;
+        width: 92%;
         margin: 0 auto;
         text-align: left;
+    }
+
+    .newsletter-title {
+        font-size: 21px !important;
+        max-width: 100%;
+    }
+
+    .newsletter-form {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .newsletter-container {
+        padding: 25px;
+    }
+
+    .newsletter-input .MuiOutlinedInput-root,
+    .newsletter-button {
+        height: 35px;
+    }
+
+    .aboutmain {
+        width: 92% !important;
+        margin: 0 auto;
+    }
+
+    .footershop {
+        font-size: 12px !important;
+    }
+
+    .foooooter {
+        margin-top: 110px;
+    }
+
+    .allbrand {
+        padding: 4px 6px;
+        margin: 0 3px;
+
+    }
+
+    .master {
+        padding: 3px 6px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+    }
+
+    .footer {
+        width: 92%;
     }
 
 
@@ -89,7 +139,56 @@
 
     }
 
+    .newsletter-title {
+        font-size: 27px !important;
+        max-width: 100%;
+    }
 
+    .newsletter-form {
+        width: 100%;
+        gap: 12px;
+    }
+
+
+    .newsletter-container {
+        padding: 27px 40px;
+    }
+
+    .newsletter-input .MuiOutlinedInput-root,
+    .newsletter-button {
+        height: 40px;
+    }
+
+    .aboutmain {
+        width: 90% !important;
+        margin: 0 auto;
+    }
+
+    .footershop {
+        font-size: 12px !important;
+    }
+
+    .foooooter {
+        margin-top: 110px;
+    }
+
+    .allbrand {
+        padding: 4px 6px;
+        margin: 0 3px;
+
+    }
+
+    .master {
+        padding: 3px 6px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+    }
+
+    .footer {
+        width: 90%;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -183,6 +282,51 @@
 
     }
 
+    .newsletter-title {
+        font-size: 27px !important;
+        max-width: 300px;
+    }
+
+    .newsletter-form {
+        width: 200px;
+        gap: 12px;
+    }
+
+    .newsletter-container {
+        padding: 27px 40px;
+    }
+
+    .newsletter-input .MuiOutlinedInput-root,
+    .newsletter-button {
+        height: 43px;
+    }
+
+    .aboutmain {
+        width: 85% !important;
+    }
+
+    .footershop {
+        font-size: 12px !important;
+    }
+
+    .foooooter {
+        margin-top: 35px;
+    }
+
+    .allbrand {
+        padding: 5px 8px;
+        margin: 0 5px;
+
+    }
+
+    .master {
+        padding: 4px 8px;
+    }
+
+    .footer {
+        width: 85%;
+    }
+
 }
 
 @media screen and (min-width: 992px) {
@@ -274,15 +418,50 @@
 
     }
 
-     .newsletter-title {
-        font-size: 32px !important;
-        max-width: 400px;
+    .newsletter-title {
+        font-size: 29px !important;
+        max-width: 420px;
     }
 
     .newsletter-form {
-        width: 250px;
+        width: 240px;
         gap: 12px;
     }
+
+    .newsletter-container {
+        padding: 27px 45px;
+    }
+
+    .newsletter-input .MuiOutlinedInput-root,
+    .newsletter-button {
+        height: 43px;
+    }
+
+    .aboutmain {
+        width: 80% !important;
+    }
+
+    .footershop {
+        font-size: 12px !important;
+    }
+
+    .foooooter {
+        margin-top: 40px;
+    }
+
+    .allbrand {
+        padding: 7px 10px;
+        margin: 0 8px;
+    }
+
+    .master {
+        padding: 6px 10px;
+    }
+
+    .footer {
+        width: 80%;
+    }
+
 
 
 }
@@ -366,16 +545,33 @@
 
     }
 
-     .newsletter-title {
+    .newsletter-title {
         font-size: 33px !important;
-        max-width: 450px;
+        max-width: 480px;
+        line-height: 1.2 !important;
     }
 
     .newsletter-form {
-        width: 300px;
+        width: 280px;
         gap: 15px;
     }
 
+    .newsletter-container {
+        padding: 38px 58px;
+    }
+
+    .newsletter-input .MuiOutlinedInput-root,
+    .newsletter-button {
+        height: 48px;
+    }
+
+    .footershop {
+        font-size: 13px !important;
+    }
+
+    .foooooter {
+        margin-top: 70px;
+    }
 
 }
 
@@ -457,11 +653,29 @@
 
     .newsletter-title {
         font-size: 35px !important;
-        max-width: 500px ;
+        max-width: 500px;
+        line-height: 1.2 !important;
     }
 
     .newsletter-form {
         width: 350px;
+    }
+
+    .newsletter-input .MuiOutlinedInput-root,
+    .newsletter-button {
+        height: 50px;
+    }
+
+    .footershop {
+        font-size: 15px !important;
+    }
+
+    .foooooter {
+        margin-top: 80px;
+    }
+
+    .custmTitle {
+        font-size: 44px !important;
     }
 
 }
