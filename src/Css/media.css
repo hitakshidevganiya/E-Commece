@@ -88,6 +88,52 @@
         width: 92%;
     }
 
+    .btnoutline {
+        font-size: 15px !important;
+        margin-right: 10px !important;
+    }
+
+    .btnlatest {
+        
+        display: none !important;
+    }
+
+    .btnreview {
+        font-size: 9px !important;
+    }
+
+    .rename {
+        font-size: 17px !important;
+    }
+
+    .retext {
+        width: 100% !important;
+        font-size: 13px !important;
+        margin-bottom: 13px !important;
+    }
+
+    .redate {
+        font-size: 13px !important;
+    }
+
+    .Allreview {
+        font-size: 15px !important;
+    }
+
+    .Allreviewspan {
+        font-size: 12px !important;
+
+    }
+
+    .allReviews {
+        width: 92%;
+        margin: 0 auto;
+    }
+
+    .loadbtn {
+        margin-top: 10px !important;
+    }
+
 
 }
 
@@ -189,6 +235,57 @@
     .footer {
         width: 90%;
     }
+
+    .custmTitle {
+        font-size: 30px !important;
+    }
+
+    /* .custMain {
+        width: 100%;
+    } */
+
+    .btnoutline {
+        font-size: 18px !important;
+    }
+
+    .btnlatest {
+        font-size: 11px !important;
+        margin: 8px !important;
+    }
+
+    .btnreview {
+        font-size: 11px !important;
+    }
+
+    .rename {
+        font-size: 18px !important;
+    }
+
+    .retext {
+        width: 100% !important;
+        font-size: 15px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .redate {
+        font-size: 15px !important;
+    }
+
+    .Allreview {
+        font-size: 18px !important;
+    }
+
+    .Allreviewspan {
+        font-size: 12px !important;
+
+    }
+
+    .allReviews {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+
 }
 
 @media screen and (min-width: 768px) {
@@ -326,6 +423,49 @@
     .footer {
         width: 85%;
     }
+
+    .custmTitle {
+        font-size: 33px !important;
+    }
+
+    .custMain {
+        width: 85%;
+        justify-content: space-between;
+    }
+
+    .btnoutline {
+
+        font-size: 21px !important;
+    }
+
+    .btnlatest {
+
+        font-size: 12px !important;
+        margin: 14px !important;
+    }
+
+    .btnreview {
+        font-size: 12px !important;
+    }
+
+    .Allreview {
+        font-size: 20px !important;
+    }
+
+    .Allreviewspan {
+        font-size: 14px !important;
+
+    }
+
+    .allReviews {
+        width: 85%;
+    }
+
+
+
+
+
+
 
 }
 
@@ -466,6 +606,29 @@
         font-size: 35px !important;
     }
 
+    .custMain {
+        width: 80%;
+    }
+
+    .retext {
+        width: 330px !important;
+    }
+    
+    .retext {
+        width:336px !important;
+    }
+
+    
+    .allReviews {
+        width: 80%;
+    }
+
+
+    
+
+
+
+
 
 
 }
@@ -581,6 +744,46 @@
         font-size: 40px !important;
     }
 
+    .btnoutline {
+
+        font-size: 24px !important;
+    }
+
+    .btnlatest {
+
+        font-size: 14px !important;
+        margin: 14px !important;
+        
+    }
+
+    .btnreview {
+        font-size: 15px !important;
+    }
+
+
+    .rename {
+        font-size: 19px !important;
+    }
+
+    .retext {
+        width:420px !important;
+        font-size: 16px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .redate {
+        font-size: 16px !important;
+    }
+
+    .Allreview {
+        font-size: 22px !important;
+    }
+
+    .Allreviewspan {
+        font-size: 15px !important;
+
+    }
+
 
 }
 
@@ -686,5 +889,21 @@
     .custmTitle {
         font-size: 44px !important;
     }
+
+    .rename {
+        font-size: 20px !important;
+    }
+
+    .retext {
+        width: 500px !important;
+        font-size: 17px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .redate {
+        font-size: 17px !important;
+    }
+
+
 
 }

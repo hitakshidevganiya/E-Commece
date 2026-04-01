@@ -395,7 +395,7 @@ function Home() {
                                     alignItems: "center",
                                     mb: 4,
                                 }}
-                            >
+                            >   
                                 <Typography
                                     className="custmTitle"
                                 >

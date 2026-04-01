@@ -94,277 +94,278 @@ function Product() {
         <>
 
             <div className="container">
-                <div className="mainmen">
-                    <Divider />
-                    <main>
-                        <section className="men-product">
-                            <Box sx={{ mt: 10 }} >
-                                <Grid container spacing={4} >
-                                    <Grid container size={7} alignItems="stretch" >
 
-                                        <Grid size={3} rowSpacing={6} container display="flex" direction="column" >
+                <Divider />
+                <main>
+                    {/* <section className="men-product">
+                        <Box sx={{ mt: 10 }} >
+                            <Grid container spacing={4} >
+                                <Grid container size={7} alignItems="stretch" >
 
-                                            <Grid>
-                                                <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                                    <img src="../../../public/images/image 2.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                </Box>
-                                            </Grid>
-                                            <Grid>
-                                                <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                                    <img src="../../../public/images/image 5.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                </Box>
-                                            </Grid>
-                                            <Grid >
-                                                <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                                    <img src="../../../public/images/image 6 (1).png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                </Box>
-                                            </Grid>
+                                    <Grid size={3} rowSpacing={6} container display="flex" direction="column" >
 
-
+                                        <Grid>
+                                            <Box sx={{ width: '100%', overflow: 'hidden' }}>
+                                                <img src="../../../public/images/image 2.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            </Box>
                                         </Grid>
-
-                                        <Grid size={9} display='flex'>
-                                            <Box sx={{ height: "84%", width: "100%", }}>
-                                                <img src="../../../public/images/image 1.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 25 }} />
+                                        <Grid>
+                                            <Box sx={{ width: '100%', overflow: 'hidden' }}>
+                                                <img src="../../../public/images/image 5.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            </Box>
+                                        </Grid>
+                                        <Grid >
+                                            <Box sx={{ width: '100%', overflow: 'hidden' }}>
+                                                <img src="../../../public/images/image 6 (1).png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                             </Box>
                                         </Grid>
 
 
                                     </Grid>
 
-                                    <Grid size={5}>
-                                        <Typography variant="h4" fontWeight="bold" gutterBottom mt={2}>
-                                            ONE LIFE GRAPHIC T-SHIRT
-                                        </Typography>
-
-                                        <Box display="flex" alignItems="center" gap={1} mb={2}>
-                                            <Rating value={4.5} precision={0.5} readOnly />
-                                            <Typography>4.5/5</Typography>
+                                    <Grid size={9} display='flex'>
+                                        <Box sx={{ height: "84%", width: "100%", }}>
+                                            <img src="../../../public/images/image 1.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 25 }} />
                                         </Box>
-
-                                        <Box display="flex" alignItems="center" gap={2} mb={2}>
-                                            <Typography variant="h5" fontWeight="bold" sx={{ fontSize: '30px' }}>
-                                                $260
-                                            </Typography>
-                                            <Typography
-                                                sx={{ textDecoration: "line-through", color: "gray", fontSize: '30px' }}
-                                            >
-                                                $300
-                                            </Typography>
-                                            <Typography color="error" className="discount">-40%</Typography>
-                                        </Box>
-
-                                        <Typography color="text.secondary" mb={3}>
-                                            This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
-                                        </Typography>
-
-                                        <Divider />
-
-                                        <Box sx={{ mt: 3 }}>
-                                            <Typography>
-                                                Select Colors
-                                            </Typography>
-                                            <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                                <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#4b5320" }} />
-                                                <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#2f4f4f" }} />
-                                                <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#1c1c3c" }} />
-                                            </Box>
-                                        </Box>
-
-                                        <Divider sx={{ mt: 3 }} />
-
-                                        <Typography mb={1} mt={3}>Choose Size</Typography>
-                                        <ToggleButtonGroup
-                                            value={size}
-                                            exclusive
-                                            onChange={(e, val) => val && setSize(val)}
-                                            sx={{ mb: 3 }}
-                                        >
-                                            {["Small", "Medium", "Large", "X-Large"].map((s) => (
-                                                <ToggleButton key={s} value={s} sx={{ borderRadius: 2 }}>
-                                                    {s}
-                                                </ToggleButton>
-                                            ))}
-                                        </ToggleButtonGroup>
-
-                                        <Divider sx={{ mt: 3 }} />
-
-                                        {/* Quantity */}
-                                        <Box display="flex" alignItems="center" gap={2} mb={3} >
-                                            <IconButton onClick={() => setQty(Math.max(1, qty - 1))}>
-                                                <Remove />
-                                            </IconButton>
-                                            <Typography>{qty}</Typography>
-                                            <IconButton onClick={() => setQty(qty + 1)}>
-                                                <Add />
-                                            </IconButton>
-                                        </Box>
-
-                                        {/* Add to Cart */}
-                                        <Button
-                                            variant="contained"
-                                            size="large"
-                                            fullWidth
-                                            sx={{
-                                                borderRadius: "30px",
-                                                py: 1.5,
-                                                fontWeight: "bold",
-                                                display: 'flex',
-                                                bgcolor: 'black'
-                                            }}
-                                        >
-                                            Add to Cart
-                                        </Button>
                                     </Grid>
+
+
                                 </Grid>
-                            </Box>
-                        </section>
 
-                        <section className="allReviews">
-                            <Box >
-                                {/* Tabs */}
-                                <Box width="100%" sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                    <Tabs value={1} centered aria-label="basic tabs example" >
-                                        <Tab label="Product Details" />
-                                        <Tab label="Rating & Reviews" />
-                                        <Tab label="FAQs" /> 
-                                    </Tabs>
-                                </Box>
-
-
-                                {/* Header */}
-                                <Box
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                    mt={4}
-                                    mb={2}
-                                >
-                                    <Typography variant="h6" fontWeight="bold" sx={{ fontSize: 22 }}>
-                                        All Reviews <span style={{ fontSize: 15, color: 'gray', fontWeight: 'lighter' }}> (451)</span>
+                                <Grid size={5}>
+                                    <Typography variant="h4" fontWeight="bold" gutterBottom mt={2}>
+                                        ONE LIFE GRAPHIC T-SHIRT
                                     </Typography>
 
-                                    <Box>
-                                        <Button
-                                            variant="contained"
-                                            sx={{ borderRadius: '360px', bgcolor: '#e9e9e9', color: 'black', fontSize: 25 }}
-                                        >
-                                            <MdOutlineTune />
-                                        </Button>
-
-                                        <Button
-                                            variant="contained"
-                                            sx={{ borderRadius: "20px", textTransform: "none", bgcolor: '#e9e9e9', color: 'black', margin: 2 }}
-                                        >
-                                            Latest
-                                            <span style={{ marginLeft: "20px" }}><IoIosArrowDown /></span>
-                                        </Button>
-
-                                        <Button
-                                            variant="contained"
-                                            sx={{ borderRadius: "20px", textTransform: "none", bgcolor: 'black' }}
-                                        >
-                                            Write a Review
-                                        </Button>
+                                    <Box display="flex" alignItems="center" gap={1} mb={2}>
+                                        <Rating value={4.5} precision={0.5} readOnly />
+                                        <Typography>4.5/5</Typography>
                                     </Box>
-                                </Box>
-                                <Grid container spacing={3}>
-                                    {reviews.map((v, i) => (
-                                        <Grid size={6} key={i}>
-                                            <Card sx={{ borderRadius: "16px", p: 2 }}>
-                                                <CardContent >
-                                                    <Box justifyContent="space-between" display="flex" alignItems="center" >
-                                                        <Rating value={v.rating} precision={0.5} readOnly />
-                                                        <BsThreeDots fontSize="20px" color="gray" />
-                                                    </Box>
 
-                                                    <Box display="flex" alignItems="center" mt={1} mb={1}>
-                                                        <Typography fontWeight="bold" sx={{ fontSize: 20 }}>{v.name}</Typography>
-                                                        <CheckCircleIcon sx={{ color: "green", fontSize: 23, ml: 1 }} />
-                                                    </Box>
+                                    <Box display="flex" alignItems="center" gap={2} mb={2}>
+                                        <Typography variant="h5" fontWeight="bold" sx={{ fontSize: '30px' }}>
+                                            $260
+                                        </Typography>
+                                        <Typography
+                                            sx={{ textDecoration: "line-through", color: "gray", fontSize: '30px' }}
+                                        >
+                                            $300
+                                        </Typography>
+                                        <Typography color="error" className="discount">-40%</Typography>
+                                    </Box>
 
-                                                    <Typography variant="body2" color="gray" mb={2} sx={{ fontSize: 19, width: '630px' }}>
-                                                        "{v.text}"
-                                                    </Typography>
+                                    <Typography color="text.secondary" mb={3}>
+                                        This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
+                                    </Typography>
 
-                                                    <Typography variant="caption" color="text.secondary" sx={{ fontSize: 19 }}>
-                                                        Posted on {v.date}
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                                <Box textAlign="center" mt={4}>
-                                    <Button
-                                        variant="outlined"
-                                        sx={{ borderRadius: "30px", px: 5, textTransform: "none", color: 'black', borderColor: 'gray', marginTop: 4 }}
+                                    <Divider />
+
+                                    <Box sx={{ mt: 3 }}>
+                                        <Typography>
+                                            Select Colors
+                                        </Typography>
+                                        <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
+                                            <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#4b5320" }} />
+                                            <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#2f4f4f" }} />
+                                            <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#1c1c3c" }} />
+                                        </Box>
+                                    </Box>
+
+                                    <Divider sx={{ mt: 3 }} />
+
+                                    <Typography mb={1} mt={3}>Choose Size</Typography>
+                                    <ToggleButtonGroup
+                                        value={size}
+                                        exclusive
+                                        onChange={(e, val) => val && setSize(val)}
+                                        sx={{ mb: 3 }}
                                     >
-                                        Load More Reviews
+                                        {["Small", "Medium", "Large", "X-Large"].map((s) => (
+                                            <ToggleButton key={s} value={s} sx={{ borderRadius: 2 }}>
+                                                {s}
+                                            </ToggleButton>
+                                        ))}
+                                    </ToggleButtonGroup>
+
+                                    <Divider sx={{ mt: 3 }} />
+
+                                    
+                                    <Box display="flex" alignItems="center" gap={2} mb={3} >
+                                        <IconButton onClick={() => setQty(Math.max(1, qty - 1))}>
+                                            <Remove />
+                                        </IconButton>
+                                        <Typography>{qty}</Typography>
+                                        <IconButton onClick={() => setQty(qty + 1)}>
+                                            <Add />
+                                        </IconButton>
+                                    </Box>
+
+                                    
+                                    <Button
+                                        variant="contained"
+                                        size="large"
+                                        fullWidth
+                                        sx={{
+                                            borderRadius: "30px",
+                                            py: 1.5,
+                                            fontWeight: "bold",
+                                            display: 'flex',
+                                            bgcolor: 'black'
+                                        }}
+                                    >
+                                        Add to Cart
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </section> */}
+
+                    <section className="allReviews">
+                        <Box >
+                            {/* Tabs */}
+                            <Box width="100%" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                <Tabs value={1} centered aria-label="basic tabs example" >
+                                    <Tab label="Product Details" />
+                                    <Tab label="Rating & Reviews" />
+                                    <Tab label="FAQs" />
+                                </Tabs>
+                            </Box>
+
+
+                            {/* Header */}
+                            <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                mt={4}
+                                mb={2}
+                            >
+                                <Typography variant="h6" fontWeight="bold" className="Allreview">
+                                    All Reviews <span className="Allreviewspan" > (451)</span>
+                                </Typography>
+
+                                <Box>
+                                    <Button
+                                        variant="contained"
+                                        className="btnoutline"
+                                    >
+                                        <MdOutlineTune />
+                                    </Button>
+
+                                    <Button
+                                        variant="contained"
+                                        // sx={{ borderRadius: "20px", textTransform: "none", bgcolor: '#e9e9e9', color: 'black', margin: 2 }}
+                                        className="btnlatest"
+                                    >
+                                        Latest
+                                        <span style={{ marginLeft: "20px" }}><IoIosArrowDown /></span>
+                                    </Button>
+
+                                    <Button
+                                        variant="contained"
+                                        className="btnreview"
+                                    >
+                                        Write a Review
                                     </Button>
                                 </Box>
                             </Box>
-                        </section>
+                            <Grid container spacing={3}>
+                                {reviews.map((v, i) => (
+                                    <Grid xs={12} md={6} key={i}>
+                                        <Card sx={{ borderRadius: "16px" , p:1 }}>
+                                            <CardContent >
+                                                <Box justifyContent="space-between" display="flex" alignItems="center" >
+                                                    <Rating value={v.rating} precision={0.5} readOnly />
+                                                    <BsThreeDots fontSize="20px" color="gray" />
+                                                </Box>
 
-                        <section className="likeProduct">
-                            <Box className="product" sx={{ mb: 20 }}>
-                                <Typography className="maintitle">
-                                    You might also like
-                                </Typography>
-                                <Grid container spacing={4} justifyContent="space-between">
-                                    {
-                                        products.map((v, i) => (
-                                            <Grid xs={12} sm={6} md={3} key={i}>
-                                                <Card className="card">
-                                                    <CardMedia
-                                                        component="img"
-                                                        image={v.image}
-                                                        alt={v.name}
-                                                        className="image"
-                                                    />
+                                                <Box display="flex" alignItems="center" mt={1} mb={1}>
+                                                    <Typography fontWeight="bold" className="rename" >{v.name}</Typography>
+                                                    <CheckCircleIcon sx={{ color: "green", fontSize: 23, ml: 1 }} />
+                                                </Box>
 
-                                                    <CardContent className="content">
-                                                        <Typography className="productName">
-                                                            {v.name}
-                                                        </Typography>
-                                                        <Box className="rating">
-                                                            <Rating
-                                                                value={v.rating}
-                                                                precision={0.5}
-                                                            // size="small"
-                                                            />
-                                                            <Typography className="ratingText">
-                                                                {v.rating}/5
-                                                            </Typography>
-                                                        </Box>
-                                                        <Box className="priceRow">
-                                                            <Typography className="price">
-                                                                ${v.price}
-                                                            </Typography>
+                                                <Typography variant="body2" color="gray" className="retext" >
+                                                    "{v.text}"
+                                                </Typography>
 
-                                                            {v.oldPrice && (
-                                                                <>
-                                                                    <Typography className="oldPrice">
-                                                                        ${v.oldPrice}
-                                                                    </Typography>
-
-                                                                    <span className="discount">
-                                                                        {v.discount}
-                                                                    </span>
-                                                                </>
-                                                            )}
-                                                        </Box>
-                                                    </CardContent>
-                                                </Card>
-                                            </Grid>
-                                        ))
-                                    }
-                                </Grid>
-
+                                                <Typography variant="caption" color="text.secondary" className="redate">
+                                                    Posted on {v.date}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                            <Box textAlign="center" mt={4}>
+                                <Button
+                                    variant="outlined"
+                                    className="loadbtn"
+                                >
+                                    Load More Reviews
+                                </Button>
                             </Box>
-                        </section>
-                    </main>
-                </div>
+                        </Box>
+                    </section>
+
+                    <section className="likeProduct">
+                        <Box className="product" sx={{ mb: 20 }}>
+                            <Typography className="maintitle">
+                                You might also like
+                            </Typography>
+                            <Grid container spacing={4} justifyContent="space-between">
+                                {
+                                    products.map((v, i) => (
+                                        <Grid xs={12} sm={6} md={3} key={i}>
+                                            <Card className="card">
+                                                <CardMedia
+                                                    component="img"
+                                                    image={v.image}
+                                                    alt={v.name}
+                                                    className="image"
+                                                />
+
+                                                <CardContent className="content">
+                                                    <Typography className="productName">
+                                                        {v.name}
+                                                    </Typography>
+                                                    <Box className="rating">
+                                                        <Rating
+                                                            value={v.rating}
+                                                            precision={0.5}
+                                                        // size="small"
+                                                        />
+                                                        <Typography className="ratingText">
+                                                            {v.rating}/5
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box className="priceRow">
+                                                        <Typography className="price">
+                                                            ${v.price}
+                                                        </Typography>
+
+                                                        {v.oldPrice && (
+                                                            <>
+                                                                <Typography className="oldPrice">
+                                                                    ${v.oldPrice}
+                                                                </Typography>
+
+                                                                <span className="discount">
+                                                                    {v.discount}
+                                                                </span>
+                                                            </>
+                                                        )}
+                                                    </Box>
+                                                </CardContent>
+                                            </Card>
+                                        </Grid>
+                                    ))
+                                }
+                            </Grid>
+
+                        </Box>
+                    </section>
+                </main>
+
             </div>
         </>
     )
