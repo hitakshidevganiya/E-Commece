@@ -136,7 +136,7 @@ function Home() {
                     <div className="mainhero">
                         <Box className="hero">
                             <Grid container display="flex" spacing={3} alignItems="center">
-                                <Grid size={{xs:12,sm:6}}>
+                                <Grid size={{ xs: 12, sm: 6 }}>
                                     <Typography variant="h1" className="hero-title">
                                         FIND CLOTHES THAT MATCHES YOUR STYLE
                                     </Typography>
@@ -168,9 +168,9 @@ function Home() {
                                     </Box>
 
                                 </Grid>
-                                <Grid  size={{xs:12,sm:6}}>
+                                <Grid size={{ xs: 12, sm: 6 }}>
                                     <Box className="hero-image" >
-                                    <img src="../../../public/images/heroimg.png" alt="" className="heroimg"  />
+                                        <img src="../../../public/images/heroimg.png" alt="" className="heroimg" />
                                     </Box>
                                 </Grid>
                             </Grid>
@@ -200,10 +200,10 @@ function Home() {
                         <Typography className="maintitle">
                             NEW ARRIVALS
                         </Typography>
-                        <Grid container spacing={{xs: 2,lg:4}} justifyContent="space-between">
+                        <Grid container spacing={{ xs: 2, lg: 4 }} justifyContent="space-between">
                             {
                                 products.map((v, i) => (
-                                    <Grid size={{xs:12 ,sm:6,  md:3}} key={i}>
+                                    <Grid size={{ xs: 12, sm: 6, md: 3 }} key={i}>
                                         <Card className="card">
                                             <CardMedia
                                                 component="img"
@@ -266,7 +266,7 @@ function Home() {
                         <Grid container spacing={4} justifyContent="space-between">
                             {
                                 productsTop.map((v, i) => (
-                                    <Grid size={{xs:12 ,sm:6,  md:3}} key={i}>
+                                    <Grid size={{ xs: 12, sm: 6, md: 3 }} key={i}>
                                         <Card className="card">
                                             <CardMedia
                                                 component="img"
@@ -351,7 +351,7 @@ function Home() {
 
                                             <CardMedia
                                                 component="img"
-                                                image= {v.image}
+                                                image={v.image}
                                                 alt={v.title}
                                                 sx={{
                                                     width: "100%",
@@ -433,7 +433,6 @@ function Home() {
                                             border: "1px solid #eee",
                                             height: "100%",
                                         }}
-
                                     >
                                         <CardContent>
                                             <Box sx={{ display: "flex", mb: 1 }}>

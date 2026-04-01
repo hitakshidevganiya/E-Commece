@@ -462,6 +462,10 @@
         width: 80%;
     }
 
+    .custmTitle {
+        font-size: 35px !important;
+    }
+
 
 
 }
@@ -572,6 +576,11 @@
     .foooooter {
         margin-top: 70px;
     }
+
+    .custmTitle {
+        font-size: 40px !important;
+    }
+
 
 }
 
