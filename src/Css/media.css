@@ -784,6 +784,16 @@
 
     }
 
+    .checkout-btn {
+        padding: 8px !important;
+    }
+    
+    .cart-title {
+        margin-bottom: 25px !important;
+        font-size: 32px !important;
+    }
+
+
 
 }
 
@@ -902,6 +912,15 @@
 
     .redate {
         font-size: 17px !important;
+    }
+
+    .checkout-btn {
+        padding: 12px !important;
+    }
+
+    .cart-title {
+        margin-bottom: 30px !important;
+        font-size: 35px !important;
     }
 
 

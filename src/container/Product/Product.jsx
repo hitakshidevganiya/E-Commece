@@ -97,7 +97,7 @@ function Product() {
 
                 <Divider />
                 <main>
-                    {/* <section className="men-product">
+                    <section className="men-product">
                         <Box sx={{ mt: 10 }} >
                             <Grid container spacing={4} >
                                 <Grid container size={7} alignItems="stretch" >
@@ -218,7 +218,7 @@ function Product() {
                                 </Grid>
                             </Grid>
                         </Box>
-                    </section> */}
+                    </section>
 
                     <section className="allReviews">
                         <Box >
