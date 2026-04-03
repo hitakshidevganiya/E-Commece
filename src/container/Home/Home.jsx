@@ -386,7 +386,7 @@ function Home() {
                 </section>
 
                 <section className="customer-section">
-                    <Box sx={{ px: 4, py: 8, mb: 15 }}  >
+                    <Box sx={{ px:2, py: 8, mb: 15 }}  >
                         <Box className="custMain">
                             <Box
                                 sx={{
@@ -432,6 +432,7 @@ function Home() {
                                             boxShadow: "none",
                                             border: "1px solid #eee",
                                             height: "100%",
+                                            
                                         }}
                                     >
                                         <CardContent>

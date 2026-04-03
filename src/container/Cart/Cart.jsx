@@ -50,10 +50,10 @@ function Cart() {
                         YOUR CART
                     </Typography>
 
-                    <Grid container spacing={3}>
+                    <Grid container spacing={{xs:1, md:3}}>
 
                         {/* LEFT SIDE */}
-                        <Grid size={8} >
+                        <Grid size={{xs:12,sm:8}} > 
                             <Card className="cart-card">
 
                                 {cartItems.map((item, index) => (
@@ -89,12 +89,6 @@ function Cart() {
                                                     <DeleteOutlineIcon />
                                                 </IconButton>
 
-                                                {/* <Box className="qty-box">
-                                                    <Button className="btnn">-</Button>
-                                                    <span className="btnspan">1</span>
-                                                    <Button className="btnn">+</Button>
-                                                </Box> */}
-
                                                 <Box className="qty-box"  >
                                                     <IconButton >
                                                         <Remove />
@@ -116,7 +110,7 @@ function Cart() {
                         </Grid>
 
                         {/* RIGHT SIDE */}
-                        <Grid size={4}>
+                        <Grid size={{xs: 12, sm:4}}>
                             <Card className="summary-card">
 
                                 <Typography className="summary-title">
@@ -124,21 +118,21 @@ function Cart() {
                                 </Typography>
 
                                 <Box className="row">
-                                    <Typography>Subtotal</Typography>
+                                    <Typography className="subname">Subtotal</Typography>
                                     <Typography className="subtotal">$565</Typography>
                                 </Box>
 
                                 <Box className="row">
-                                    <Typography>Discount (-20%)</Typography>
+                                    <Typography className="subname">Discount (-20%)</Typography>
                                     <Typography className="discountcart">-$113</Typography>
                                 </Box>
 
                                 <Box className="row">
-                                    <Typography>Delivery Fee</Typography>
+                                    <Typography className="subname">Delivery Fee</Typography>
                                     <Typography className="subtotal">$15</Typography>
                                 </Box>
 
-                                <Divider sx={{ my: 3 }} />
+                                <Divider className="dividercss" />
 
                                 <Box className="row total">
                                     <Typography className="totalname">Total</Typography>
