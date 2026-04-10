@@ -105,18 +105,18 @@ function Product() {
                                     <Grid size={3} rowSpacing={6} container display="flex" direction="column" >
 
                                         <Grid>
-                                            <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                                <img src="../../../public/images/image 2.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <Box className="imgBox">
+                                                <img src="../../../public/images/image 2.png" alt="" className="imgsize"/>
                                             </Box>
                                         </Grid>
                                         <Grid>
-                                            <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                                <img src="../../../public/images/image 5.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <Box className="imgBox">
+                                                <img src="../../../public/images/image 5.png" alt="" className="imgsize"/>
                                             </Box>
                                         </Grid>
                                         <Grid >
-                                            <Box sx={{ width: '100%', overflow: 'hidden' }}>
-                                                <img src="../../../public/images/image 6 (1).png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <Box className="imgBox">
+                                                <img src="../../../public/images/image 6 (1).png" alt="" className="imgsize"/>
                                             </Box>
                                         </Grid>
 
@@ -124,8 +124,8 @@ function Product() {
                                     </Grid>
 
                                     <Grid size={9} display='flex'>
-                                        <Box sx={{ height: "84%", width: "100%", }}>
-                                            <img src="../../../public/images/image 1.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 25 }} />
+                                        <Box className="probigimg">
+                                            <img src="../../../public/images/image 1.png" alt="" style={{ borderRadius: 25 }} className="imgsize" />
                                         </Box>
                                     </Grid>
 
@@ -143,11 +143,12 @@ function Product() {
                                     </Box>
 
                                     <Box display="flex" alignItems="center" gap={2} mb={2}>
-                                        <Typography variant="h5" fontWeight="bold" sx={{ fontSize: '30px' }}>
+                                        <Typography variant="h5" fontWeight="bold" className="proPrice">
                                             $260
                                         </Typography>
                                         <Typography
-                                            sx={{ textDecoration: "line-through", color: "gray", fontSize: '30px' }}
+                                            sx={{ textDecoration: "line-through", color: "gray" }}
+                                            className="proPrice" 
                                         >
                                             $300
                                         </Typography>
