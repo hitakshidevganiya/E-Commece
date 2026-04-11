@@ -95,9 +95,10 @@ function Product() {
 
             <div className="container">
 
-                <Divider />
+               
                 <main>
                     <section className="men-product">
+                         <Divider />
                         <Box sx={{ mt: 10 }} >
                             <Grid container spacing={4} >
                                 <Grid container size={7} alignItems="stretch" >

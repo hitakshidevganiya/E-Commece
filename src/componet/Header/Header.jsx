@@ -2,27 +2,25 @@ import React, { useState } from 'react'
 // import '../../Css/header.css'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Avatar, Box, Button, Divider, IconButton, InputBase, ListItemIcon, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
 import { Login, Logout, PersonAdd, Settings } from '@mui/icons-material';
+import { FaAngleDown } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
+const routeMap = {
+  Men: {
+    "T-Shirt": "/men/tshirt"
+  }
+}
 
 
 function Header() {
 
   const [showBanner, setShowBanner] = useState(true);
+  const navigate = useNavigate();
 
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const open = Boolean(anchorEl);
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -38,14 +36,33 @@ function Header() {
     handleClose();
   };
 
-  const [submenu, setSubmenu] = useState(null);
-  const [subAnchor, setSubAnchor] = useState(null);
+  const subCategories = {
+    Men: ["T-Shirt", "Shirt", "Jeans"],
+    Women: ["Dress", "Top", "Kurti", "Sari", "Western", "Jwelary"],
+    Children: ["Kids Wear", "Shorts", "Toys"]
+  }
 
-  const handleOpen = (e) => setSubmenu(e.currentTarget);
+  const [subMenu, setSubMenu] = useState(null);
+  const [subAnchor, setSubAnchor] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleOpen = (event) => {
+    setSubMenu(event.currentTarget)
+  }
+
   const handleClosemenu = () => {
-    setSubmenu(null);
-    setSubAnchor(null);
-  };
+    setSubMenu(null);
+    setSubAnchor(null)
+  }
+
+  const handleSubCategoryClick = (category, subcategory) => {
+  const path = routeMap[category][subcategory];
+
+  navigate(path);
+
+  setSubAnchor(null);
+  setSubMenu(null);
+};
 
   return (
     <div className="container">
@@ -70,71 +87,59 @@ function Header() {
           <Toolbar className="toolbar">
 
             <Box className="leftSection">
-              <Typography variant='h2' className="logo">SHOP.CO</Typography>
+              <Typography variant='h2' className="logo" onClick={() => navigate("/")} style={{cursor: "pointer"}}>SHOP.CO</Typography>
 
-              {/* <Box className="menu">
-                <span onClick={handleClick}>
-                  Shop
-                  <KeyboardArrowDownIcon fontSize="small" />
-                </span>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  slotProps={{
-                    list: {
-                      'aria-labelledby': 'basic-button',
-                    },
+              <Button style={{ color: 'black', textTransform: "capitalize" }} onClick={handleOpen}>Shop <FaAngleDown style={{ marginLeft: '10px' }} /></Button>
+
+              <Menu anchorEl={subMenu} open={Boolean(subMenu)} onClose={handleClosemenu}>
+                <MenuItem
+                  onMouseEnter={(e) => {
+                    setSubAnchor(e.currentTarget);
+                    setSelectedCategory("Men");
                   }}
                 >
-                  <MenuItem onClick={handleClose}>Men</MenuItem>
+                  Men
+                </MenuItem>
 
-                  <MenuItem onClick={handleClose}>Women</MenuItem>
-                  <MenuItem onClick={handleClose}>Children</MenuItem>
-                </Menu>
-                <span>On Sale</span>
-                <span>New Arrivals</span>
-                <span>Brands</span>
-              </Box> */}
-
-              <Button style={{ color: 'black' }} onClick={handleOpen}>Shop</Button>
-
-              {/* Main Menu */}
-              <Menu anchorEl={submenu} open={Boolean(submenu)} onClose={handleClosemenu}>
-
-                {/* Normal Item */}
-                <MenuItem onClick={(e) => setSubAnchor(e.currentTarget)}>Men</MenuItem>
-
-                {/* Sub Menu */}
                 <MenuItem
-                  onMouseEnter={(e) => setSubAnchor(e.currentTarget)}
+                  onMouseEnter={(e) => {
+                    setSubAnchor(e.currentTarget);
+                    setSelectedCategory("Women");
+                  }}
                 >
                   Women
                 </MenuItem>
+
                 <MenuItem
-                  onMouseEnter={(e) => setSubAnchor(e.currentTarget)}
+                  onMouseEnter={(e) => {
+                    setSubAnchor(e.currentTarget);
+                    setSelectedCategory("Children");
+                  }}
                 >
                   Children
                 </MenuItem>
 
-                {/* Sub Menu List */}
                 <Menu
                   anchorEl={subAnchor}
                   open={Boolean(subAnchor)}
                   onClose={() => setSubAnchor(null)}
                   anchorOrigin={{ horizontal: "right", vertical: "top" }}
                 >
-                  <MenuItem>T-Shirt</MenuItem>
-                  <MenuItem>Jeans</MenuItem>
-                  <MenuItem>Short</MenuItem>
-                  <MenuItem>Shirt</MenuItem>
+                  {subCategories[selectedCategory]?.map((item, index) => (
+                    <MenuItem
+                      key={index}
+                      onClick={() => handleSubCategoryClick(selectedCategory, item)}
+                    >
+                      {item}
+                    </MenuItem>
+                  ))}
                 </Menu>
-
               </Menu>
-              <Button style={{ color: 'black' , margin: '0px'}} >On Sale</Button>
-              <Button style={{ color: 'black' }} >New Arrivals</Button>
-              <Button style={{ color: 'black' }} >Brands</Button>
+              {/* Main Menu */}
+
+              <Button style={{ color: 'black', textTransform: "capitalize" }} >On Sale</Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} >New Arrivals</Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} >Brands</Button>
             </Box>
 
             <Box className="search">
@@ -146,7 +151,7 @@ function Header() {
             </Box>
 
             <Box className="rightSection">
-              <IconButton className='icon'>
+              <IconButton className='icon' onClick={() => navigate("/cart")}>
                 <ShoppingCartOutlinedIcon />
               </IconButton>
               <IconButton
@@ -217,7 +222,7 @@ function Header() {
                 </ListItemIcon>
                 Settings
               </MenuItem>
-              <MenuItem onClick={() => handleNav("/product")} >
+              <MenuItem  >
                 <ListItemIcon >
                   <Login fontSize="small" />
                 </ListItemIcon>

@@ -36,8 +36,11 @@ function Cart() {
     const [qty, setQty] = useState(1);
 
     return (
+
+        
         <div className="container">
             <div className="cartmain">
+                <Divider />
                 <Box className="cart-page">
 
                     {/* Breadcrumb */}

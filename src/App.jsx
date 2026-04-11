@@ -9,6 +9,7 @@ import '../src/Css/header.css'
 import '../src/Css/media.css'
 import Casual from './container/Casual/Casual'
 import Cart from './container/Cart/Cart'
+import Auth from './container/Auth/Auth'
 
 
 function App() {
@@ -26,9 +27,11 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/product' element={ <Product />} />
-        <Route path='/casual' element={ <Casual />} />
-        <Route path='/cart' element={ <Cart />} />
+        <Route path='/product' element={<Product />} />
+        <Route path='/category/casual' element={<Casual />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/men/tshirt' element={<Product />} />
+        <Route path='/auth' element={<Auth />} />
       </Routes>
       <About />
       <Footer />

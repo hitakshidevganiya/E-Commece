@@ -9,6 +9,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6"
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useNavigate } from "react-router-dom";
 
 
 const brands = [
@@ -129,6 +130,11 @@ const testimonials = [
 
 
 function Home() {
+    const navigate = useNavigate();
+
+    const handleCategoryClick = (category) => {
+        navigate(`/category/${category.toLowerCase()}`);
+    };
     return (
         <div className="container">
             <main>
@@ -338,6 +344,7 @@ function Home() {
                                 category.map((v, i) => (
                                     <Grid xs={12} sm={6} key={i}>
                                         <Card
+                                            onClick={() => handleCategoryClick(v.title)}
                                             sx={{
                                                 borderRadius: "16px",
                                                 overflow: "hidden",
@@ -386,7 +393,7 @@ function Home() {
                 </section>
 
                 <section className="customer-section">
-                    <Box sx={{ px:2, py: 8, mb: 15 }}  >
+                    <Box sx={{ px: 2, py: 8, mb: 15 }}  >
                         <Box className="custMain">
                             <Box
                                 sx={{
@@ -395,7 +402,7 @@ function Home() {
                                     alignItems: "center",
                                     mb: 4,
                                 }}
-                            >   
+                            >
                                 <Typography
                                     className="custmTitle"
                                 >
@@ -432,7 +439,7 @@ function Home() {
                                             boxShadow: "none",
                                             border: "1px solid #eee",
                                             height: "100%",
-                                            
+
                                         }}
                                     >
                                         <CardContent>
