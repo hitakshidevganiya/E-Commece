@@ -222,7 +222,7 @@ function Header() {
                 </ListItemIcon>
                 Settings
               </MenuItem>
-              <MenuItem  >
+              <MenuItem  onClick={() => navigate("/auth")} >
                 <ListItemIcon >
                   <Login fontSize="small" />
                 </ListItemIcon>

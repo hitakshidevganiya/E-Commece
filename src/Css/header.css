@@ -1015,3 +1015,17 @@
     object-fit: cover;
     border-radius: 20px;
 } */
+
+
+
+
+
+#autehPag {
+    height: 700px !important;
+   margin-bottom: 250px;
+}
+
+.googelicon {
+    font-size: 25px;
+    margin-right: 5px;
+}
