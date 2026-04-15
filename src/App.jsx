@@ -18,7 +18,6 @@ function App() {
 
   const store = configStore;
 
-
   return (
 
     <Provider store={store}>
@@ -38,4 +37,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

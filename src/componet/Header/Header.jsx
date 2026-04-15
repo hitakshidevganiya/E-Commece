@@ -8,6 +8,7 @@ import { AppBar, Avatar, Box, Button, Divider, IconButton, InputBase, ListItemIc
 import { Login, Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { FaAngleDown } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import { useGetAllUserQuery, useLogoutMutation } from '../../Redux/Api/auth.api';
 
 const routeMap = {
   Men: {
@@ -21,19 +22,20 @@ function Header() {
   const [showBanner, setShowBanner] = useState(true);
   const navigate = useNavigate();
 
+  const { isLoading, error, ...data } = useGetAllUserQuery();
+  console.log(data);
+
+  const [logout] = useLogoutMutation();
+
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleNav = (path) => {
-    navigate(path);
-    handleClose();
   };
 
   const subCategories = {
@@ -56,13 +58,15 @@ function Header() {
   }
 
   const handleSubCategoryClick = (category, subcategory) => {
-  const path = routeMap[category][subcategory];
+    const path = routeMap[category][subcategory];
 
-  navigate(path);
+    navigate(path);
 
-  setSubAnchor(null);
-  setSubMenu(null);
-};
+    setSubAnchor(null);
+    setSubMenu(null);
+  };
+
+  
 
   return (
     <div className="container">
@@ -87,7 +91,7 @@ function Header() {
           <Toolbar className="toolbar">
 
             <Box className="leftSection">
-              <Typography variant='h2' className="logo" onClick={() => navigate("/")} style={{cursor: "pointer"}}>SHOP.CO</Typography>
+              <Typography variant='h2' className="logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>SHOP.CO</Typography>
 
               <Button style={{ color: 'black', textTransform: "capitalize" }} onClick={handleOpen}>Shop <FaAngleDown style={{ marginLeft: '10px' }} /></Button>
 
@@ -222,12 +226,21 @@ function Header() {
                 </ListItemIcon>
                 Settings
               </MenuItem>
-              <MenuItem  onClick={() => navigate("/auth")} >
-                <ListItemIcon >
-                  <Login fontSize="small" />
-                </ListItemIcon>
-                Login
-              </MenuItem>
+              {
+                data?.data ?
+                  <MenuItem onClick={() => logout(data.data?._id)} >
+                    <ListItemIcon >
+                      <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Log Out
+                  </MenuItem> :
+                  <MenuItem onClick={() => navigate("/auth")} >
+                    <ListItemIcon >
+                      <Login fontSize="small" />
+                    </ListItemIcon>
+                    Login
+                  </MenuItem>
+              }
             </Menu>
           </Toolbar>
         </AppBar>

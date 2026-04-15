@@ -13,39 +13,120 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useRegisterMutation } from "../../Redux/Api/auth.api";
+import { useForgotPassMutation, useGetAllUserQuery, useLoginMutation, useRegisterMutation, useResetPassMutation, useVerifyMutation } from "../../Redux/Api/auth.api";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { number, object, string } from "yup";
 
-function Auth () {
+
+
+function Auth(props) {
     const [showPassword, setShowPassword] = useState(false);
 
-    const [ register, { isLoading } ] = useRegisterMutation();
+    const navigate = useNavigate();
 
-    const validationSchema = Yup.object({
-        name: Yup.string().required("Name is required"),
-        email: Yup.string()
-            .email("Invalid email")
-            .required("Email is required"),
-        password: Yup.string()
-            .min(6, "Minimum 6 characters")
-            .required("Password is required")
-    });
+    // const [isLoading, error, data] = useGetAllUserQuery();
+    const [register] = useRegisterMutation();
+    const [verify] = useVerifyMutation();
+    const [login] = useLoginMutation();
+    // const [forgotPass] = useForgotPassMutation();
+    // const [resetPass] = useResetPassMutation();
+
+    // const { types } = useParams();
+
+    // console.log(types);
+
+
+    const [type, setType] = useState("Sign Up");
+    const [otp, setOtp] = useState('Sign Up');
+
+    let initState = {}, authSchema = {};
+
+    if (type === 'Sign Up') {
+        initState = {
+            name: '',
+            email: '',
+            password: ''
+        }
+        authSchema = {
+            name: string().required(),
+            email: string().email().required(),
+            password: string().required()
+        }
+    } else if (type === 'Verify OTP') {
+        initState = {
+            otp: null
+        }
+        authSchema = {
+            otp: number().required()
+        }
+    } else if (type === 'Log In') {
+
+        initState = {
+            email: '',
+            password: ''
+        }
+        authSchema = {
+            email: string().email().required(),
+            password: string().required()
+        }
+    } else if (type === 'Forgot Pass') {
+        initState = {
+            email: ''
+        }
+        authSchema = {
+            email: string().email().required()
+        }
+    } else if (type === 'Reset Pass') {
+        initState = {
+            password: ''
+        }
+        authSchema = {
+            password: string().required()
+        }
+    }
+
+    console.log("schema", initState, authSchema)
+
+
+    // const validationSchema = object({
+    //     name: string().required(),
+    //     email: string().email().required(),
+    //     password: string().required()
+    // });
 
     const formik = useFormik({
-        initialValues: {
-            name: "",
-            email: "",
-            password: ""
-        },
-        validationSchema,
-        onSubmit: (values, {resetForm}) => {
-            console.log("Register Data:", values);
+        enableReinitialize: true,
+        initialValues: initState,
+        validationSchema: object(authSchema),
+        onSubmit: async (values, { resetForm }) => {
+            console.log("ok")
+            console.log(values);
 
-            register(values);
+            if (type === 'Sign Up') {
+                localStorage.setItem("email", values.email)
+                register(values);
+                setType('Verify OTP')
+
+            } else if (type === 'Verify OTP') {
+                console.log("verify", values)
+                verify({ email: localStorage.getItem("email"), otp: values.otp });
+                if (otp === 'Reset Pass') {
+                    setType('Reset Pass')
+                } else {
+                    setType('Log In')
+                }
+            } else if (type === 'Log In') {
+                const res = await login(values);
+                navigate('/');
+            }
+
 
             resetForm();
         }
     });
+
+    const { errors } = formik;
+    console.log("errors", errors)
 
     return (
 
@@ -67,9 +148,9 @@ function Auth () {
                 {/* Right Side Form */}
                 <Grid
                     item
-                    // xs={12}
-                    // sm={6}
-                    // md={5}
+                    xs={12}
+                    sm={6}
+                    md={5}
                     size={6}
                     component={Paper}
                     elevation={6}
@@ -95,54 +176,84 @@ function Auth () {
 
                         <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 5, width: "100%" }}>
 
-                            {/* Name */}
-                            <TextField
-                                fullWidth
-                                label="Full Name"
-                                name="name"
-                                margin="normal"
-                                value={formik.values.name}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.name && Boolean(formik.errors.name)}
-                                helperText={formik.touched.name && formik.errors.name}
-                            />
+                            {
+                                type === 'Sign Up' || type === 'Log In' ?
+                                    <>
+                                        {
+                                            type === 'Sign Up' &&
 
-                            {/* Email */}
-                            <TextField
-                                fullWidth
-                                label="Email"
-                                name="email"
-                                margin="normal"
-                                value={formik.values.email}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.email && Boolean(formik.errors.email)}
-                                helperText={formik.touched.email && formik.errors.email}
-                            />
+                                            < TextField
+                                                fullWidth
+                                                label="Full Name"
+                                                name="name"
+                                                margin="normal"
+                                                value={formik.values.name}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                error={formik.touched.name && Boolean(formik.errors.name)}
+                                                helperText={formik.touched.name && formik.errors.name}
+                                            />
 
-                            {/* Password */}
-                            <TextField
-                                fullWidth
-                                label="Password"
-                                name="password"
-                                type={showPassword ? "text" : "password"}
-                                margin="normal"
-                                value={formik.values.password}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                error={formik.touched.password && Boolean(formik.errors.password)}
-                                helperText={formik.touched.password && formik.errors.password}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton onClick={() => setShowPassword(!showPassword)}>
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    )
-                                }}
-                            />
+                                        }
+                                        {
+                                            type === 'Sign Up' || type === 'Log In' ?
+                                                <TextField
+                                                    fullWidth
+                                                    label="Email"
+                                                    name="email"
+                                                    margin="normal"
+                                                    value={formik.values.email}
+                                                    onChange={formik.handleChange}
+                                                    onBlur={formik.handleBlur}
+                                                    error={formik.touched.email && Boolean(formik.errors.email)}
+                                                    helperText={formik.touched.email && formik.errors.email}
+                                                /> : ''
+                                        }
+                                        {
+                                            type === 'Sign Up' || type === 'Log In' ?
+                                                <TextField
+                                                    fullWidth
+                                                    label="Password"
+                                                    name="password"
+                                                    type={showPassword ? "text" : "password"}
+                                                    margin="normal"
+                                                    value={formik.values.password}
+                                                    onChange={formik.handleChange}
+                                                    onBlur={formik.handleBlur}
+                                                    error={formik.touched.password && Boolean(formik.errors.password)}
+                                                    helperText={formik.touched.password && formik.errors.password}
+                                                    InputProps={{
+                                                        endAdornment: (
+                                                            <InputAdornment position="end">
+                                                                <IconButton onClick={() => setShowPassword(!showPassword)}>
+                                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                                </IconButton>
+                                                            </InputAdornment>
+                                                        )
+                                                    }}
+                                                /> : ''
+                                        }
+
+
+                                    </> :
+                                    <>
+                                        {
+                                            type === 'Verify OTP' &&
+                                            <TextField
+                                                fullWidth
+                                                label="Enter OTP"
+                                                name="otp"
+                                                margin="normal"
+                                                value={formik.values.otp}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                error={formik.touched.otp && Boolean(formik.errors.otp)}
+                                                helperText={formik.touched.otp && formik.errors.otp}
+                                            />
+                                        }
+                                    </>
+
+                            }
 
                             {/* Submit Button */}
                             <Button
@@ -152,7 +263,7 @@ function Auth () {
                                 sx={{ mt: 3, py: 1.5 }}
                                 style={{ backgroundColor: "black", textTransform: "capitalize" }}
                             >
-                                Sign Up
+                                {type}
                             </Button>
 
                             <Typography variant="body2" style={{ textAlign: "center", marginTop: " 25px", color: "gray" }}>
@@ -169,9 +280,17 @@ function Auth () {
                                 Continue with Google
                             </Button>
 
-                            <Typography variant="body2" sx={{ mt: 3, textAlign: "center" }}>
-                                Already have an account? <a href="#">Sign In</a>
-                            </Typography>
+                            {
+                                type === 'Sign Up' ?
+                                    <Typography variant="body2" sx={{ mt: 3, textAlign: "center" }}>
+                                        Already have an account? <a href="#" onClick={() => setType('Log In')}>Log In</a>
+                                    </Typography> :
+                                    <Typography variant="body2" sx={{ mt: 3, textAlign: "center" }}>
+                                        Create your account? <a href="#" onClick={() => setType('Sign Up')}>Sign Up</a>
+                                    </Typography>
+                            }
+
+
 
                         </Box>
                     </Box>

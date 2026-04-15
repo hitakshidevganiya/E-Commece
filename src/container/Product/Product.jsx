@@ -271,9 +271,9 @@ function Product() {
                                     </Button>
                                 </Box>
                             </Box>
-                            <Grid container spacing={3}>
+                            <Grid container spacing={{xl:5,lg:4,md:3,xs:2}}  >
                                 {reviews.map((v, i) => (
-                                    <Grid xs={12} md={6} key={i}>
+                                    <Grid size={{xs: 12, md:6}} key={i}>
                                         <Card sx={{ borderRadius: "16px" , p:1 }}>
                                             <CardContent >
                                                 <Box justifyContent="space-between" display="flex" alignItems="center" >
@@ -297,7 +297,7 @@ function Product() {
                                         </Card>
                                     </Grid>
                                 ))}
-                            </Grid>
+                             </Grid>
                             <Box textAlign="center" mt={4}>
                                 <Button
                                     variant="outlined"

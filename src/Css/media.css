@@ -107,6 +107,7 @@
     }
 
     .retext {
+        height: 110px;
         width: 100% !important;
         font-size: 13px !important;
         margin-bottom: 13px !important;
@@ -147,7 +148,7 @@
     .css-igghdu {
         margin-bottom: 50px !important;
     }
-    
+
     .checkout-btn {
         padding: 8px !important;
         font-size: 11px !important;
@@ -369,6 +370,7 @@
 
     .retext {
         width: 100% !important;
+        height: 80px;
         font-size: 15px !important;
         margin-bottom: 16px !important;
     }
@@ -490,7 +492,7 @@
         font-size: 16px !important;
     }
 
-    
+
 
 
 }
@@ -552,6 +554,10 @@
 
     .productName {
         font-size: 14px !important;
+    }
+
+    .retext {
+        height: 60px;
     }
 
     .rating {
@@ -685,7 +691,7 @@
         margin: 6px 0;
     }
 
-     .apply-btn {
+    .apply-btn {
         font-size: 9px !important;
         padding: 4px 10px !important;
     }
@@ -854,13 +860,6 @@
         width: 80%;
     }
 
-    .retext {
-        width: 330px !important;
-    }
-
-    .retext {
-        width: 336px !important;
-    }
 
 
     .allReviews {
@@ -876,6 +875,10 @@
         margin-bottom: 20px !important;
         font-size: 30px !important;
 
+    }
+
+    .retext {
+        height: 110px;
     }
 
     .arrRight {
@@ -1085,7 +1088,6 @@
     }
 
     .retext {
-        width: 420px !important;
         font-size: 16px !important;
         margin-bottom: 18px !important;
     }
@@ -1239,7 +1241,7 @@
     }
 
     .retext {
-        width: 500px !important;
+        height: 90px;
         font-size: 17px !important;
         margin-bottom: 20px !important;
     }
