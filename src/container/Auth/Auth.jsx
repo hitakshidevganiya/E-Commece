@@ -13,9 +13,10 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
-import { useForgotPassMutation, useGetAllUserQuery, useLoginMutation, useRegisterMutation, useResetPassMutation, useVerifyMutation } from "../../Redux/Api/auth.api";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { number, object, string } from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, registerUser, verifyUser } from "../../Redux/Slice/auth.slice";
 
 
 
@@ -24,25 +25,23 @@ function Auth(props) {
 
     const navigate = useNavigate();
 
-    // const [isLoading, error, data] = useGetAllUserQuery();
-    const [register] = useRegisterMutation();
-    const [verify] = useVerifyMutation();
-    const [login] = useLoginMutation();
-    // const [forgotPass] = useForgotPassMutation();
-    // const [resetPass] = useResetPassMutation();
-
     // const { types } = useParams();
 
     // console.log(types);
 
+    const auth = useSelector(state => state.auth);
+    // console.log(auth);
+
+    const dispatch = useDispatch()
 
     const [type, setType] = useState("Sign Up");
+
     const [otp, setOtp] = useState('Sign Up');
 
-    let initState = {}, authSchema = {};
+    let initValue = {}, authSchema = {};
 
     if (type === 'Sign Up') {
-        initState = {
+        initValue = {
             name: '',
             email: '',
             password: ''
@@ -53,7 +52,7 @@ function Auth(props) {
             password: string().required()
         }
     } else if (type === 'Verify OTP') {
-        initState = {
+        initValue = {
             otp: null
         }
         authSchema = {
@@ -61,7 +60,7 @@ function Auth(props) {
         }
     } else if (type === 'Log In') {
 
-        initState = {
+        initValue = {
             email: '',
             password: ''
         }
@@ -70,14 +69,14 @@ function Auth(props) {
             password: string().required()
         }
     } else if (type === 'Forgot Pass') {
-        initState = {
+        initValue = {
             email: ''
         }
         authSchema = {
             email: string().email().required()
         }
     } else if (type === 'Reset Pass') {
-        initState = {
+        initValue = {
             password: ''
         }
         authSchema = {
@@ -85,48 +84,54 @@ function Auth(props) {
         }
     }
 
-    console.log("schema", initState, authSchema)
 
+    // console.log("schema", initValue, authSchema)
 
-    // const validationSchema = object({
-    //     name: string().required(),
-    //     email: string().email().required(),
-    //     password: string().required()
-    // });
 
     const formik = useFormik({
         enableReinitialize: true,
-        initialValues: initState,
+        initialValues: initValue,
         validationSchema: object(authSchema),
         onSubmit: async (values, { resetForm }) => {
-            console.log("ok")
             console.log(values);
 
             if (type === 'Sign Up') {
                 localStorage.setItem("email", values.email)
-                register(values);
-                setType('Verify OTP')
 
+                const res = await dispatch(registerUser(values));
+                console.log(res);
+
+                if (res.type === 'auth/registerUser/fulfilled') {
+                    setType('Verify OTP')
+                }
             } else if (type === 'Verify OTP') {
-                console.log("verify", values)
-                verify({ email: localStorage.getItem("email"), otp: values.otp });
-                if (otp === 'Reset Pass') {
-                    setType('Reset Pass')
-                } else {
+                const res = await dispatch(verifyUser({ email: localStorage.getItem("email"), otp: values.otp }));
+
+                if (res.type === 'auth/verifyUser/fulfilled') {
                     setType('Log In')
                 }
             } else if (type === 'Log In') {
-                const res = await login(values);
-                navigate('/');
+                const res = await dispatch(loginUser(values));
+
+                if (res.type === 'auth/loginUser/fulfilled') {
+                    navigate('/')
+                }
             }
-
-
             resetForm();
         }
     });
 
+
+    console.log(type);
+
     const { errors } = formik;
-    console.log("errors", errors)
+    // console.log("errors", errors)
+
+    const handlesocialauth = () => {
+        console.log("ok")
+
+       window.location.href = "http://localhost:8080/api/v1/user/auth/google"
+    }
 
     return (
 
@@ -175,13 +180,12 @@ function Auth(props) {
                         </Typography>
 
                         <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 5, width: "100%" }}>
-
                             {
                                 type === 'Sign Up' || type === 'Log In' ?
+
                                     <>
                                         {
                                             type === 'Sign Up' &&
-
                                             < TextField
                                                 fullWidth
                                                 label="Full Name"
@@ -193,48 +197,43 @@ function Auth(props) {
                                                 error={formik.touched.name && Boolean(formik.errors.name)}
                                                 helperText={formik.touched.name && formik.errors.name}
                                             />
-
-                                        }
-                                        {
-                                            type === 'Sign Up' || type === 'Log In' ?
-                                                <TextField
-                                                    fullWidth
-                                                    label="Email"
-                                                    name="email"
-                                                    margin="normal"
-                                                    value={formik.values.email}
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    error={formik.touched.email && Boolean(formik.errors.email)}
-                                                    helperText={formik.touched.email && formik.errors.email}
-                                                /> : ''
-                                        }
-                                        {
-                                            type === 'Sign Up' || type === 'Log In' ?
-                                                <TextField
-                                                    fullWidth
-                                                    label="Password"
-                                                    name="password"
-                                                    type={showPassword ? "text" : "password"}
-                                                    margin="normal"
-                                                    value={formik.values.password}
-                                                    onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
-                                                    error={formik.touched.password && Boolean(formik.errors.password)}
-                                                    helperText={formik.touched.password && formik.errors.password}
-                                                    InputProps={{
-                                                        endAdornment: (
-                                                            <InputAdornment position="end">
-                                                                <IconButton onClick={() => setShowPassword(!showPassword)}>
-                                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                                </IconButton>
-                                                            </InputAdornment>
-                                                        )
-                                                    }}
-                                                /> : ''
                                         }
 
 
+
+                                        <TextField
+                                            fullWidth
+                                            label="Email"
+                                            name="email"
+                                            margin="normal"
+                                            value={formik.values.email}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            error={formik.touched.email && Boolean(formik.errors.email)}
+                                            helperText={formik.touched.email && formik.errors.email}
+                                        />
+
+                                        <TextField
+                                            fullWidth
+                                            label="Password"
+                                            name="password"
+                                            type={showPassword ? "text" : "password"}
+                                            margin="normal"
+                                            value={formik.values.password}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            error={formik.touched.password && Boolean(formik.errors.password)}
+                                            helperText={formik.touched.password && formik.errors.password}
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <IconButton onClick={() => setShowPassword(!showPassword)}>
+                                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
                                     </> :
                                     <>
                                         {
@@ -252,8 +251,8 @@ function Auth(props) {
                                             />
                                         }
                                     </>
-
                             }
+
 
                             {/* Submit Button */}
                             <Button
@@ -275,6 +274,7 @@ function Auth(props) {
                                 variant="contained"
                                 sx={{ mt: 3, py: 1.5 }}
                                 style={{ backgroundColor: "white", textTransform: "capitalize", color: "black", boxShadow: "none", border: "1px solid gray" }}
+                                onClick={handlesocialauth}
                             >
                                 <FcGoogle className="googelicon" />
                                 Continue with Google
@@ -289,9 +289,6 @@ function Auth(props) {
                                         Create your account? <a href="#" onClick={() => setType('Sign Up')}>Sign Up</a>
                                     </Typography>
                             }
-
-
-
                         </Box>
                     </Box>
                 </Grid>

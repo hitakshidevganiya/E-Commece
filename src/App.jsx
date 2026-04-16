@@ -14,9 +14,11 @@ import { Provider } from 'react-redux'
 import { configStore } from './Redux/store'
 
 
+
 function App() {
 
-  const store = configStore;
+  const store = configStore();
+  
 
   return (
 

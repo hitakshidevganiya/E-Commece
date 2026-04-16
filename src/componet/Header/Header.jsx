@@ -8,7 +8,8 @@ import { AppBar, Avatar, Box, Button, Divider, IconButton, InputBase, ListItemIc
 import { Login, Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { FaAngleDown } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
-import { useGetAllUserQuery, useLogoutMutation } from '../../Redux/Api/auth.api';
+import { logoutUser } from '../../Redux/Slice/auth.slice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const routeMap = {
   Men: {
@@ -22,10 +23,11 @@ function Header() {
   const [showBanner, setShowBanner] = useState(true);
   const navigate = useNavigate();
 
-  const { isLoading, error, ...data } = useGetAllUserQuery();
-  console.log(data);
+  const auth = useSelector(state => state.auth);
+  // console.log(auth.user);
 
-  const [logout] = useLogoutMutation();
+
+  const dispatch = useDispatch();
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -33,7 +35,7 @@ function Header() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -66,7 +68,7 @@ function Header() {
     setSubMenu(null);
   };
 
-  
+
 
   return (
     <div className="container">
@@ -227,8 +229,8 @@ function Header() {
                 Settings
               </MenuItem>
               {
-                data?.data ?
-                  <MenuItem onClick={() => logout(data.data?._id)} >
+                auth.user ?
+                  <MenuItem onClick={() => dispatch(logoutUser(auth.user._id))} >
                     <ListItemIcon >
                       <Logout fontSize="small" />
                     </ListItemIcon>
