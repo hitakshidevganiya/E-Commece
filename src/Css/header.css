@@ -645,7 +645,7 @@
 }
 
 .css-zjhuaj-MuiGrid-root {
-    gap: 35px !important;
+    gap: 30px !important;
     justify-content: space-between;
 }
 
@@ -986,6 +986,14 @@
     padding: 64px;
     max-width: 1518px;
     margin: 80px auto;
+}
+
+.styletitle {
+    font-size: 50px !important;
+    margin-bottom: 45px !important;
+    text-align: center;
+    font-weight: 800 !important;
+
 }
 
 /* .styleName {

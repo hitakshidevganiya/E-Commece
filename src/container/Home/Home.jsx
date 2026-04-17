@@ -331,18 +331,14 @@ function Home() {
                 <section className="style-section">
                     <Box className="boxSize">
                         <Typography
-                            sx={{
-                                fontWeight: 800,
-                                textAlign: "center",
-                                fontSize: 52,
-                                mb: 6,
-                            }}>
+                            className="styletitle">
                             BROWSE BY DRESS STYLE
                         </Typography>
                         <Grid container spacing={2}>
                             {
+                                // xs={12} sm={6}
                                 category.map((v, i) => (
-                                    <Grid xs={12} sm={6} key={i}>
+                                    <Grid  sm={i === 1 || i === 2 ? 8 : 4} key={i}>
                                         <Card
                                             onClick={() => handleCategoryClick(v.title)}
                                             sx={{

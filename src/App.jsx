@@ -23,7 +23,7 @@ function App() {
   return (
 
     <Provider store={store}>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/product' element={<Product />} />
