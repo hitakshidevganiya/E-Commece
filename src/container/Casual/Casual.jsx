@@ -1,8 +1,11 @@
-import { Box, Button, Card, CardContent, CardMedia, Chip, colors, Divider, Grid, Slide, Slider, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, CardMedia, Chip, colors, Divider, Grid, Rating, Slide, Slider, Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import usePagination from "@mui/material/usePagination";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import CheckIcon from "@mui/icons-material/Check";
 // import '../../Css/header.css'
-import React from "react";
+import React, { useState } from "react";
 
 const products = [
     {
@@ -10,54 +13,72 @@ const products = [
         name: "Gradient Graphic T-shirt",
         price: 145,
         image: "../../public/images/image 8 (3).png",
+        rating: 3.5,
+
     },
     {
         id: 2,
         name: "Polo with Tipping Details",
         price: 180,
         image: "../../public/images/image 9 (3).png",
+        rating: 4.5,
+
     },
     {
         id: 3,
         name: "Black Striped T-shirt",
         price: 120,
         image: "../../public/images/image 10 (3).png",
+        rating: 5.0,
+        discount: "-30%"
     },
     {
         id: 4,
         name: "Skinny Fit Jeans",
         price: 240,
         image: "../../public/images/image 8.png",
+        rating: 3.5,
+        discount: "-20%"
     },
     {
         id: 5,
         name: "Checkered Shirt",
         price: 180,
         image: "../../public/images/image 9.png",
+        rating: 4.5,
+
     },
     {
         id: 6,
         name: "Sleeve striped T-Shirt",
         price: 130,
         image: "../../public/images/image 10.png",
+        rating: 4.5,
+        discount: "-30%"
     },
     {
         id: 7,
         name: "Vertical Striped shirt",
         price: 212,
         image: "../../public/images/image 7 (2).png",
+        rating: 5.0,
+        discount: "-20%"
     },
     {
         id: 8,
         name: "Courage Graphic T-shirt",
         price: 145,
         image: "../../public/images/image 8 (2).png",
+        rating: 4.0,
+
     },
     {
         id: 9,
         name: "Loose Fit Bermuda Shorts",
         price: 80,
         image: "../../public/images/image 9 (2).png",
+        rating: 3.0,
+
     }
 ];
 
@@ -74,120 +95,119 @@ function Casual() {
         count: 10,
     });
 
-    const colors = ["green", "red", "yellow", "orange", "lightblue", "blue", "purple", "pink", "white", "black"];
+    const [selectedColor, setSelectedColor] = useState(null);
+    const [selectedSize, setSelectedSize] = useState(null);
+
+    const colors = ["#00C12B", "red", "#F5DD06", "#F57906", "#06CAF5", "blue", "#7D06F5", "#F506A4", "white", "black"];
     const size = ["XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "3X-Large", "4X-Large"];
     return (
         <div className="container">
             <div className="casualmain">
-                {/* <Box className="main_container">
-                    <Grid container spacing={2}>
-                        <Grid xs={12} md={3}>
-                            <Box className="sidebar">
-                                <Typography variant="h6">Filters</Typography>
-
-                                <Box className='filter-section'>
-                                    <Typography>T-Shirts</Typography>
-                                    <Typography>Shorts</Typography>
-                                    <Typography>Shirts</Typography>
-                                    <Typography>Hoodie</Typography>
-                                    <Typography>Jeans</Typography>
-                                </Box>
-
-                                <Box className='filter-section'>
-                                    <Typography>Price</Typography>
-                                    <Slider defaultValue={[50, 200]} min={0} max={300} />
-                                </Box>
-
-                                <Box className='filter-section'>
-                                    <Typography>colors</Typography>
-                                    <Box className="color-container">
-                                        {
-                                            colors.map((v,i) => (
-                                                <span key={i} className="color-dot" style={{background:v}}></span>
-                                            ))
-                                        }
-                                    </Box>
-                                </Box>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Box> */}
-<Divider />
-                <Box sx={{ display: "flex", p: 3 }}>
-                    <Grid container spacing={1} >
+                <Divider />
+                <Box sx={{
+                    display: "flex", p: 3, 
+                    // "@media (max-width:1400px)": {
+                    //     p: 2,
+                    // },
+                }}>
+                    <Grid container spacing={3} >
                         <Grid size={3}>
                             <Box
-                                sx={{
-                                    width: 260,
-                                    bgcolor: "#fff",
-                                    p: 2,
-                                    borderRadius: 3,
-                                    mr: 3,
-                                    border: 1,
-                                    borderColor: 'gray'
-                                }}
+                                className="slider"
                             >
-                                <Typography variant="subtitle2" mb={2} sx={{ fontSize: 19, fontWeight: 'bold' }}>
+                                <Typography variant="subtitle2" className="filtername" sx={{ fontWeight: 'bold' }}>
                                     Filters
                                 </Typography>
 
+
                                 <Divider />
 
-                                <Box sx={{ color: 'gray', mb: 2, mt: 2 }} >
-                                    <Typography mt={1}>T-Shirts</Typography>
-                                    <Typography mt={1}>Shorts</Typography>
-                                    <Typography mt={1}>Shirts</Typography>
-                                    <Typography mt={1}>Hoodie</Typography>
-                                    <Typography mt={1}>Jeans</Typography>
+                                <Box sx={{ color: 'gray', my: 2 }} >
+                                    <Typography className="filterdata" mt={1}>T-Shirts</Typography>
+                                    <Typography className="filterdata" mt={1}>Shorts</Typography>
+                                    <Typography className="filterdata" mt={1}>Shirts</Typography>
+                                    <Typography className="filterdata" mt={1}>Hoodie</Typography>
+                                    <Typography className="filterdata" mt={1}>Jeans</Typography>
                                 </Box>
 
                                 <Divider />
 
-                                <Typography variant="subtitle2" mt={3} sx={{ fontSize: 19, fontWeight: 'bold' }}>Price</Typography>
+                                <Typography variant="subtitle2" className="filtername" sx={{ fontWeight: 'bold', mt: 3 }}>Price</Typography>
                                 <Slider defaultValue={[50, 200]} valueLabelDisplay="auto" sx={{ color: 'black' }} />
 
                                 <Divider sx={{ mt: 2 }} />
 
-                                <Typography variant="subtitle2" mt={3} sx={{ fontSize: 19, fontWeight: 'bold' }}>
+                                <Typography variant="subtitle2" className="filtername" sx={{ mt: 3, fontWeight: 'bold' }}>
                                     Colors
                                 </Typography>
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mt: 1 }}>
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, mt: 1 }}>
                                     {colors.map((v) => (
                                         <Box
                                             key={v}
+                                            onClick={() => setSelectedColor(v)}
                                             sx={{
-                                                width: 30,
-                                                height: 30,
+                                                width: 40,
+                                                height: 40,
                                                 borderRadius: "50%",
                                                 bgcolor: v,
                                                 cursor: "pointer",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center"
                                             }}
+                                        >
+                                            {selectedColor === v && (
+                                                <CheckIcon
+                                                    sx={{
+                                                        color: v === "white" ? "black" : "white",
+                                                        fontSize: 17,
+
+                                                    }}
+                                                />
+                                            )}
+                                        </Box>
+                                    ))}
+                                </Box>
+
+                                <Divider sx={{ mt: 3 }} />
+
+                                <Typography variant="subtitle2" className="filtername" sx={{ mt: 3, fontWeight: 'bold' }}>
+                                    Size
+                                </Typography>
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
+                                    {size.map((v) => (
+                                        <Chip
+                                            key={v}
+                                            label={v}
+                                            clickable
+                                            onClick={() => setSelectedSize(v)}
+                                            sx={{
+                                                bgcolor: selectedSize === v ? "black" : "#ebebeb",
+                                                color: selectedSize === v ? "white" : "black",
+                                                // border: "1px solid black",
+                                                "&:hover": {
+                                                    bgcolor: selectedSize === v ? "black" : "#f5f5f5",
+                                                },
+                                                fontSize: "16px",
+                                                p: "10px",
+                                                m: "2px"
+                                            }}
+
                                         />
                                     ))}
                                 </Box>
 
                                 <Divider sx={{ mt: 3 }} />
 
-                                <Typography variant="subtitle2" mt={3} sx={{ fontSize: 19, fontWeight: 'bold' }}>
-                                    Size
-                                </Typography>
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
-                                    {size.map((v) => (
-                                        <Chip key={v} label={v} clickable />
-                                    ))}
-                                </Box>
-
-                                <Divider sx={{ mt: 3 }} />
-
-                                <Typography variant="subtitle2" mt={3} sx={{ fontSize: 19, fontWeight: 'bold' }}>
+                                <Typography variant="subtitle2" className="filtername" sx={{ mt: 3, fontWeight: 'bold' }}>
                                     Dress Style
                                 </Typography>
 
                                 <Box sx={{ color: 'gray' }} >
-                                    <Typography mt={1}>Casual</Typography>
-                                    <Typography mt={1}>Formal</Typography>
-                                    <Typography mt={1}>Party</Typography>
-                                    <Typography mt={1}>Gym</Typography>
+                                    <Typography className="filterdata" mt={1}>Casual</Typography>
+                                    <Typography className="filterdata" mt={1}>Formal</Typography>
+                                    <Typography className="filterdata" mt={1}>Party</Typography>
+                                    <Typography className="filterdata" mt={1}>Gym</Typography>
                                 </Box>
 
 
@@ -195,6 +215,7 @@ function Casual() {
                                     variant="contained"
                                     fullWidth
                                     sx={{ mt: 3, borderRadius: 5, background: 'black' }}
+                                    style={{ textTransform: 'capitalize' }}
 
                                 >
                                     Apply Filter
@@ -204,71 +225,240 @@ function Casual() {
 
                         <Grid size={9}>
                             <Box sx={{ flexGrow: 1 }}>
-                                <Typography variant="h5" mb={2}>
+                                <Typography variant="h5" mb={2} style={{ fontWeight: "bold" }}>
                                     Casual
                                 </Typography>
 
-                                <Grid container spacing={3}>
+                                <Grid container spacing={4}>
                                     {products.map((product) => (
-                                        <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-                                            <Card sx={{ borderRadius: 3, width: 300, height: 350 }}>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="250"
-                                                    image={product.image}
-                                                />
-                                                <CardContent>
-                                                    <Typography variant="subtitle1">
+                                        // <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+                                        //     <Card sx={{ borderRadius: 3, width: 300, height: 350 }}>
+                                        //         <CardMedia
+                                        //             component="img"
+                                        //             height="250"
+                                        //             image={product.image}
+
+                                        //         />
+                                        //         <CardContent>
+                                        //             <Typography variant="subtitle1">
+                                        //                 {product.name}
+                                        //             </Typography>
+                                        //             <Typography variant="h6" mt={1}>
+                                        //                 ${product.price}
+                                        //             </Typography>
+                                        //         </CardContent>
+                                        //     </Card>
+                                        // </Grid>
+                                        <Grid size={{ xs: 12, sm: 6, md: 3, lg: 4 }} key={product.id}>
+
+                                            <Card
+                                                sx={{
+                                                    // p: 1.5,
+                                                    boxShadow: "none",
+                                                    // border: "1px solid #eee", 
+                                                    borderRadius: 3,
+                                                    height: "100%",
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    justifyContent: "space-between",
+                                                    "&:hover": {
+                                                        transform: "translateY(-4px)",
+                                                    },
+                                                }}
+                                            >
+                                                {/* Image */}
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                        justifyContent: "center",
+                                                        alignItems: "center",
+                                                        height: 300,
+                                                        // width: 344,
+                                                        // background: "#f8f8f8",
+                                                        borderRadius: 2,
+                                                    }}
+                                                >
+                                                    <CardMedia
+                                                        component="img"
+                                                        image={product.image}
+                                                        sx={{
+                                                            height: "300px",
+                                                            // objectFit: "contain",
+                                                            borderRadius: 6,
+                                                        }}
+                                                    />
+                                                </Box>
+
+                                                <CardContent sx={{ p: 1 }}>
+
+                                                    {/* Product Name */}
+                                                    <Typography fontWeight="600" fontSize={20}>
                                                         {product.name}
                                                     </Typography>
-                                                    <Typography variant="h6" mt={1}>
-                                                        ${product.price}
-                                                    </Typography>
+
+
+                                                    <Box display="flex" alignItems="center" gap={1} mt={0.5}>
+                                                        <Rating value={product.rating} precision={0.5} size="small" />
+                                                        <Typography fontSize={14} color="gray">
+                                                            {product.rating}/5
+                                                        </Typography>
+                                                    </Box>
+
+                                                    {/* Price Section */}
+                                                    <Box display="flex" alignItems="center" gap={1} mt={1}>
+                                                        <Typography fontWeight="bold" fontSize={21}>
+                                                            ${product.price}
+                                                        </Typography>
+
+                                                        {/* Old Price */}
+                                                        <Typography
+                                                            sx={{
+                                                                textDecoration: "line-through",
+                                                                color: "gray",
+                                                                fontSize: 20,
+                                                            }}
+                                                        >
+                                                            ${product.price + 40}
+                                                        </Typography>
+
+                                                        {/* Discount */}
+                                                        <Box
+                                                            sx={{
+                                                                background: product.discount ? "#ffe5e5" : "transparent",
+                                                                color: product.discount ? "red" : "transparent",
+                                                                fontSize: 11,
+                                                                px: 1.3,
+                                                                py: 0.5,
+                                                                borderRadius: 3,
+                                                            }}
+                                                        >
+                                                            {product.discount}
+                                                        </Box>
+                                                    </Box>
+
                                                 </CardContent>
                                             </Card>
+
                                         </Grid>
                                     ))}
                                 </Grid>
                             </Box>
-                            <nav>
-                                <List>
-                                    {items.map(({ page, type, selected, ...item }, index) => {
-                                        let children = null;
 
-                                        if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-                                            children = '…';
-                                        } else if (type === 'page') {
-                                            children = (
-                                                <button
-                                                    type="button"
-                                                    style={{
-                                                        fontW0eight: selected ? 'bold' : undefined,
-                                                        padding:5,
-                                                        backgroundColor:'white'
-                                                    }}
+                            <Divider sx={{ mt: 4 }} />
+
+                            <nav style={{ width: "100%" }}>
+                                <Box
+                                    sx={{
+                                        width: "100%",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                        mt: 3,
+                                        flexWrap: "wrap",
+                                        gap: 2,
+                                    }}
+                                >
+
+                                    <Box>
+                                        {items
+                                            .filter((item) => item.type === "previous")
+                                            .map(({ type, ...item }, index) => (
+                                                <Button
+                                                    key={index}
                                                     {...item}
+                                                    variant="outlined"
+                                                    sx={{
+                                                        borderRadius: 2,
+                                                        textTransform: "capitalize",
+                                                        fontSize: 13,
+                                                        px: 2,
+                                                        borderColor: "#ccc",
+                                                        color: "black",
+                                                    }}
                                                 >
-                                                    {page}
-                                                </button>
-                                            );
-                                        } else {
-                                            children = (
-                                                <button type="button" {...item}
-                                                style={{padding:5, backgroundColor:'white'}}>
-                                                    {type}
-                                                </button>
-                                            );
-                                        }
+                                                    <FaLongArrowAltLeft style={{ fontSize: '15px', marginRight: "5px", alignItems: "center" }} />
 
-                                        return <li key={index} style={{padding:'10px'}}>{children}</li>;
-                                    })}
-                                </List>
+                                                    Prev
+                                                </Button>
+                                            ))}
+                                    </Box>
+
+
+                                    <List
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: 1,
+                                            flexWrap: "wrap",
+                                        }}
+                                    >
+                                        {items
+                                            .filter((item) => item.type !== "previous" && item.type !== "next")
+                                            .map(({ page, type, selected, ...item }, index) => {
+
+                                                if (type === "start-ellipsis" || type === "end-ellipsis") {
+                                                    return (
+                                                        <li key={index}>
+                                                            <Typography sx={{ px: 1 }}>…</Typography>
+                                                        </li>
+                                                    );
+                                                }
+
+                                                return (
+                                                    <li key={index}>
+                                                        <Button
+                                                            {...item}
+                                                            sx={{
+                                                                minWidth: 35,
+                                                                height: 35,
+                                                                borderRadius: 2,
+                                                                fontSize: 14,
+                                                                fontWeight: selected ? "bold" : "normal",
+                                                                backgroundColor: selected ? "#e6e6e6" : "white",
+                                                                color: "gray",
+                                                                "&:hover": {
+                                                                    backgroundColor: selected ? "#d1d0d0" : "#f5f5f5",
+                                                                },
+                                                            }}
+                                                        >
+                                                            {page}
+                                                        </Button>
+                                                    </li>
+                                                );
+                                            })}
+                                    </List>
+
+                                    {/* 🔹 Next Button (Right) */}
+                                    <Box>
+                                        {items
+                                            .filter((item) => item.type === "next")
+                                            .map(({ type, ...item }, index) => (
+                                                <Button
+                                                    key={index}
+                                                    {...item}
+                                                    variant="outlined"
+                                                    sx={{
+                                                        borderRadius: 2,
+                                                        textTransform: "capitalize",
+                                                        fontSize: 13,
+                                                        px: 2,
+                                                        borderColor: "#ccc",
+                                                        color: "black",
+                                                    }}
+                                                >
+                                                    Next
+                                                    <FaLongArrowAltRight style={{ fontSize: '15px', marginLeft: "5px" }} />
+                                                </Button>
+                                            ))}
+                                    </Box>
+
+                                </Box>
                             </nav>
                         </Grid>
                     </Grid>
-                </Box>
-            </div>
-        </div>
+                </Box >
+            </div >
+        </div >
     )
 }
 

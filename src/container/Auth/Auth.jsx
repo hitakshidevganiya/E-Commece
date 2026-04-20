@@ -137,7 +137,7 @@ function Auth(props) {
     });
 
 
-    console.log(type);
+    // console.log(type);
 
     const { errors } = formik;
     // console.log("errors", errors)
