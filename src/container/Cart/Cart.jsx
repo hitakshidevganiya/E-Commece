@@ -40,7 +40,7 @@ function Cart() {
         
         <div className="container">
             <div className="cartmain">
-                <Divider />
+                {/* <Divider /> */}
                 <Box className="cart-page">
 
                     {/* Breadcrumb */}

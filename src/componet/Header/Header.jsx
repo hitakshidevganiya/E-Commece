@@ -71,8 +71,8 @@ function Header() {
 
 
   return (
-    <div className="container">
-      <div className="mainhead">
+    <div className="container header">
+      <div className="mainhead ">
         {showBanner && (
           <Box className="topBar">
             <Typography className="topText">
@@ -95,7 +95,7 @@ function Header() {
             <Box className="leftSection">
               <Typography variant='h2' className="logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>SHOP.CO</Typography>
 
-              <Button style={{ color: 'black', textTransform: "capitalize" }} onClick={handleOpen}>Shop <FaAngleDown style={{ marginLeft: '10px' }} /></Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' onClick={handleOpen}>Shop <FaAngleDown className='shop'  /></Button>
 
               <Menu anchorEl={subMenu} open={Boolean(subMenu)} onClose={handleClosemenu}>
                 <MenuItem
@@ -143,9 +143,9 @@ function Header() {
               </Menu>
               {/* Main Menu */}
 
-              <Button style={{ color: 'black', textTransform: "capitalize" }} >On Sale</Button>
-              <Button style={{ color: 'black', textTransform: "capitalize" }} >New Arrivals</Button>
-              <Button style={{ color: 'black', textTransform: "capitalize" }} >Brands</Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' >On Sale</Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' >New Arrivals</Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' >Brands</Button>
             </Box>
 
             <Box className="search">
@@ -167,8 +167,9 @@ function Header() {
                 aria-controls={open ? 'account-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
+                className='icon'
               >
-                <AccountCircleOutlinedIcon className='icon' />
+                <AccountCircleOutlinedIcon  />
 
               </IconButton>
             </Box>
@@ -246,7 +247,9 @@ function Header() {
             </Menu>
           </Toolbar>
         </AppBar>
+        
       </div>
+      <Divider sx={{ borderColor: "#c5c5c5"  }} />
     </div>
   )
 }

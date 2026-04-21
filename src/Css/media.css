@@ -492,6 +492,60 @@
         font-size: 16px !important;
     }
 
+    .logo {
+        font-size: 29px !important;
+    }
+
+    .toolbar {
+        width: 90%;
+    }
+
+    .search {
+        max-width: 200px;
+        margin: 0 15px;
+        padding: 4px 8px;
+    }
+
+    .headernav {
+        font-size: 12px !important;
+    }
+
+    .rightSection {
+        gap: 0px;
+    }
+
+    .searchInput {
+        margin-left: 10px;
+        width: 100%;
+        font-size: 12px !important;
+    }
+
+    .leftSection {
+        gap: 2px;
+
+    }
+
+    .leftSection button {
+        display: none;
+
+    }
+
+    .css-1umw9bq-MuiSvgIcon-root {
+        font-size: 20px !important;
+    }
+
+    .topText {
+        font-size: 14px !important;
+    }
+
+    .css-53g0n7-MuiButtonBase-root-MuiIconButton-root {
+        padding: 0 !important;
+    }
+
+    .shopicon {
+        margin-left: 1px;
+    }
+
 
 
 
@@ -725,13 +779,18 @@
         margin-bottom: 35px !important;
     }
 
+    .toolbar {
+        width: 85%;
+    }
 
+    .leftSection button {
+        display: block;
 
+    }
 
-
-
-
-
+    .searchInput {
+        font-size: 10px !important;
+    }
 
 }
 
@@ -987,10 +1046,59 @@
         margin-bottom: 35px !important;
     }
 
+    .logo {
+        font-size: 30px !important;
+    }
+
+    .toolbar {
+        width: 80%;
+    }
+
+    .search {
+        max-width: 250px;
+        margin: 0 15px;
+        padding: 4px 8px;
+    }
+
+    .headernav {
+        font-size: 12px !important;
+    }
+
+    .rightSection {
+        gap: 0px;
+    }
+
+    .searchInput {
+        margin-left: 10px;
+        width: 100%;
+        font-size: 12px !important;
+    }
+
+    .leftSection {
+        gap: 10px;
+
+    }
+
+    .shopicon {
+        margin-left: 10px;
+    }
+
+    .css-1umw9bq-MuiSvgIcon-root {
+        font-size: 22px !important;
+    }
+
+    .topText {
+        font-size: 15px !important;
+    }
+
+    .css-53g0n7-MuiButtonBase-root-MuiIconButton-root {
+        padding: 8px;
+    }
+
 
 }
 
-@media screen and (min-width: 1200PX) {
+@media screen and (min-width: 1200px) {
     .hero-title {
         font-size: 48px !important;
     }
@@ -1182,6 +1290,46 @@
         margin-bottom: 40px !important;
     }
 
+    .logo {
+        font-size: 32px !important;
+    }
+
+    .toolbar {
+        width: 80%;
+    }
+
+    .search {
+        max-width: 250px;
+        margin: 0 15px;
+        padding: 4px 10px;
+    }
+
+    .headernav {
+        font-size: 13px !important;
+    }
+
+    .rightSection {
+        gap: 0px;
+    }
+
+    .searchInput {
+        margin-left: 10px;
+        width: 100%;
+        font-size: 14px !important;
+    }
+
+    .leftSection {
+        gap: 20px;
+
+    }
+
+    .css-1umw9bq-MuiSvgIcon-root {
+        font-size: 25px !important;
+    }
+
+    .topText {
+        font-size: 17px !important;
+    }
 }
 
 
@@ -1332,6 +1480,39 @@
 
     .css-1to3zwi {
         padding: 30px 0;
+    }
+
+    .toolbar {
+        width: 80%;
+    }
+
+    .leftSection {
+        gap: 30px;
+    }
+
+    .search {
+        max-width: 500px;
+        padding: 6px 15px;
+        margin: 0 30px;
+    }
+
+    .headernav {
+        font-size: 16px !important;
+    }
+
+    .rightSection {
+        gap: 10px;
+    }
+
+    .searchInput {
+        margin-left: 10px;
+        width: 100%;
+        font-size: 15px !important;
+    }
+
+    .leftSection {
+        gap: 30px;
+
     }
 
 }

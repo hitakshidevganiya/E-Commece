@@ -152,7 +152,7 @@ function Auth(props) {
 
 
         <div id="autehPag">
-            <Divider />
+            {/* <Divider /> */}
 
             <Grid container sx={{ marginTop: 10 }} height="100%">
 
@@ -254,8 +254,6 @@ function Auth(props) {
                                                 /> : ''
 
                                         }
-
-
                                     </> :
                                     <>
                                         {

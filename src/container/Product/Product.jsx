@@ -98,7 +98,7 @@ function Product() {
                
                 <main>
                     <section className="men-product">
-                         <Divider />
+                         {/* <Divider /> */}
                         <Box sx={{ mt: 10 }} >
                             <Grid container spacing={4} >
                                 <Grid container size={7} alignItems="stretch" >

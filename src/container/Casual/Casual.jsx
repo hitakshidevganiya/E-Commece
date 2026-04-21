@@ -103,7 +103,7 @@ function Casual() {
     return (
         <div className="container">
             <div className="casualmain">
-                <Divider />
+                {/* <Divider /> */}
                 <Box sx={{
                     display: "flex", p: 3, 
                     // "@media (max-width:1400px)": {
@@ -112,9 +112,7 @@ function Casual() {
                 }}>
                     <Grid container spacing={3} >
                         <Grid size={3}>
-                            <Box
-                                className="slider"
-                            >
+                            <Box className="slider">
                                 <Typography variant="subtitle2" className="filtername" sx={{ fontWeight: 'bold' }}>
                                     Filters
                                 </Typography>
