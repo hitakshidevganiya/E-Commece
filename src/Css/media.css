@@ -102,6 +102,21 @@
         font-size: 9px !important;
     }
 
+    .brand-strip {
+        padding: 30px 0;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .brand-item {
+        font-size: 26px !important;
+    }
+
+    .brand-container {
+        gap:5px;
+
+    }
+
     .rename {
         font-size: 17px !important;
     }
@@ -240,6 +255,60 @@
         font-size: 13px !important;
     }
 
+    .logo {
+        font-size: 29px !important;
+    }
+
+    .toolbar {
+        width: 90%;
+    }
+
+    .search {
+        max-width: 200px;
+        margin: 0 15px;
+        padding: 4px 8px;
+    }
+
+    .headernav {
+        font-size: 12px !important;
+    }
+
+    .rightSection {
+        gap: 0px;
+    }
+
+    .searchInput {
+        margin-left: 10px;
+        width: 100%;
+        font-size: 12px !important;
+    }
+
+    .leftSection {
+        gap: 2px;
+
+    }
+
+    .leftSection button {
+        display: none;
+
+    }
+
+    .css-1umw9bq-MuiSvgIcon-root {
+        font-size: 20px !important;
+    }
+
+    .topText {
+        font-size: 14px !important;
+    }
+
+    .shopicon {
+        margin-left: 1px;
+    }
+
+    .css-53g0n7-MuiButtonBase-root-MuiIconButton-root {
+        padding: 6px !important;
+    }
+
 
 }
 
@@ -281,13 +350,18 @@
         text-align: left;
     }
 
+    .brand-strip {
+        padding: 30px 0;
+        width: 90%;
+        margin: 0 auto;
+    }
 
     .brand-item {
-        font-size: 22px !important;
+        font-size: 30px !important;
     }
 
     .brand-container {
-        gap: 4px;
+        gap: 25px;
 
     }
 
@@ -515,7 +589,7 @@
     }
 
     .searchInput {
-        margin-left: 10px;
+        margin-left: 4px;
         width: 100%;
         font-size: 12px !important;
     }
@@ -538,14 +612,9 @@
         font-size: 14px !important;
     }
 
-    .css-53g0n7-MuiButtonBase-root-MuiIconButton-root {
-        padding: 0 !important;
-    }
-
     .shopicon {
         margin-left: 1px;
     }
-
 
 
 
@@ -586,13 +655,18 @@
         margin: 0 auto;
     }
 
+    .brand-strip {
+        padding: 30px 0;
+        width: 85%;
+        margin: 0 auto;
+    }
+
     .brand-item {
-        font-size: 22px !important;
+        font-size: 25px !important;
     }
 
     .brand-container {
-        gap: 40px;
-
+        gap: 36px;
     }
 
     .maintitle {
@@ -789,7 +863,7 @@
     }
 
     .searchInput {
-        font-size: 10px !important;
+        font-size: 9px !important;
     }
 
 }
@@ -828,12 +902,18 @@
         margin: 0 auto;
     }
 
+    .brand-strip {
+        padding: 30px 0;
+        width: 80%;
+        margin: 0 auto;
+    }
+
     .brand-item {
         font-size: 30px !important;
     }
 
     .brand-container {
-        gap: 45px;
+        gap: 46px;
     }
 
     .maintitle {
@@ -1124,11 +1204,11 @@
     }
 
     .brand-item {
-        font-size: 31px !important;
+        font-size: 33px !important;
     }
 
     .brand-container {
-        gap: 82px;
+        gap: 73px;
     }
 
     .maintitle {
@@ -1363,11 +1443,11 @@
     }
 
     .brand-item {
-        font-size: 33px !important;
+        font-size: 40px !important;
     }
 
     .brand-container {
-        gap: 112px;
+        gap: 78px;
     }
 
     .maintitle {

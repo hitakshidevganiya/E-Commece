@@ -95,7 +95,7 @@ function Header() {
             <Box className="leftSection">
               <Typography variant='h2' className="logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>SHOP.CO</Typography>
 
-              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' onClick={handleOpen}>Shop <FaAngleDown className='shop'  /></Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' onClick={handleOpen}>Shop <FaAngleDown className='shopicon'  /></Button>
 
               <Menu anchorEl={subMenu} open={Boolean(subMenu)} onClose={handleClosemenu}>
                 <MenuItem

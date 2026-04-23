@@ -55,7 +55,7 @@ export const loginUser = createAsyncThunk(
 
             const response = await axiosInstance.post("user/loginUser", data);
             if (response.data.success) {
-                return response.data.data
+                return response.data
 
             }
             console.log(response);

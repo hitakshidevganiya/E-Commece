@@ -113,9 +113,9 @@ function Auth(props) {
             } else if (type === 'Log In') {
                 const res = await dispatch(loginUser(values));
 
-                if (res.type === 'auth/loginUser/fulfilled') {
+                if (loginUser.fulfilled.match(res)) {
                     navigate('/')
-                }
+                } 
             } else if (type === 'Forgot Pass') {
                 localStorage.setItem("email", values.email);
 

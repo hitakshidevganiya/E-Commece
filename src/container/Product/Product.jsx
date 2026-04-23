@@ -6,7 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { MdOutlineTune } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
-import { Avatar, Box, Button, Card, CardContent, CardMedia, Divider, Grid, IconButton, Rating, Tab, Tabs, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { Avatar, Box, Button, Card, CardContent, CardMedia, Chip, Divider, Grid, IconButton, Rating, Tab, Tabs, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 
 const images = [
     "../../../public/images/image 2.png",
@@ -90,37 +90,40 @@ function Product() {
     const [size, setSize] = useState("Large");
     const [qty, setQty] = useState(1);
 
+    const [selectedSize, setSelectedSize] = useState(null);
+
+    const sizes = ["Small", "Medium", "Large", "X-Large"];
+
     return (
         <>
 
             <div className="container">
 
-               
+
                 <main>
                     <section className="men-product">
-                         {/* <Divider /> */}
+                        {/* <Divider /> */}
                         <Box sx={{ mt: 10 }} >
                             <Grid container spacing={4} >
                                 <Grid container size={7} alignItems="stretch" >
 
-                                    <Grid size={3} rowSpacing={6} container display="flex" direction="column" >
+                                    <Grid size={3} rowSpacing={{ md: 4, lg: 4, xl: 6 }} container display="flex" direction="column" >
 
                                         <Grid>
                                             <Box className="imgBox">
-                                                <img src="../../../public/images/image 2.png" alt="" className="imgsize"/>
+                                                <img src="../../../public/images/image 2.png" alt="" className="imgsize" />
                                             </Box>
                                         </Grid>
                                         <Grid>
                                             <Box className="imgBox">
-                                                <img src="../../../public/images/image 5.png" alt="" className="imgsize"/>
+                                                <img src="../../../public/images/image 5.png" alt="" className="imgsize" />
                                             </Box>
                                         </Grid>
                                         <Grid >
                                             <Box className="imgBox">
-                                                <img src="../../../public/images/image 6 (1).png" alt="" className="imgsize"/>
+                                                <img src="../../../public/images/image 6 (1).png" alt="" className="imgsize" />
                                             </Box>
                                         </Grid>
-
 
                                     </Grid>
 
@@ -130,11 +133,21 @@ function Product() {
                                         </Box>
                                     </Grid>
 
-
                                 </Grid>
 
-                                <Grid size={5}>
-                                    <Typography variant="h4" fontWeight="bold" gutterBottom mt={2}>
+                                <Grid size={5} sx={{
+                                    "@media (min-width: 1400px)": {
+                                        maxWidth: "500px",
+                                        marginLeft: "auto"
+                                    }
+                                }}>
+                                    <Typography
+                                        variant="h4"
+                                        fontWeight="bold"
+                                        gutterBottom
+                                        mt={2}
+                                        className="promaintitle"
+                                    >
                                         ONE LIFE GRAPHIC T-SHIRT
                                     </Typography>
 
@@ -144,20 +157,28 @@ function Product() {
                                     </Box>
 
                                     <Box display="flex" alignItems="center" gap={2} mb={2}>
-                                        <Typography variant="h5" fontWeight="bold" className="proPrice">
+                                        <Typography
+                                            variant="h5"
+                                            fontWeight="bold"
+                                            className="proPrice"
+                                        >
                                             $260
                                         </Typography>
                                         <Typography
                                             sx={{ textDecoration: "line-through", color: "gray" }}
-                                            className="proPrice" 
+                                            className="proPrice"
                                         >
                                             $300
                                         </Typography>
                                         <Typography color="error" className="discount">-40%</Typography>
                                     </Box>
 
-                                    <Typography color="text.secondary" mb={3}>
-                                        This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
+                                    <Typography
+                                        color="text.secondary"
+                                        mb={3}
+                                        className="descr"
+                                    >
+                                        This graphic t-shirt which is perfect for any occasion. crafted from a soft and breathable fabric, it offers superior comfort and style.
                                     </Typography>
 
                                     <Divider />
@@ -167,56 +188,77 @@ function Product() {
                                             Select Colors
                                         </Typography>
                                         <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                            <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#4b5320" }} />
-                                            <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#2f4f4f" }} />
-                                            <Box sx={{ width: 30, height: 30, borderRadius: '50%', bgcolor: "#1c1c3c" }} />
+                                            {["#4b5320", "#2f4f4f", "#1c1c3c"].map((color, i) => (
+                                                <Box
+                                                    key={i}
+                                                    sx={{
+                                                        width: { xs: 25, md: 30 },
+                                                        height: { xs: 25, md: 30 },
+                                                        borderRadius: '50%',
+                                                        bgcolor: color,
+                                                        cursor: "pointer",
+                                                        transition: "0.3s",
+                                                        "&:hover": {
+                                                            transform: "scale(1.2)"
+                                                        }
+                                                    }}
+                                                />
+                                            ))}
                                         </Box>
                                     </Box>
 
                                     <Divider sx={{ mt: 3 }} />
 
                                     <Typography mb={1} mt={3}>Choose Size</Typography>
-                                    <ToggleButtonGroup
-                                        value={size}
-                                        exclusive
-                                        onChange={(e, val) => val && setSize(val)}
-                                        sx={{ mb: 3 }}
-                                    >
-                                        {["Small", "Medium", "Large", "X-Large"].map((s) => (
-                                            <ToggleButton key={s} value={s} sx={{ borderRadius: 2 }}>
-                                                {s}
-                                            </ToggleButton>
+                                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
+                                        {sizes.map((v) => (
+                                            <Chip
+                                                key={v}
+                                                label={v}
+                                                clickable
+                                                onClick={() => setSelectedSize(v)}
+                                                sx={{
+                                                    bgcolor: selectedSize === v ? "black" : "#ebebeb",
+                                                    color: selectedSize === v ? "white" : "black",
+                                                    // border: "1px solid black",
+                                                    "&:hover": {
+                                                        bgcolor: selectedSize === v ? "black" : "#f5f5f5",
+                                                    }
+                                                }}
+                                                className="sizename"
+
+                                            />
                                         ))}
-                                    </ToggleButtonGroup>
+                                    </Box>
 
                                     <Divider sx={{ mt: 3 }} />
 
-                                    
-                                    <Box display="flex" alignItems="center" gap={2} mb={3} >
-                                        <IconButton onClick={() => setQty(Math.max(1, qty - 1))}>
-                                            <Remove />
-                                        </IconButton>
-                                        <Typography>{qty}</Typography>
-                                        <IconButton onClick={() => setQty(qty + 1)}>
-                                            <Add />
-                                        </IconButton>
-                                    </Box>
+                                    <Box display="flex" alignItems="center" className="addcartbtn">
+                                        <Box display="flex" alignItems="center" bgcolor="#ebebeb" borderRadius="20px" className="qtyadd">
+                                            <IconButton onClick={() => setQty(Math.max(1, qty - 1))} >
+                                                <Remove />
+                                            </IconButton>
+                                            <Typography className="numberqty">{qty}</Typography>
+                                            <IconButton onClick={() => setQty(qty + 1)} >
+                                                <Add />
+                                            </IconButton>
+                                        </Box>
 
-                                    
-                                    <Button
-                                        variant="contained"
-                                        size="large"
-                                        fullWidth
-                                        sx={{
-                                            borderRadius: "30px",
-                                            py: 1.5,
-                                            fontWeight: "bold",
-                                            display: 'flex',
-                                            bgcolor: 'black'
-                                        }}
-                                    >
-                                        Add to Cart
-                                    </Button>
+                                        <Button
+                                            variant="contained"
+                                            size="large"
+                                            fullWidth
+                                            sx={{
+                                                fontWeight: "bold",
+                                                display: 'flex',
+                                                bgcolor: 'black',
+                                                textTransform: "capitalize",
+                                            }}
+                                            className="cartbtn"
+                                        >
+                                            Add to Cart
+                                        </Button>
+                                    </Box>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -271,10 +313,10 @@ function Product() {
                                     </Button>
                                 </Box>
                             </Box>
-                            <Grid container spacing={{xl:5,lg:4,md:3,xs:2}}  >
+                            <Grid container spacing={{ xl: 5, lg: 4, md: 3, xs: 2 }}  >
                                 {reviews.map((v, i) => (
-                                    <Grid size={{xs: 12, md:6}} key={i}>
-                                        <Card sx={{ borderRadius: "16px" , p:1 }}>
+                                    <Grid size={{ xs: 12, md: 6 }} key={i}>
+                                        <Card sx={{ borderRadius: "16px", p: 1 }}>
                                             <CardContent >
                                                 <Box justifyContent="space-between" display="flex" alignItems="center" >
                                                     <Rating value={v.rating} precision={0.5} readOnly />
@@ -297,7 +339,7 @@ function Product() {
                                         </Card>
                                     </Grid>
                                 ))}
-                             </Grid>
+                            </Grid>
                             <Box textAlign="center" mt={4}>
                                 <Button
                                     variant="outlined"
