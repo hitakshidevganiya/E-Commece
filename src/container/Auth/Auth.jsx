@@ -17,6 +17,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { number, object, string } from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPass, loginUser, registerUser, resetPass, verifyUser } from "../../Redux/Slice/auth.slice";
+import { setAlert } from "../../Redux/Slice/Alert.slice";
 
 
 
@@ -111,11 +112,25 @@ function Auth(props) {
                     setType('Log In')
                 }
             } else if (type === 'Log In') {
+                console.log(values)
                 const res = await dispatch(loginUser(values));
+                console.log('res', res)
 
-                if (loginUser.fulfilled.match(res)) {
-                    navigate('/')
-                } 
+                if (res.meta.requestStatus === "fulfilled" && res.payload?.success) {
+
+                    dispatch(setAlert({
+                        text: "Login Successfully",
+                        variant: "success"
+                    }));
+
+                    localStorage.setItem("userid", res.payload.data._id)
+                    navigate('/');
+                } else {
+                    dispatch(setAlert({
+                        text: res.payload?.message || "Login Failed",
+                        variant: "error"
+                    }));
+                }
             } else if (type === 'Forgot Pass') {
                 localStorage.setItem("email", values.email);
 

@@ -113,7 +113,7 @@
     }
 
     .brand-container {
-        gap:5px;
+        gap: 5px;
 
     }
 
@@ -1410,6 +1410,67 @@
     .topText {
         font-size: 17px !important;
     }
+
+    .slider {
+        margin-right: 0px;
+        padding: 18px;
+    }
+
+    .css-elsol2 {
+        gap: 2.5px !important;
+    }
+
+    .filtername {
+        margin-bottom: 10px !important;
+    }
+
+    .css-38rnu9-MuiTypography-root {
+        margin-top: 5px !important;
+    }
+
+    .css-pmlmd1-MuiTypography-root {
+        margin-top: 15px !important;
+    }
+
+    .css-3uwl2n-MuiTypography-root {
+        margin-top: 15px !important;
+    }
+
+    .css-qy9tah-MuiSlider-root {
+        padding: 12px 0 !important;
+    }
+
+    .proimg {
+        height: 220px !important;
+
+    }
+
+    .probox {
+        height: 220px !important;
+    }
+
+    .pronamee {
+        font-size: 15px !important;
+    }
+
+    .navbox {
+        margin-top: 8px !important;
+    }
+
+    .casualmain {
+        margin-bottom: 100px;
+    }
+
+    .colorsss {
+        width: 34px;
+        height: 34px;
+    }
+
+    .sizeeeee {
+        font-size: 14px !important;
+        padding: 3px !important;
+        margin: 2px !important;
+    }
 }
 
 
@@ -1595,4 +1656,64 @@
 
     }
 
+    .slider {
+        margin-right: 0px;
+        padding: 24px;
+    }
+
+    .css-elsol2 {
+        gap: 5px !important;
+    }
+
+    .filtername {
+        margin-bottom: 10px !important;
+    }
+
+    .css-38rnu9-MuiTypography-root {
+        margin-top: 5px !important;
+    }
+
+    .css-pmlmd1-MuiTypography-root {
+        margin-top: 15px !important;
+    }
+
+    .css-3uwl2n-MuiTypography-root {
+        margin-top: 15px !important;
+    }
+
+    .css-qy9tah-MuiSlider-root {
+        padding: 12px 0 !important;
+    }
+
+    .proimg {
+        height: 260px !important;
+
+    }
+
+    .probox {
+        height: 260px !important;
+    }
+
+    .pronamee {
+        font-size: 18px !important;
+    }
+
+    .navbox {
+        margin-top: 10px !important;
+    }
+
+    .casualmain {
+        margin-bottom: 110px;
+    }
+
+    .colorsss {
+        width: 40px;
+        height: 40px;
+    }
+
+    .sizeeeee {
+        font-size: 16px !important;
+        padding: 10px !important;
+        margin: 3px !important;
+    }
 }

@@ -129,7 +129,7 @@ function Product() {
 
                                     <Grid size={9} display='flex'>
                                         <Box className="probigimg">
-                                            <img src="../../../public/images/image 1.png" alt="" style={{ borderRadius: 25 }} className="imgsize" />
+                                            <img src="../../../public/images/image 1.png" alt="" style={{ borderRadius: 25 }}  />
                                         </Box>
                                     </Grid>
 

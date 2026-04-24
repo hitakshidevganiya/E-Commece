@@ -24,7 +24,7 @@ function Header() {
   const navigate = useNavigate();
 
   const auth = useSelector(state => state.auth);
-  // console.log(auth.user);
+  console.log("auth", auth);
 
 
   const dispatch = useDispatch();
@@ -95,7 +95,7 @@ function Header() {
             <Box className="leftSection">
               <Typography variant='h2' className="logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>SHOP.CO</Typography>
 
-              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' onClick={handleOpen}>Shop <FaAngleDown className='shopicon'  /></Button>
+              <Button style={{ color: 'black', textTransform: "capitalize" }} className='headernav' onClick={handleOpen}>Shop <FaAngleDown className='shopicon' /></Button>
 
               <Menu anchorEl={subMenu} open={Boolean(subMenu)} onClose={handleClosemenu}>
                 <MenuItem
@@ -169,7 +169,7 @@ function Header() {
                 aria-expanded={open ? 'true' : undefined}
                 className='icon'
               >
-                <AccountCircleOutlinedIcon  />
+                <AccountCircleOutlinedIcon />
 
               </IconButton>
             </Box>
@@ -231,7 +231,7 @@ function Header() {
               </MenuItem>
               {
                 auth.user ?
-                  <MenuItem onClick={() => dispatch(logoutUser(auth.user._id))} >
+                  <MenuItem onClick={() => dispatch(logoutUser(localStorage.getItem("userid")))} >
                     <ListItemIcon >
                       <Logout fontSize="small" />
                     </ListItemIcon>
@@ -247,9 +247,9 @@ function Header() {
             </Menu>
           </Toolbar>
         </AppBar>
-        
+
       </div>
-      <Divider sx={{ borderColor: "#c5c5c5"  }} />
+      <Divider sx={{ borderColor: "#c5c5c5" }} />
     </div>
   )
 }

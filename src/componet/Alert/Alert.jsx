@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSnackbar } from 'notistack';
 import { resetAlert } from '../../Redux/Slice/Alert.slice';
+import { useSnackbar } from 'notistack';
+
 
 
 function Alert(props) {
@@ -16,18 +17,18 @@ function Alert(props) {
 
     useEffect(() => {
 
-        if (alert.text !== '') {
+        if (alert && alert.text ) {
             enqueueSnackbar(alert.text, {
                 anchorOrigin: {
                     vertical: 'top',
                     horizontal: 'right'
                 },
-                variant: alert.variant
+                variant: alert.variant || 'default'
             }),
                 dispatch(resetAlert())
         }
 
-    }, [alert.text])
+    }, [alert])
 
 
     return (

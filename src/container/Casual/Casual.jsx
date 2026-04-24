@@ -111,7 +111,7 @@ function Casual() {
                     // },
                 }}>
                     <Grid container spacing={3} >
-                        <Grid size={3}>
+                        <Grid size={{xs: 6,sm:4,md:4,lg:3}}>
                             <Box className="slider">
                                 <Typography variant="subtitle2" className="filtername" sx={{ fontWeight: 'bold' }}>
                                     Filters
@@ -144,15 +144,15 @@ function Casual() {
                                             key={v}
                                             onClick={() => setSelectedColor(v)}
                                             sx={{
-                                                width: 40,
-                                                height: 40,
                                                 borderRadius: "50%",
                                                 bgcolor: v,
                                                 cursor: "pointer",
                                                 display: "flex",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                border: "1px solid #d6d6d6"
                                             }}
+                                            className="colorsss"
                                         >
                                             {selectedColor === v && (
                                                 <CheckIcon
@@ -172,7 +172,7 @@ function Casual() {
                                 <Typography variant="subtitle2" className="filtername" sx={{ mt: 3, fontWeight: 'bold' }}>
                                     Size
                                 </Typography>
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.1, mt: 1 }}>
                                     {size.map((v) => (
                                         <Chip
                                             key={v}
@@ -186,11 +186,8 @@ function Casual() {
                                                 "&:hover": {
                                                     bgcolor: selectedSize === v ? "black" : "#f5f5f5",
                                                 },
-                                                fontSize: "16px",
-                                                p: "10px",
-                                                m: "2px"
                                             }}
-
+                                            className="sizeeeee"
                                         />
                                     ))}
                                 </Box>
@@ -221,7 +218,7 @@ function Casual() {
                             </Box>
                         </Grid>
 
-                        <Grid size={9}>
+                        <Grid size={{xs: 6,sm:8,md:8,lg:9}}>
                             <Box sx={{ flexGrow: 1 }}>
                                 <Typography variant="h5" mb={2} style={{ fontWeight: "bold" }}>
                                     Casual
@@ -270,27 +267,21 @@ function Casual() {
                                                         display: "flex",
                                                         justifyContent: "center",
                                                         alignItems: "center",
-                                                        height: 300,
-                                                        // width: 344,
-                                                        // background: "#f8f8f8",
-                                                        borderRadius: 2,
                                                     }}
+                                                    className="probox"
                                                 >
                                                     <CardMedia
                                                         component="img"
                                                         image={product.image}
-                                                        sx={{
-                                                            height: "300px",
-                                                            // objectFit: "contain",
-                                                            borderRadius: 6,
-                                                        }}
+                                                        
+                                                        className="proimg"
                                                     />
                                                 </Box>
 
                                                 <CardContent sx={{ p: 1 }}>
 
                                                     {/* Product Name */}
-                                                    <Typography fontWeight="600" fontSize={20}>
+                                                    <Typography fontWeight="600" className="pronamee">
                                                         {product.name}
                                                     </Typography>
 
@@ -355,6 +346,7 @@ function Casual() {
                                         flexWrap: "wrap",
                                         gap: 2,
                                     }}
+                                    className="navbox"
                                 >
 
                                     <Box>

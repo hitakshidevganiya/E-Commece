@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { axiosInstance } from "../../utils/axiosInstance"
+import { setAlert } from "./Alert.slice";
 
 const initialState = {
     isLoading: false,
@@ -26,13 +27,14 @@ export const registerUser = createAsyncThunk(
 
 export const verifyUser = createAsyncThunk(
     'auth/verifyUser',
-    async (data) => {
+    async (data, { dispatch }) => {
         console.log(data);
 
         try {
 
             const response = await axiosInstance.post("user/verifyUser", data);
             if (response.data.success) {
+                dispatch(setAlert({ text: response.data.message, variant: 'success' }));
                 return response.data.data
 
             }
@@ -40,7 +42,6 @@ export const verifyUser = createAsyncThunk(
 
         } catch (error) {
             console.log(error);
-
         }
 
     }
@@ -48,7 +49,7 @@ export const verifyUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
-    async (data) => {
+    async (data, { dispatch }) => {
         console.log(data);
 
         try {
@@ -56,28 +57,28 @@ export const loginUser = createAsyncThunk(
             const response = await axiosInstance.post("user/loginUser", data);
             if (response.data.success) {
                 return response.data
-
+                dispatch(setAlert({ text: response.payload.message, variant: 'success' }));
             }
-            console.log(response);
+            console.log("response",response);
 
         } catch (error) {
+            dispatch(setAlert({ text: error.response.data.message, variant: 'error' }));
+
             console.log(error);
-
         }
-
     }
 )
 
 export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
     async (_id) => {
-        console.log(_id);
+        console.log("_id", _id);
 
         try {
 
-            const response = await axiosInstance.post("user/logoutUser", {_id});
+            const response = await axiosInstance.post("user/logoutUser", { _id });
             if (response.data.success) {
-                return response.data.data
+                return response.data._id
 
             }
             console.log(response);
@@ -166,13 +167,15 @@ export const authSlice = createSlice({
             state.user = action.payload
         })
         builder.addCase(logoutUser.fulfilled, (state, action) => {
+            state.isLoading = false
             state.user = action.payload
+            state.error = null
         })
         builder.addCase(checkAuth.fulfilled, (state, action) => {
             state.user = action.payload
         })
         builder.addCase(forgotPass.fulfilled, (state, action) => {
-            state.user = action.payload
+            state.user = action.payload 
         })
         builder.addCase(resetPass.fulfilled, (state, action) => {
             state.user = action.payload

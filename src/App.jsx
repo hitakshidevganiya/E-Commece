@@ -12,29 +12,33 @@ import Cart from './container/Cart/Cart'
 import Auth from './container/Auth/Auth'
 import { Provider } from 'react-redux'
 import { configStore } from './Redux/store'
+import { SnackbarProvider } from 'notistack'
+import Alert from './componet/Alert/Alert'
 
 
 
 function App() {
 
   const store = configStore();
-  
+
 
   return (
-
-    <Provider store={store}>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/product' element={<Product />} />
-        <Route path='/category/casual' element={<Casual />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/men/tshirt' element={<Product />} />
-        <Route path='/auth' element={<Auth />} />
-      </Routes>
-      <About />
-      <Footer />
-    </Provider>
+    <SnackbarProvider>
+      <Provider store={store}>
+        <Alert />
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/product' element={<Product />} />
+          <Route path='/category/casual' element={<Casual />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/men/tshirt' element={<Product />} />
+          <Route path='/auth' element={<Auth />} />
+        </Routes>
+        <About />
+        <Footer />
+      </Provider>
+    </SnackbarProvider>
 
   )
 }
