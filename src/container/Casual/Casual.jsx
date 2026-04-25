@@ -1,10 +1,9 @@
-import { Box, Button, Card, CardContent, CardMedia, Chip, colors, Divider, Grid, Rating, Slide, Slider, Typography } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { Box, Button, Card, CardContent, CardMedia, Chip, colors, Divider, Grid, Rating, Slide, Slider, Typography, useMediaQuery } from "@mui/material";
+import { styled, useTheme } from '@mui/material/styles';
 import usePagination from "@mui/material/usePagination";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import CheckIcon from "@mui/icons-material/Check";
-// import '../../Css/header.css'
 import React, { useState } from "react";
 
 const products = [
@@ -95,8 +94,16 @@ function Casual() {
         count: 10,
     });
 
+    
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
+
+    const theme = useTheme();
+
+    const isMd = useMediaQuery(theme.breakpoints.between("md", "lg"));
+    const displayProducts = isMd ? products.slice(0, 6) : products
+
+
 
     const colors = ["#00C12B", "red", "#F5DD06", "#F57906", "#06CAF5", "blue", "#7D06F5", "#F506A4", "white", "black"];
     const size = ["XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "3X-Large", "4X-Large"];
@@ -105,13 +112,13 @@ function Casual() {
             <div className="casualmain">
                 {/* <Divider /> */}
                 <Box sx={{
-                    display: "flex", p: 3, 
+                    display: "flex", p: 3,
                     // "@media (max-width:1400px)": {
                     //     p: 2,
                     // },
                 }}>
                     <Grid container spacing={3} >
-                        <Grid size={{xs: 6,sm:4,md:4,lg:3}}>
+                        <Grid size={{ xs: 6, sm: 4, md: 4, lg: 3 }}>
                             <Box className="slider">
                                 <Typography variant="subtitle2" className="filtername" sx={{ fontWeight: 'bold' }}>
                                     Filters
@@ -218,39 +225,22 @@ function Casual() {
                             </Box>
                         </Grid>
 
-                        <Grid size={{xs: 6,sm:8,md:8,lg:9}}>
+                        <Grid size={{ xs: 6, sm: 8, md: 8, lg: 9 }}>
                             <Box sx={{ flexGrow: 1 }}>
                                 <Typography variant="h5" mb={2} style={{ fontWeight: "bold" }}>
                                     Casual
                                 </Typography>
 
                                 <Grid container spacing={4}>
-                                    {products.map((product) => (
-                                        // <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-                                        //     <Card sx={{ borderRadius: 3, width: 300, height: 350 }}>
-                                        //         <CardMedia
-                                        //             component="img"
-                                        //             height="250"
-                                        //             image={product.image}
-
-                                        //         />
-                                        //         <CardContent>
-                                        //             <Typography variant="subtitle1">
-                                        //                 {product.name}
-                                        //             </Typography>
-                                        //             <Typography variant="h6" mt={1}>
-                                        //                 ${product.price}
-                                        //             </Typography>
-                                        //         </CardContent>
-                                        //     </Card>
-                                        // </Grid>
-                                        <Grid size={{ xs: 12, sm: 6, md: 3, lg: 4 }} key={product.id}>
+                                    {displayProducts.map((product) => (
+                                        <Grid size={{ xs: 12, sm: 6, md: 5, lg: 4 }} key={product.id}>
 
                                             <Card
                                                 sx={{
                                                     // p: 1.5,
                                                     boxShadow: "none",
                                                     // border: "1px solid #eee", 
+                                                    width: "100%0",
                                                     borderRadius: 3,
                                                     height: "100%",
                                                     display: "flex",
@@ -273,8 +263,8 @@ function Casual() {
                                                     <CardMedia
                                                         component="img"
                                                         image={product.image}
-                                                        
                                                         className="proimg"
+                                                        width="100%"
                                                     />
                                                 </Box>
 
@@ -295,7 +285,7 @@ function Casual() {
 
                                                     {/* Price Section */}
                                                     <Box display="flex" alignItems="center" gap={1} mt={1}>
-                                                        <Typography fontWeight="bold" fontSize={21}>
+                                                        <Typography fontWeight="bold" className="proprice">
                                                             ${product.price}
                                                         </Typography>
 
@@ -303,9 +293,9 @@ function Casual() {
                                                         <Typography
                                                             sx={{
                                                                 textDecoration: "line-through",
-                                                                color: "gray",
-                                                                fontSize: 20,
+                                                                color: "gray"
                                                             }}
+                                                            className="prooldprice"
                                                         >
                                                             ${product.price + 40}
                                                         </Typography>
@@ -315,11 +305,9 @@ function Casual() {
                                                             sx={{
                                                                 background: product.discount ? "#ffe5e5" : "transparent",
                                                                 color: product.discount ? "red" : "transparent",
-                                                                fontSize: 11,
-                                                                px: 1.3,
-                                                                py: 0.5,
                                                                 borderRadius: 3,
                                                             }}
+                                                            className="discounttt"
                                                         >
                                                             {product.discount}
                                                         </Box>

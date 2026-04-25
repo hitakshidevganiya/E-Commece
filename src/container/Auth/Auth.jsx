@@ -103,14 +103,35 @@ function Auth(props) {
                 console.log(res);
 
                 if (res.type === 'auth/registerUser/fulfilled') {
+                    dispatch(setAlert({
+                        text: "Register Successfully ",
+                        variant: "success"
+                    }));
+
                     setType('Verify OTP')
+                } else {
+                    dispatch(setAlert({
+                        text: res.payload?.message || "Register Failed",
+                        variant: "error"
+                    }));
                 }
+
             } else if (type === 'Verify OTP') {
                 const res = await dispatch(verifyUser({ email: localStorage.getItem("email"), otp: values.otp }));
 
                 if (res.type === 'auth/verifyUser/fulfilled') {
+                    dispatch(setAlert({
+                        text: "OTP Verified Successfully ",
+                        variant: "success"
+                    }));
                     setType('Log In')
+                } else {
+                    dispatch(setAlert({
+                        text: "Invalid OTP ",
+                        variant: "error"
+                    }));
                 }
+
             } else if (type === 'Log In') {
                 console.log(values)
                 const res = await dispatch(loginUser(values));
@@ -137,15 +158,36 @@ function Auth(props) {
                 const res = await dispatch(forgotPass(values));
 
                 if (res.type === 'auth/forgotPass/fulfilled') {
+                    dispatch(setAlert({
+                        text: "Reset link/OTP sent successfully ",
+                        variant: "success"
+                    }));
                     setType('Reset Pass');
                     // setOtp('Reset Pass')
+                } else {
+                    dispatch(setAlert({
+                        text: "Something went wrong",
+                        variant: "error"
+                    }));
                 }
+
+
             } else if (type === 'Reset Pass') {
                 const res = await dispatch(resetPass({ ...values, email: localStorage.getItem('email') }));
 
                 if (res.type === 'auth/resetPass/fulfilled') {
+                    dispatch(setAlert({
+                        text: "Password Reset Successfully ",
+                        variant: "success"
+                    }));
                     setType('Log In');
+                } else {
+                    dispatch(setAlert({
+                        text: "Reset Failed ",
+                        variant: "error"
+                    }));
                 }
+
             }
             resetForm();
         }

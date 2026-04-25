@@ -1175,6 +1175,90 @@
         padding: 8px;
     }
 
+    .slider {
+        margin-right: 0px;
+        padding: 18px;
+    }
+
+    .css-elsol2 {
+        gap: 10.14px !important;
+    }
+
+    .filtername {
+        margin-bottom: 10px !important;
+    }
+
+    .css-38rnu9-MuiTypography-root {
+        margin-top: 5px !important;
+    }
+
+    .css-pmlmd1-MuiTypography-root {
+        margin-top: 15px !important;
+    }
+
+    .css-3uwl2n-MuiTypography-root {
+        margin-top: 15px !important;
+    }
+
+    .css-qy9tah-MuiSlider-root {
+        padding: 12px 0 !important;
+    }
+
+    .proimg {
+        height: 240px !important;
+
+    }
+
+    .probox {
+        height: 240px !important;
+    }
+
+    .pronamee {
+        font-size: 15px !important;
+    }
+
+    .navbox {
+        margin-top: 8px !important;
+    }
+
+    .casualmain {
+        margin-bottom: 100px;
+    }
+
+    .colorsss {
+        width: 34px;
+        height: 34px;
+    }
+
+    .sizeeeee {
+        font-size: 14px !important;
+        padding: 3px !important;
+        margin: 2px !important;
+    }
+
+    .proprice {
+        font-size: 19px !important;
+    }
+
+    .filtername {
+        font-size: 17px !important;
+        margin-bottom: 12px !important;
+
+    }
+
+    .filterdata {
+        font-size: 16px !important;
+    }
+
+    .prooldprice {
+        font-size: 18px !important;
+    }
+
+    .discounttt {
+        font-size: 10px !important;
+        padding: 3px 9px !important;
+    }
+
 
 }
 
@@ -1441,12 +1525,12 @@
     }
 
     .proimg {
-        height: 220px !important;
+        height: 240px !important;
 
     }
 
     .probox {
-        height: 220px !important;
+        height: 240px !important;
     }
 
     .pronamee {
@@ -1471,6 +1555,33 @@
         padding: 3px !important;
         margin: 2px !important;
     }
+
+    .proprice {
+        font-size: 19px !important;
+    }
+
+    .filtername {
+        font-size: 17px !important;
+        margin-bottom: 12px !important;
+
+    }
+
+    .filterdata {
+        font-size: 16px !important;
+    }
+
+    .prooldprice {
+        font-size: 18px !important;
+    }
+
+    .discounttt {
+        font-size: 10px !important;
+        padding: 3px 9px !important;
+    }
+
+
+
+
 }
 
 
@@ -1716,4 +1827,32 @@
         padding: 10px !important;
         margin: 3px !important;
     }
+
+    .proprice {
+        font-size: 21px !important;
+    }
+
+    .filtername {
+        font-size: 20px !important;
+        margin-bottom: 16px !important;
+
+    }
+
+    .filterdata {
+        font-size: 17px !important;
+    }
+
+    .prooldprice {
+        font-size: 20px !important;
+    }
+
+    .discounttt {
+        font-size: 11px !important;
+        padding: 4px 10px !important;
+    }
+
+
+
+
+
 }

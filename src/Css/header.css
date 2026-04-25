@@ -633,7 +633,7 @@
 
 .imgsize {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     object-fit: cover;
 }
 
@@ -658,8 +658,8 @@
 
 .sizename {
     font-size: 15px !important;
-    padding:20px 12px !important;
-    margin:2px !important;
+    padding: 20px 12px !important;
+    margin: 2px !important;
     border-radius: 20px !important
 }
 
@@ -725,7 +725,7 @@
 
 .btnreview {
     border-radius: 20px !important;
-    text-transform:capitalize !important;
+    text-transform: capitalize !important;
     background-color: black !important;
 
 }
@@ -993,6 +993,15 @@
 
 }
 
+.prooldprice {
+    font-size: 20px;
+}
+
+.discounttt {
+    font-size: 11px !important;
+    padding: 4px 10px !important;
+}
+
 .css-11t20w3 {
     padding: 40px 0 !important;
 }
@@ -1018,6 +1027,7 @@
 .navbox {
     margin-top: 24px !important;
 }
+
 .colorsss {
     width: 40px;
     height: 40px;
@@ -1027,6 +1037,10 @@
     font-size: 16px !important;
     padding: 10px !important;
     margin: 3px !important;
+}
+
+.proprice {
+    font-size: 21px !important;
 }
 
 
