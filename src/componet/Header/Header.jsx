@@ -5,11 +5,12 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { AppBar, Avatar, Box, Button, Divider, IconButton, InputBase, ListItemIcon, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
-import { Login, Logout, PersonAdd, Settings } from '@mui/icons-material';
+import { DuoSharp, Login, Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { FaAngleDown } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../Redux/Slice/auth.slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { setAlert } from '../../Redux/Slice/Alert.slice';
 
 const routeMap = {
   Men: {
@@ -67,7 +68,14 @@ function Header() {
     setSubAnchor(null);
     setSubMenu(null);
   };
-  
+
+  const handlelogout = async () => {
+    await dispatch(logoutUser(localStorage.getItem("userid")));
+
+    localStorage.removeItem("userid");
+    navigate('/auth');
+    handleClose();
+  }
 
 
 
@@ -232,7 +240,7 @@ function Header() {
               </MenuItem>
               {
                 auth.user ?
-                  <MenuItem onClick={() => dispatch(logoutUser(localStorage.getItem("userid")))} >
+                  <MenuItem onClick={handlelogout} >
                     <ListItemIcon >
                       <Logout fontSize="small" />
                     </ListItemIcon>

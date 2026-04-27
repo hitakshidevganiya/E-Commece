@@ -209,7 +209,7 @@ function Home() {
                         <Grid container spacing={{ xs: 2, lg: 4 }} justifyContent="space-between">
                             {
                                 products.map((v, i) => (
-                                    <Grid size={{ xs: 12, sm: 6, md: 3 }} key={i}>
+                                    <Grid xs={6} sm={6} md={3} key={i}>
                                         <Card className="card">
                                             <CardMedia
                                                 component="img"
@@ -272,7 +272,7 @@ function Home() {
                         <Grid container spacing={4} justifyContent="space-between">
                             {
                                 productsTop.map((v, i) => (
-                                    <Grid size={{ xs: 12, sm: 6, md: 3 }} key={i}>
+                                    <Grid xs={6} sm={6} md={3} key={i}>
                                         <Card className="card">
                                             <CardMedia
                                                 component="img"
@@ -338,7 +338,7 @@ function Home() {
                             {
                                 // xs={12} sm={6}
                                 category.map((v, i) => (
-                                    <Grid  sm={i === 1 || i === 2 ? 8 : 4} key={i}>
+                                    <Grid sm={i === 1 || i === 2 ? 8 : 4} key={i}>
                                         <Card
                                             onClick={() => handleCategoryClick(v.title)}
                                             sx={{

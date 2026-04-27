@@ -157,37 +157,36 @@ function Auth(props) {
 
                 const res = await dispatch(forgotPass(values));
 
-                if (res.type === 'auth/forgotPass/fulfilled') {
+                if (res.meta.requestStatus === "fulfilled") {
                     dispatch(setAlert({
-                        text: "Reset link/OTP sent successfully ",
+                        text: "Reset link/OTP sent successfully",
                         variant: "success"
                     }));
                     setType('Reset Pass');
-                    // setOtp('Reset Pass')
                 } else {
                     dispatch(setAlert({
-                        text: "Something went wrong",
+                        text: res.payload?.message || "Something went wrong",
                         variant: "error"
                     }));
                 }
-
-
             } else if (type === 'Reset Pass') {
-                const res = await dispatch(resetPass({ ...values, email: localStorage.getItem('email') }));
+                const res = await dispatch(resetPass({
+                    ...values,
+                    email: localStorage.getItem('email')
+                }));
 
-                if (res.type === 'auth/resetPass/fulfilled') {
+                if (res.meta.requestStatus === "fulfilled") {
                     dispatch(setAlert({
-                        text: "Password Reset Successfully ",
+                        text: "Password Reset Successfully",
                         variant: "success"
                     }));
                     setType('Log In');
                 } else {
                     dispatch(setAlert({
-                        text: "Reset Failed ",
+                        text: res.payload?.message || "Reset Failed",
                         variant: "error"
                     }));
                 }
-
             }
             resetForm();
         }

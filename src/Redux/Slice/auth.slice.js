@@ -49,7 +49,7 @@ export const verifyUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
-    async (data, { dispatch }) => {
+    async (data, { dispatch, rejectWithValue }) => {
         console.log(data);
 
         try {
@@ -58,12 +58,13 @@ export const loginUser = createAsyncThunk(
             if (response.data.success) {
                 return response.data
                 dispatch(setAlert({ text: response.payload.message, variant: 'success' }));
+                return response.data.data
             }
-            console.log("response",response);
+            console.log("response", response);
 
         } catch (error) {
             dispatch(setAlert({ text: error.response.data.message, variant: 'error' }));
-
+            return rejectWithValue(error.response.data.message)
             console.log(error);
         }
     }
@@ -71,20 +72,23 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
-    async (_id) => {
+    async (_id, { dispatch, rejectWithValue }) => {
         console.log("_id", _id);
 
         try {
 
             const response = await axiosInstance.post("user/logoutUser", { _id });
             if (response.data.success) {
-                return response.data._id
-
+                dispatch(setAlert({ text: response.data.message, variant: 'success' }));
+                return response.data
             }
             console.log(response);
 
         } catch (error) {
             console.log(error);
+
+            dispatch(setAlert({ text: error.response.data.message, variant: 'error' }));
+            return rejectWithValue(error.response?.data || "Logout failed");
 
         }
 
@@ -164,18 +168,18 @@ export const authSlice = createSlice({
             state.user = action.payload
         })
         builder.addCase(loginUser.fulfilled, (state, action) => {
-            state.user = action.payload
+            state.user = action.payload?.data
         })
         builder.addCase(logoutUser.fulfilled, (state, action) => {
             state.isLoading = false
-            state.user = action.payload
+            state.user = null
             state.error = null
         })
         builder.addCase(checkAuth.fulfilled, (state, action) => {
             state.user = action.payload
         })
         builder.addCase(forgotPass.fulfilled, (state, action) => {
-            state.user = action.payload 
+            state.user = action.payload
         })
         builder.addCase(resetPass.fulfilled, (state, action) => {
             state.user = action.payload
