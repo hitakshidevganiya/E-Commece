@@ -14,6 +14,7 @@ import Alert from './componet/Alert/Alert'
 import AdminRoutes from './Routes/AdminRoutes'
 import PrivateRoutes from './Routes/PrivateRoutes'
 import UserRoutes from './Routes/UserRoutes'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

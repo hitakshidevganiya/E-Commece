@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-.container {
-    width: 100%;
-    margin: 0 auto;
-    /* background-color: #000000; */
-}
 
 
 /* ---header--- */
@@ -177,8 +172,8 @@
 .hero {
     position: relative;
     /* padding: 60px 0; */
-    width: 80%;
-    margin: 0 auto;
+    
+
 }
 
 .hero-title {
@@ -242,8 +237,6 @@
 
 .brand-strip {
     padding: 30px 0;
-    width: 80%;
-    margin: 0 auto;
 }
 
 .brand-container {
@@ -282,8 +275,8 @@
 .footer {
     padding: 50px 0 20px;
     border-top: 1px solid #ddd;
-    width: 80%;
-    margin: 0 auto;
+    
+   
 }
 
 .foooooter {
@@ -471,6 +464,7 @@
     margin-bottom: 60px !important;
     letter-spacing: 1px;
     justify-content: center !important;
+    text-align: center;
 
 }
 
@@ -480,6 +474,7 @@
     box-shadow: none !important;
     transition: all 0.3s ease;
     /* gap: 5px !important; */
+    border: none !important;
 
 }
 
@@ -502,7 +497,7 @@
 
 .productName {
     font-weight: 600 !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 5px !important;
     font-size: 20px !important;
     align-content: flex-start;
 }
@@ -511,9 +506,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 8px;
 }
-
 
 .ratingText {
     font-size: 15px !important;
@@ -549,6 +542,7 @@
 .buttonWrapper {
     margin-top: 40px;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
 .viewBtn {
@@ -563,6 +557,8 @@
 
 .btnn {
     margin-top: 40px;
+    text-align: center;
+    margin-bottom: 80px;
 }
 
 .btnView {
@@ -578,7 +574,6 @@
 /* ----customer--- */
 
 .custMain {
-    width: 80%;
     margin: 0 auto;
 }
 
@@ -594,6 +589,7 @@
 }
 
 .swiper {
+    padding: 0 200px;
     padding-bottom: 20px;
 }
 
@@ -811,7 +807,7 @@
 }
 
 .item-img {
-    width: 110px;
+    width: 130px;
     border-radius: 12px;
 }
 
@@ -959,8 +955,6 @@
     background-color: #f2f2f2;
     border-radius: 20px;
     padding: 64px;
-    max-width: 1518px;
-    margin: 80px auto;
 }
 
 .styletitle {
@@ -1014,11 +1008,6 @@
     border-radius: 25px;
 }
 
-.probox {
-    height: 300px !important;
-    border-radius: 10px;
-}
-
 .pronamee {
     font-size: 18px !important;
 }
@@ -1028,8 +1017,8 @@
 }
 
 .colorsss {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
 }
 
 .sizeeeee {

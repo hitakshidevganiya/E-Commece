@@ -37,26 +37,22 @@ function Cart() {
 
     return (
 
-        
-        <div className="container">
-            <div className="cartmain">
-                {/* <Divider /> */}
-                <Box className="cart-page">
 
-                    {/* Breadcrumb */}
-                    {/* <Typography className="breadcrumb">
-                    Home &nbsp;&gt;&nbsp; Cart
-                </Typography> */}
+
+        <div className="cartmain">
+            {/* <Divider /> */}
+            <Box className="cart-page">
+                <div className="container">
 
                     {/* Title */}
                     <Typography variant="h3" className="cart-title">
                         YOUR CART
                     </Typography>
 
-                    <Grid container spacing={{xs:1, md:3}}>
+                    <Grid container spacing={{ xs: 1, md: 3 }}>
 
                         {/* LEFT SIDE */}
-                        <Grid size={{xs:12,sm:8}} > 
+                        <Grid size={{ xs: 12, sm: 8 }} >
                             <Card className="cart-card">
 
                                 {cartItems.map((item, index) => (
@@ -113,7 +109,7 @@ function Cart() {
                         </Grid>
 
                         {/* RIGHT SIDE */}
-                        <Grid size={{xs: 12, sm:4}}>
+                        <Grid size={{ xs: 12, sm: 4 }}>
                             <Card className="summary-card">
 
                                 <Typography className="summary-title">
@@ -164,8 +160,9 @@ function Cart() {
                         </Grid>
 
                     </Grid>
-                </Box>
-            </div>
+                </div>
+            </Box>
+
         </div>
     );
 }

@@ -9,8 +9,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 function Footer() {
     return (
-        <div className="container">
+      
             <div className="mainfoot">
+                <div className="container">
                 <Box className="footer" >
 
                     <Grid container spacing={4} className="foooooter" >
@@ -86,8 +87,9 @@ function Footer() {
                         </Box>
                     </Box>
                 </Box>
+                </div>
             </div>
-        </div>
+       
     )
 }
 

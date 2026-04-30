@@ -6,8 +6,9 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 
 function About() {
     return (
-        <div className="container">
+        
             <div className="aboutmain">
+                <div className="container">
                 <Box className="newsletter-container">
                     <Typography className="newsletter-title">
                         Stay upto date about our latest offers

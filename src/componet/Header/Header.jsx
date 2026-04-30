@@ -80,7 +80,7 @@ function Header() {
 
 
   return (
-    <div className="container header">
+    <div className="header">
       <div className="mainhead ">
         {showBanner && (
           <Box className="topBar">

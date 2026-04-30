@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { useField } from 'formik';
-
+import { IMAGE_URL } from '../../url/url';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -17,51 +17,31 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-
 function UploadFile(props) {
-
     const [field, meta, helpers] = useField(props);
-
     const { setValue } = helpers;
 
-    console.log("field UploadFile", field);
-    // console.log("meta UploadFile", meta);
-
     let filepath = [];
-
-    // if (typeof field.value?.url === 'string') {
-    //     filepath = field.value?.url;
-    // } else if (typeof field.value === 'object' && field.value) {
-    //     filepath = URL.createObjectURL(field.value)
-    // }
 
     if (Array.isArray(field.value)) {
         filepath = field.value.map((file) => {
             if (file instanceof File) {
                 return URL.createObjectURL(file);
-            } else if (file?.url) {
-                return file.url;
-            } else if (typeof file === "string") {
-                return file;
             }
 
-            console.log("file", file);
-        })
+            if (typeof file === "string") {
+                return `${IMAGE_URL}images/category_img/${file}`;
+            }
 
+            return "";
+        });
     }
-
-    console.log("filepath", filepath);
-
-    console.log('field.value', field.value);
-
 
     return (
         <>
             <Button
                 component="label"
-                role={undefined}
                 variant="contained"
-                tabIndex={-1}
                 startIcon={<CloudUploadIcon />}
             >
                 Upload file
@@ -69,28 +49,31 @@ function UploadFile(props) {
                     {...props}
                     type="file"
                     multiple
-                    // onChange={(event) => setValue(Array.from(event.target.files))}
-
                     onChange={(event) => {
-                        const files = event.target.files;
+                        const files = Array.from(event.target.files);
 
-                        if (!files || files.length === 0) return;
+                        if (!files.length) return;
 
-                        setValue(Array.from(files));
+                        setValue([...(field.value || []), ...files]);
                     }}
-
                 />
             </Button>
-            {
-                filepath.map((v, i) => (
-                    <img key={i} src={v} width={'50px'} height={'50px'} />
-                ))
-            }
 
-            {
-                meta.error && meta.touched ?
-                    <p style={{ color: 'red' }}>{meta.error}</p> : null
-            }
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+                {filepath.map((v, i) => (
+                    <img
+                        key={i}
+                        src={v}
+                        width="60"
+                        height="60"
+                        style={{ objectFit: "cover", borderRadius: "6px" }}
+                    />
+                ))}
+            </div>
+
+            {meta.error && meta.touched && (
+                <p style={{ color: 'red' }}>{meta.error}</p>
+            )}
         </>
     );
 }

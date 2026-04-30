@@ -26,7 +26,7 @@ const products = [
         name: "T-shirt with Tape Details",
         price: 120,
         rating: 4.5,
-        image: "../../public/images/image 7.png",
+        image: "../../public/images/img1.jpg",
     },
     {
         name: "Skinny Fit Jeans",
@@ -34,13 +34,13 @@ const products = [
         oldPrice: 260,
         discount: "-20%",
         rating: 3.5,
-        image: "../../public/images/image 8.png",
+        image: "../../public/images/img2.jpg",
     },
     {
         name: "Checkered Shirt",
         price: 180,
         rating: 4.5,
-        image: "../../public/images/image 9.png",
+        image: "../../public/images/img5.jpg",
     },
     {
         name: "Sleeve Striped T-shirt",
@@ -48,7 +48,7 @@ const products = [
         oldPrice: 160,
         discount: "-30%",
         rating: 4.5,
-        image: "../../public/images/image 10.png",
+        image: "../../public/images/img4.jpg",
     },
 ];
 
@@ -59,25 +59,25 @@ const productsTop = [
         rating: 5.0,
         oldPrice: 232,
         discount: "-20%",
-        image: "../../public/images/image 7 (2).png",
+        image: "../../public/images/img6.jpg",
     },
     {
         name: "Courage Graphic T-Shirt",
         price: 145,
         rating: 4.0,
-        image: "../../public/images/image 8 (2).png",
+        image: "../../public/images/img7.jpg",
     },
     {
         name: "Loose Fit Bermuda Shorts",
         price: 80,
         rating: 3.0,
-        image: "../../public/images/image 9 (2).png",
+        image: "../../public/images/img8.jpg",
     },
     {
         name: "Faded Skinny Jeans",
         price: 210,
         rating: 4.5,
-        image: "../../public/images/image 10 (2).png",
+        image: "../../public/images/img9.jpg",
     },
 ];
 
@@ -136,10 +136,11 @@ function Home() {
         navigate(`/category/${category.toLowerCase()}`);
     };
     return (
-        <div className="container">
-            <main>
-                <section className="hero-section">
-                    <div className="mainhero">
+
+        <main>
+            <section className="hero-section">
+                <div className="mainhero">
+                    <div className="container">
                         <Box className="hero">
                             <Grid container display="flex" spacing={3} alignItems="center">
                                 <Grid size={{ xs: 12, sm: 6 }}>
@@ -185,38 +186,61 @@ function Home() {
 
                     </div>
                     <div className="brandmain">
-                        <Box className="brand-strip">
-                            <Grid container>
-                                <Box className="brand-container">
-                                    {brands.map((brand, i) => (
-                                        <Typography key={i} className="brand-item">
-                                            {brand}
-                                        </Typography>
-                                    ))}
-                                </Box>
-                            </Grid>
+                        <div className="container">
+                            <Box className="brand-strip">
+                                <Grid container>
+                                    <Box className="brand-container">
+                                        {brands.map((brand, i) => (
+                                            <Typography key={i} className="brand-item">
+                                                {brand}
+                                            </Typography>
+                                        ))}
+                                    </Box>
+                                </Grid>
 
-                        </Box>
+                            </Box>
+                        </div>
                     </div>
-                </section>
+                </div>
+
+            </section>
 
 
-                <section className="newArrivals-section">
-                    <Box className="arrivals">
+            <section className="newArrivals-section">
+                <div className="container">
+                    <Box >
                         <Typography className="maintitle">
                             NEW ARRIVALS
                         </Typography>
                         <Grid container spacing={{ xs: 2, lg: 4 }} justifyContent="space-between">
                             {
                                 products.map((v, i) => (
-                                    <Grid xs={6} sm={6} md={3} key={i}>
+                                    //xs={6} sm={6} md={3}
+                                    <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
                                         <Card className="card">
-                                            <CardMedia
-                                                component="img"
-                                                image={v.image}
-                                                alt={v.name}
-                                                className="image"
-                                            />
+                                            <Box sx={{
+                                                padding: 3,
+                                                bgcolor: "#F0EEED",
+                                                width: "100%",
+                                                height: 300,
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                borderRadius: "25px"
+                                            }} >
+                                                <CardMedia
+                                                    component="img"
+                                                    image={v.image}
+                                                    alt={v.name}
+                                                    sx={{
+                                                        maxWidth: "100%",
+                                                        maxHeight: "100%",
+                                                        objectFit: "contain",
+                                                        mixBlendMode: 'multiply'
+                                                    }}
+                                                />
+                                            </Box>
+
 
                                             <CardContent className="content">
                                                 <Typography className="productName">
@@ -262,24 +286,42 @@ function Home() {
                             </Button>
                         </Box>
                     </Box>
-                </section>
+                </div>
+            </section>
 
-                <section className="topSelling-section">
-                    <Box className="arrivals">
+            <section className="topSelling-section">
+                <div className="container">
+                    <Box >
                         <Typography className="maintitle">
                             TOP SELLING
                         </Typography>
                         <Grid container spacing={4} justifyContent="space-between">
                             {
                                 productsTop.map((v, i) => (
-                                    <Grid xs={6} sm={6} md={3} key={i}>
+                                    <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
                                         <Card className="card">
-                                            <CardMedia
-                                                component="img"
-                                                image={v.image}
-                                                alt={v.name}
-                                                className="image"
-                                            />
+                                            <Box sx={{
+                                                padding: 3,
+                                                bgcolor: "#F0EEED",
+                                                width: "100%",
+                                                height: 300,
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                borderRadius: "25px"
+                                            }} >
+                                                <CardMedia
+                                                    component="img"
+                                                    image={v.image}
+                                                    alt={v.name}
+                                                    sx={{
+                                                        maxWidth: "100%",
+                                                        maxHeight: "100%",
+                                                        objectFit: "contain",
+                                                        mixBlendMode: 'multiply'
+                                                    }}
+                                                />
+                                            </Box>
 
                                             <CardContent className="content">
                                                 <Typography className="productName">
@@ -325,10 +367,12 @@ function Home() {
                             </Button>
                         </Box>
                     </Box>
+                </div>
 
-                </section>
+            </section>
 
-                <section className="style-section">
+            <section className="style-section">
+                <div className="container">
                     <Box className="boxSize">
                         <Typography
                             className="styletitle">
@@ -386,11 +430,15 @@ function Home() {
                             }
                         </Grid>
                     </Box>
-                </section>
+                </div>
+            </section>
 
-                <section className="customer-section">
-                    <Box sx={{ px: 2, py: 8, mb: 15 }}  >
-                        <Box className="custMain">
+            <section className="customer-section">
+
+                <Box sx={{ px: 2, py: 8, mb: 15 }}  >
+
+                    <Box className="custMain">
+                        <div className="container">
                             <Box
                                 sx={{
                                     display: "flex",
@@ -411,34 +459,49 @@ function Home() {
                                 </Box>
 
                             </Box>
-                        </Box>
-                        <Swiper
-                            modules={[Navigation]}
-                            spaceBetween={20}
-                            slidesPerView={3}
-                            navigation={{
-                                nextEl: ".next-btn",
-                                prevEl: ".prev-btn",
-                            }}
-                            breakpoints={{
-                                0: { slidesPerView: 1 },
-                                768: { slidesPerView: 2 },
-                                1200: { slidesPerView: 3 },
-                            }}
-                        >
+                        </div>
+                    </Box>
+                    <Swiper
+                        modules={[Navigation]}
+                        spaceBetween={20}
+                        slidesPerView={3}
+                        centeredSlides={true}
+                        initialSlide={2}
+                        loop={true}
+                        autoplay={{
+                            delay: 2000,
+                            disableOnInteraction: false
+                        }}
+                        navigation={{
+                            nextEl: ".next-btn",
+                            prevEl: ".prev-btn",
+                        }}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 1,
+                            },
+                            1200: {
+                                slidesPerView: 2,
+                            },
+                            1400: {
+                                slidesPerView: 3,
+                            },
+                        }}
+                    >
 
-                            {testimonials.map((v, i) => (
-                                <SwiperSlide key={i} className="cardall">
-                                    <Card
-                                        sx={{
-                                            borderRadius: "16px",
-                                            boxShadow: "none",
-                                            border: "1px solid #eee",
-                                            height: "100%",
+                        {testimonials.map((v, i) => (
+                            <SwiperSlide key={i} className="cardall">
+                                <Card
+                                    sx={{
+                                        borderRadius: "16px",
+                                        boxShadow: "none",
+                                        border: "1px solid #eee",
+                                        height: "100%",
 
-                                        }}
-                                    >
-                                        <CardContent>
+                                    }}
+                                >
+                                    <CardContent >
+                                        <Box height="175px">
                                             <Box sx={{ display: "flex", mb: 1 }}>
                                                 {[...Array(5)].map((_, i) => (
                                                     <StarIcon key={i} sx={{ color: "#f5a623" }} />
@@ -458,18 +521,18 @@ function Home() {
                                             >
                                                 {v.text}
                                             </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                    </Box>
-                </section>
+                                        </Box>
+                                    </CardContent>
+                                </Card>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </Box>
+
+            </section>
 
 
-
-            </main>
-        </div>
+        </main>
     );
 }
 

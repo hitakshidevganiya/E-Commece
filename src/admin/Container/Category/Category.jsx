@@ -5,16 +5,17 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Form, Formik, useField } from 'formik';
-import { mixed, number, object, string } from 'yup';
+import { array, mixed, number, object, string } from 'yup';
 import { DataGrid } from '@mui/x-data-grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditSquareIcon from '@mui/icons-material/EditSquare';
 import { useDispatch, useSelector } from 'react-redux';
-import TextInput from '../../Componet/Layout/TextInput';
+import TextInput from '../../Componet/TextInput';
 import UploadFile from '../../Componet/UploadFile';
 import { useAddCategoryMutation, useDeleteCategoryMutation, useGetAllCategoryQuery, useUpdateCategoryMutation } from '../../../Redux/Api/category.api';
 import { IMAGE_URL } from '../../../url/url';
+import ColorPicker from '../../Componet/ColorPicker';
 
 
 function Category(props) {
@@ -46,18 +47,19 @@ function Category(props) {
 
         let formData = new FormData();
 
-        // formData.append('_id', values._id);
-        if (values.parent_category_id) {
-            formData.append('parent_category_id', values.parent_category_id);
-        }
+        const price = values.oldPrice - (values.oldPrice * values.discount) / 100;
+
+        // if (values.parent_category_id) {
+        //     formData.append('parent_category_id', values.parent_category_id);
+        // }
         formData.append('name', values.name);
         formData.append('description', values.description);
-        formData.append('price', values.price);
+        formData.append('price', Math.round(price));
         formData.append('oldPrice', values.oldPrice);
         formData.append('discount', values.discount);
         formData.append('size', values.size);
-        values.color.split(",").forEach(c => {
-            formData.append("color[]", c.trim());
+        values.color.forEach((c) => {
+            formData.append("color[]", c);
         });
         formData.append('rating', values.rating);
 
@@ -65,20 +67,27 @@ function Category(props) {
             formData.append('category_img', img);
         });
 
-
         if (Object.keys(update).length > 0) {
             formData.append('_id', values._id);
 
             if (typeof values.category_img === 'object') {
-
                 updateCategory(formData);
             } else {
                 updateCategory(formData);
             }
         } else {
-
             addCategory(formData);
         }
+
+        // if (update?._id) {
+        //     formData.append('_id', update._id); // ✅ FIXED
+        //     updateCategory({
+        //         id: update._id,
+        //         data: formData
+        //     });
+        // } else {
+        //     addCategory(formData);
+        // }
 
     }
 
@@ -93,19 +102,23 @@ function Category(props) {
 
         handleClickOpen()
 
+        // setUpdate({
+        //     ...data,
+        //     _id: data._id, // ensure
+        //     color: data.color || [],
+        //     category_img: data.category_img || []
+        // });
         setUpdate(data)
     }
-
 
     let catSchema = object({
         name: string().required('Please enter Course'),
         description: string().required('Please enter Description'),
-        price: number().positive().required(),
         oldPrice: number().positive().required(),
         discount: number().positive().required(),
         rating: number().positive().required(),
         size: string().required(),
-        color: string().required(),
+        color: array().required(),
         category_img: mixed()
             .test("category_img", "category images only png and jpng file allowed", function (val) {
                 console.log("valval", val);
@@ -140,29 +153,49 @@ function Category(props) {
     const paginationModel = { page: 0, pageSize: 5 };
 
     const columns = [
-        {
-            field: 'parent_category_id',
-            headerName: 'Parent category',
-            width: 150,
-            renderCell: (params) => {
+        // {
+        //     field: 'parent_category_id',
+        //     headerName: 'Parent category',
+        //     width: 150,
+        //     renderCell: (params) => {
 
-                // console.log(params);
+        //         // console.log(params);
 
-                const c = data?.data?.find(v => v._id === params.row.parent_category_id);
+        //         const c = data?.data?.find(v => v._id === params.row.parent_category_id);
 
-                // console.log(c);
+        //         // console.log(c);
 
-                return c?.name
-            }
-        },
+        //         return c?.name
+        //     }
+        // },
         { field: 'name', headerName: 'Name', width: 150 },
         { field: 'description', headerName: 'Description', width: 150 },
         { field: 'price', headerName: 'Price', width: 150 },
         { field: 'oldPrice', headerName: 'Old Price', width: 150 },
         { field: 'discount', headerName: 'Discount', width: 150 },
-        { field: 'size', headerName: 'Size', width: 150 },
-        { field: 'color', headerName: 'Color', width: 150 },
         { field: 'rating', headerName: 'Rating', width: 150 },
+        { field: 'size', headerName: 'Size', width: 150 },
+        {
+            field: 'color',
+            headerName: 'Color',
+            width: 200,
+            renderCell: (params) => (
+                <div style={{ display: 'flex', gap: '5px' }}>
+                    {params.value?.map((c, i) => (
+                        <div
+                            key={i}
+                            style={{
+                                width: '20px',
+                                height: '20px',
+                                backgroundColor: c,
+                                border: '1px solid #ccc'
+                            }}
+                        />
+                    ))}
+                </div>
+            )
+        },
+
         {
             field: 'category_img',
             headerName: 'Category img',
@@ -177,7 +210,7 @@ function Category(props) {
                         params.row.category_img.map((v, i) => (
                             <img
                                 key={i}
-                                src={`${IMAGE_URL}public/images/${v}`}
+                                src={`${IMAGE_URL}images/category_img/${v}`}
                                 style={{
                                     width: '50px',
                                     height: '50px',
@@ -240,14 +273,14 @@ function Category(props) {
                     <DialogContent>
                         <Formik
                             enableReinitialize
-                            initialValues={Object.keys(update).length > 0 ? update : {
-                                parent_category_id: '',
+                            initialValues={Object.keys(update).length > 0 ? { ...update, _id: update._id || "" } : {
+                                // parent_category_id: '',
                                 name: '',
                                 description: '',
                                 price: '',
                                 oldPrice: '',
                                 discount: '',
-                                color: '',
+                                color: [],
                                 size: '',
                                 rating: '',
                                 category_img: [],
@@ -268,7 +301,7 @@ function Category(props) {
 
                             <Form id='subscription-form'>
 
-                                <TextInput
+                                {/* <TextInput
                                     id="parent_category_id"
                                     name="parent_category_id"
                                     // label="Select Categories"
@@ -279,7 +312,7 @@ function Category(props) {
                                         },
                                     }}
                                     data={catgetData}
-                                />
+                                /> */}
 
                                 <TextInput
                                     id="name"
@@ -288,17 +321,13 @@ function Category(props) {
                                 />
 
                                 <TextInput
-                                    id="name"
+                                    id="description"
                                     name="description"
                                     label="Description"
                                     multiline
                                     rows={4}
                                 />
-                                <TextInput
-                                    id="price"
-                                    name="price"
-                                    label="Price"
-                                />
+
                                 <TextInput
                                     id="oldPrice"
                                     name="oldPrice"
@@ -310,22 +339,25 @@ function Category(props) {
                                     name="discount"
                                     label="Discount"
                                 />
-
-                                <TextInput
-                                    id="color"
-                                    name="color"
-                                    label="Color"
-                                />
-                                <TextInput
-                                    id="size"
-                                    name="size"
-                                    label="Size"
-                                />
                                 <TextInput
                                     id="rating"
                                     name="rating"
                                     label="Rating"
                                 />
+
+                                <TextInput
+                                    id="size"
+                                    name="size"
+                                    label="Size"
+                                />
+
+
+                                <ColorPicker
+                                    id="color"
+                                    name="color"
+                                    label="Color"
+                                />
+
 
                                 <UploadFile
                                     name="category_img"

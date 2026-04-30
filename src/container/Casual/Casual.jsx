@@ -11,7 +11,7 @@ const products = [
         id: 1,
         name: "Gradient Graphic T-shirt",
         price: 145,
-        image: "../../public/images/image 8 (3).png",
+        image: "../../public/images/img1.jpg",
         rating: 3.5,
 
     },
@@ -19,15 +19,15 @@ const products = [
         id: 2,
         name: "Polo with Tipping Details",
         price: 180,
-        image: "../../public/images/image 9 (3).png",
+        image: "../../public/images/img2.jpg",
         rating: 4.5,
 
     },
     {
         id: 3,
-        name: "Black Striped T-shirt",
+        name: "Checkered Shirt",
         price: 120,
-        image: "../../public/images/image 10 (3).png",
+        image: "../../public/images/img4.jpg",
         rating: 5.0,
         discount: "-30%"
     },
@@ -35,15 +35,15 @@ const products = [
         id: 4,
         name: "Skinny Fit Jeans",
         price: 240,
-        image: "../../public/images/image 8.png",
+        image: "../../public/images/img5.jpg",
         rating: 3.5,
         discount: "-20%"
     },
     {
         id: 5,
-        name: "Checkered Shirt",
+        name: "Black Striped T-shirt",
         price: 180,
-        image: "../../public/images/image 9.png",
+        image: "../../public/images/img6.jpg",
         rating: 4.5,
 
     },
@@ -51,23 +51,23 @@ const products = [
         id: 6,
         name: "Sleeve striped T-Shirt",
         price: 130,
-        image: "../../public/images/image 10.png",
+        image: "../../public/images/img7.jpg",
         rating: 4.5,
         discount: "-30%"
     },
     {
         id: 7,
-        name: "Vertical Striped shirt",
+        name: "Tagas",
         price: 212,
-        image: "../../public/images/image 7 (2).png",
+        image: "../../public/images/img8.jpg",
         rating: 5.0,
         discount: "-20%"
     },
     {
         id: 8,
-        name: "Courage Graphic T-shirt",
+        name: "Workout Shorts for Women",
         price: 145,
-        image: "../../public/images/image 8 (2).png",
+        image: "../../public/images/img9.jpg",
         rating: 4.0,
 
     },
@@ -75,7 +75,7 @@ const products = [
         id: 9,
         name: "Loose Fit Bermuda Shorts",
         price: 80,
-        image: "../../public/images/image 9 (2).png",
+        image: "../../public/images/img10.jpg",
         rating: 3.0,
 
     }
@@ -94,7 +94,7 @@ function Casual() {
         count: 10,
     });
 
-    
+
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
 
@@ -108,16 +108,20 @@ function Casual() {
     const colors = ["#00C12B", "red", "#F5DD06", "#F57906", "#06CAF5", "blue", "#7D06F5", "#F506A4", "white", "black"];
     const size = ["XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "3X-Large", "4X-Large"];
     return (
-        <div className="container">
-            <div className="casualmain">
-                {/* <Divider /> */}
-                <Box sx={{
-                    display: "flex", p: 3,
-                    // "@media (max-width:1400px)": {
-                    //     p: 2,
-                    // },
-                }}>
+
+        <div className="casualmain">
+
+            {/* <Divider /> */}
+            <Box sx={{
+                display: "flex", p: 3,
+                // "@media (max-width:1400px)": {
+                //     p: 2,
+                // },
+            }}>
+                <div className="container">
+
                     <Grid container spacing={3} >
+
                         <Grid size={{ xs: 6, sm: 4, md: 4, lg: 3 }}>
                             <Box className="slider">
                                 <Typography variant="subtitle2" className="filtername" sx={{ fontWeight: 'bold' }}>
@@ -235,36 +239,35 @@ function Casual() {
                                     {displayProducts.map((product) => (
                                         <Grid size={{ xs: 12, sm: 6, md: 5, lg: 4 }} key={product.id}>
 
-                                            <Card
-                                                sx={{
-                                                    // p: 1.5,
-                                                    boxShadow: "none",
-                                                    // border: "1px solid #eee", 
-                                                    width: "100%0",
-                                                    borderRadius: 3,
-                                                    height: "100%",
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    justifyContent: "space-between",
-                                                    "&:hover": {
-                                                        transform: "translateY(-4px)",
-                                                    },
-                                                }}
-                                            >
+                                            <Card className="card">
                                                 {/* Image */}
                                                 <Box
                                                     sx={{
                                                         display: "flex",
                                                         justifyContent: "center",
                                                         alignItems: "center",
+                                                        bgcolor: "#F0EEED",
+                                                        boxShadow: 0,
+                                                        flexDirection: "column",
+                                                        border: 'none',
+                                                        width: "100%",
+                                                        height: 300,
+                                                        borderRadius: "25px"
                                                     }}
-                                                    className="probox"
+
                                                 >
                                                     <CardMedia
                                                         component="img"
                                                         image={product.image}
                                                         className="proimg"
                                                         width="100%"
+                                                        sx={{
+                                                            maxWidth: "100%",
+                                                            maxHeight: "100%",
+                                                            objectFit: "contain",
+                                                            mixBlendMode: 'multiply',
+                                                            padding: "8px"
+                                                        }}
                                                     />
                                                 </Box>
 
@@ -284,7 +287,7 @@ function Casual() {
                                                     </Box>
 
                                                     {/* Price Section */}
-                                                    <Box display="flex" alignItems="center" gap={1} mt={1}>
+                                                    <Box display="flex" alignItems="center" gap={1} >   
                                                         <Typography fontWeight="bold" className="proprice">
                                                             ${product.price}
                                                         </Typography>
@@ -433,9 +436,12 @@ function Casual() {
                                 </Box>
                             </nav>
                         </Grid>
+
                     </Grid>
-                </Box >
-            </div >
+                </div>
+
+            </Box >
+
         </div >
     )
 }

@@ -31,11 +31,7 @@
         width: 100%;
     }
 
-    .hero {
-        width: 92%;
-        margin: 0 auto;
-        text-align: left;
-    }
+   
 
     .newsletter-title {
         font-size: 21px !important;
@@ -83,9 +79,7 @@
         text-align: center;
     }
 
-    .footer {
-        width: 92%;
-    }
+   
 
     .btnoutline {
         font-size: 15px !important;
@@ -101,11 +95,7 @@
         font-size: 9px !important;
     }
 
-    .brand-strip {
-        padding: 30px 0;
-        width: 90%;
-        margin: 0 auto;
-    }
+    
 
     .brand-item {
         font-size: 26px !important;
@@ -155,10 +145,7 @@
         line-height: 33px !important;
     }
 
-    .custMain {
-        width: 92%;
-    }
-
+  
     .css-igghdu {
         margin-bottom: 50px !important;
     }
@@ -343,17 +330,9 @@
 
     }
 
-    .hero {
-        width: 90%;
-        margin: 0 auto;
-        text-align: left;
-    }
+  
 
-    .brand-strip {
-        padding: 30px 0;
-        width: 90%;
-        margin: 0 auto;
-    }
+   
 
     .brand-item {
         font-size: 30px !important;
@@ -411,18 +390,13 @@
         text-align: center;
     }
 
-    .footer {
-        width: 90%;
-    }
+    
 
     .custmTitle {
         font-size: 32px !important;
         width: 400px;
     }
 
-    .custMain {
-        width: 100%;
-    }
 
     .btnoutline {
         font-size: 18px !important;
@@ -649,16 +623,8 @@
         font-size: 10px !important;
     }
 
-    .hero {
-        width: 85%;
-        margin: 0 auto;
-    }
+   
 
-    .brand-strip {
-        padding: 30px 0;
-        width: 85%;
-        margin: 0 auto;
-    }
 
     .brand-item {
         font-size: 25px !important;
@@ -760,21 +726,13 @@
         padding: 4px 8px;
     }
 
-    .footer {
-        width: 85%;
-    }
+    
 
     .custmTitle {
         font-size: 33px !important;
         width: 80%;
         justify-content: space-between;
 
-
-    }
-
-    .custMain {
-        width: 85%;
-        justify-content: space-between;
     }
 
     .btnoutline {
@@ -842,11 +800,7 @@
         gap: 18px !important;
     }
 
-    .boxSize {
-        max-width: 654px;
-        padding: 50px;
-    }
-
+   
     .styletitle {
         font-size: 35px !important;
         margin-bottom: 35px !important;
@@ -896,16 +850,8 @@
         font-size: 11px !important;
     }
 
-    .hero {
-        width: 80%;
-        margin: 0 auto;
-    }
 
-    .brand-strip {
-        padding: 30px 0;
-        width: 80%;
-        margin: 0 auto;
-    }
+   
 
     .brand-item {
         font-size: 30px !important;
@@ -1002,18 +948,11 @@
         padding: 6px 10px;
     }
 
-    .footer {
-        width: 80%;
-    }
+    
 
     .custmTitle {
         font-size: 35px !important;
     }
-
-    .custMain {
-        width: 80%;
-    }
-
 
 
     .allReviews {
@@ -1081,7 +1020,7 @@
     }
 
     .item-img {
-        width: 110px;
+        width: 130px;
     }
 
     .cart-item {
@@ -1113,11 +1052,6 @@
 
     .css-zjhuaj-MuiGrid-root {
         gap: 18px !important;
-    }
-
-    .boxSize {
-        max-width: 795px;
-        padding: 50px;
     }
 
     .styletitle {
@@ -1179,10 +1113,6 @@
         padding: 18px;
     }
 
-    .css-elsol2 {
-        gap: 10.14px !important;
-    }
-
     .filtername {
         margin-bottom: 10px !important;
     }
@@ -1208,9 +1138,6 @@
 
     }
 
-    .probox {
-        height: 240px !important;
-    }
 
     .pronamee {
         font-size: 15px !important;
@@ -1443,10 +1370,6 @@
         gap: 20px !important;
     }
 
-    .boxSize {
-        max-width: 1000px;
-        padding: 54px;
-    }
 
     .styletitle {
         font-size: 44px !important;
@@ -1499,10 +1422,6 @@
         padding: 18px;
     }
 
-    .css-elsol2 {
-        gap: 2.5px !important;
-    }
-
     .filtername {
         margin-bottom: 10px !important;
     }
@@ -1527,11 +1446,6 @@
         height: 240px !important;
 
     }
-
-    .probox {
-        height: 240px !important;
-    }
-
     .pronamee {
         font-size: 15px !important;
     }
@@ -1582,7 +1496,6 @@
 
 
 }
-
 
 
 @media screen and (min-width: 1400px) {
@@ -1650,16 +1563,13 @@
     }
 
     .content {
-        padding: 15px 5px !important;
+        padding: 20px 8px !important;
     }
 
     .viewBtn {
         margin-bottom: 70px !important;
     }
 
-    .boxSize {
-        max-width: 1121px;
-    }
 
     .newsletter-title {
         font-size: 35px !important;
@@ -1719,10 +1629,6 @@
         gap: 20px !important;
     }
 
-    .boxSize {
-        max-width: 1120px;
-        padding: 64px;
-    }
 
     .styletitle {
         font-size: 50px !important;
@@ -1771,9 +1677,6 @@
         padding: 24px;
     }
 
-    .css-elsol2 {
-        gap: 3px !important;
-    }
 
     .filtername {
         margin-bottom: 10px !important;
@@ -1800,9 +1703,6 @@
 
     }
 
-    .probox {
-        height: 260px !important;
-    }
 
     .pronamee {
         font-size: 18px !important;
@@ -1817,8 +1717,8 @@
     }
 
     .colorsss {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
     }
 
     .sizeeeee {
