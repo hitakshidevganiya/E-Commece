@@ -1,4 +1,4 @@
-* {
+    * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,20 +8,15 @@
 
 /* ---header--- */
 
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: white;
-
+.navbar>.container {
+    display: block !important;
+    align-items: center;
 }
 
-.mainhead {
-    background: black;
-
+.css-14f5eui-MuiToolbar-root {
+    padding: 0 !important;
 }
+
 
 .topBar {
     background: #000;
@@ -29,9 +24,6 @@
     text-align: center;
     padding: 8px 0;
     position: relative;
-
-    width: 80%;
-    margin: 0 auto;
 
 }
 
@@ -58,8 +50,6 @@
     background: #ffffff !important;
     box-shadow: none !important;
     padding: 15px 0 !important;
-
-
 }
 
 .headernav {
@@ -71,9 +61,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
-    margin: 0 auto;
-    padding: 0 !important;
 }
 
 
@@ -88,7 +75,6 @@
     display: inline-block;
     font-weight: 900 !important;
     font-size: 40px !important;
-    /* width: 100px; */
     color: #000;
 }
 
@@ -165,14 +151,13 @@
 
 .mainhero {
     background-color: #f5f5f5 !important;
-    margin-top: 135px;
 }
 
 
 .hero {
     position: relative;
     /* padding: 60px 0; */
-    
+
 
 }
 
@@ -275,8 +260,8 @@
 .footer {
     padding: 50px 0 20px;
     border-top: 1px solid #ddd;
-    
-   
+
+
 }
 
 .foooooter {
@@ -615,12 +600,6 @@
 
 /* ----men-product--- */
 
-.men-product {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 200px;
-}
-
 .imgBox {
     width: 100%;
     overflow: hidden;
@@ -758,11 +737,7 @@
 
 /* -----cart-------- */
 
-.cartmain {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 200px;
-}
+
 
 .cart-page {
     margin-bottom: 170px !important;
@@ -945,10 +920,7 @@
 /* ---style--- */
 
 .casualmain {
-    width: 80%;
-    margin: 0 auto;
     margin-bottom: 130px;
-    margin-top: 160px;
 }
 
 .boxSize {
@@ -1017,8 +989,8 @@
 }
 
 .colorsss {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
 }
 
 .sizeeeee {
@@ -1031,6 +1003,11 @@
     font-size: 21px !important;
 }
 
+.colorgap {
+    gap: 14px;
+    margin-top: 8px;
+}
+
 
 
 
@@ -1041,7 +1018,6 @@
 #autehPag {
     height: 700px !important;
     margin-bottom: 250px;
-    margin-top: 200px;
 }
 
 .googelicon {

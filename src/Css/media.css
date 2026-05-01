@@ -31,7 +31,7 @@
         width: 100%;
     }
 
-   
+
 
     .newsletter-title {
         font-size: 21px !important;
@@ -79,7 +79,7 @@
         text-align: center;
     }
 
-   
+
 
     .btnoutline {
         font-size: 15px !important;
@@ -95,7 +95,7 @@
         font-size: 9px !important;
     }
 
-    
+
 
     .brand-item {
         font-size: 26px !important;
@@ -145,7 +145,7 @@
         line-height: 33px !important;
     }
 
-  
+
     .css-igghdu {
         margin-bottom: 50px !important;
     }
@@ -224,9 +224,6 @@
         padding: 0 10px !important;
     }
 
-    .cartmain {
-        width: 90%;
-    }
 
     .item-title {
         font-size: 13px !important;
@@ -243,10 +240,6 @@
 
     .logo {
         font-size: 29px !important;
-    }
-
-    .toolbar {
-        width: 90%;
     }
 
     .search {
@@ -330,9 +323,9 @@
 
     }
 
-  
 
-   
+
+
 
     .brand-item {
         font-size: 30px !important;
@@ -390,7 +383,7 @@
         text-align: center;
     }
 
-    
+
 
     .custmTitle {
         font-size: 32px !important;
@@ -521,10 +514,6 @@
         padding: 10px 0;
     }
 
-    .cartmain {
-        width: 90%;
-    }
-
     .item-title {
         font-size: 14px !important;
     }
@@ -541,10 +530,6 @@
 
     .logo {
         font-size: 29px !important;
-    }
-
-    .toolbar {
-        width: 90%;
     }
 
     .search {
@@ -623,7 +608,7 @@
         font-size: 10px !important;
     }
 
-   
+
 
 
     .brand-item {
@@ -726,7 +711,7 @@
         padding: 4px 8px;
     }
 
-    
+
 
     .custmTitle {
         font-size: 33px !important;
@@ -763,10 +748,6 @@
         width: 85%;
     }
 
-    .cartmain {
-        width: 85%;
-    }
-
     .css-1pzfmz2-MuiInputBase-input-MuiOutlinedInput-input {
         padding: 1px !important;
         font-size: 10px !important;
@@ -800,15 +781,12 @@
         gap: 18px !important;
     }
 
-   
+
     .styletitle {
         font-size: 35px !important;
         margin-bottom: 35px !important;
     }
 
-    .toolbar {
-        width: 85%;
-    }
 
     .leftSection button {
         display: block;
@@ -817,6 +795,24 @@
 
     .searchInput {
         font-size: 9px !important;
+    }
+    .colorsss {
+        width: 36px;
+        height: 36px;
+    }
+
+    .colorgap {
+        gap:8px;
+    }
+
+    .cardbox {
+        height: 200px !important;
+    }
+
+    
+    .slider {
+        padding: 15px;
+        margin-right: 0;
     }
 
 }
@@ -851,7 +847,7 @@
     }
 
 
-   
+
 
     .brand-item {
         font-size: 30px !important;
@@ -948,7 +944,7 @@
         padding: 6px 10px;
     }
 
-    
+
 
     .custmTitle {
         font-size: 35px !important;
@@ -1027,9 +1023,6 @@
         padding: 20px 0;
     }
 
-    .cartmain {
-        width: 80%;
-    }
 
     .item-title {
         font-size: 17px !important;
@@ -1061,10 +1054,6 @@
 
     .logo {
         font-size: 30px !important;
-    }
-
-    .toolbar {
-        width: 80%;
     }
 
     .search {
@@ -1140,7 +1129,7 @@
 
 
     .pronamee {
-        font-size: 15px !important;
+        font-size: 18px !important;
     }
 
     .navbox {
@@ -1151,10 +1140,7 @@
         margin-bottom: 100px;
     }
 
-    .colorsss {
-        width: 34px;
-        height: 34px;
-    }
+
 
     .sizeeeee {
         font-size: 14px !important;
@@ -1183,6 +1169,15 @@
     .discounttt {
         font-size: 10px !important;
         padding: 3px 9px !important;
+    }
+
+    .css-h4vx8a-MuiGrid-root {
+        width: 0;
+    }
+
+    .slider {
+        padding: 20px;
+         margin-right: 24px;
     }
 
 
@@ -1380,10 +1375,6 @@
         font-size: 32px !important;
     }
 
-    .toolbar {
-        width: 80%;
-    }
-
     .search {
         max-width: 250px;
         margin: 0 15px;
@@ -1446,8 +1437,9 @@
         height: 240px !important;
 
     }
+
     .pronamee {
-        font-size: 15px !important;
+        font-size: 18px !important;
     }
 
     .navbox {
@@ -1458,10 +1450,6 @@
         margin-bottom: 100px;
     }
 
-    .colorsss {
-        width: 34px;
-        height: 34px;
-    }
 
     .sizeeeee {
         font-size: 14px !important;
@@ -1492,6 +1480,18 @@
         padding: 3px 9px !important;
     }
 
+    .colorsss {
+        width: 38px;
+        height: 38px;
+    }
+
+    .colorgap {
+        gap: 8px;
+    }
+
+    .cardbox {
+        height: 260px !important;
+    }
 
 
 
@@ -1639,9 +1639,6 @@
         padding: 30px 0;
     }
 
-    .toolbar {
-        width: 80%;
-    }
 
     .leftSection {
         gap: 30px;
@@ -1717,8 +1714,8 @@
     }
 
     .colorsss {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
     }
 
     .sizeeeee {
@@ -1748,6 +1745,14 @@
     .discounttt {
         font-size: 11px !important;
         padding: 4px 10px !important;
+    }
+
+    .colorgap {
+        gap: 14px;
+    }
+
+    .cardbox {
+        height: 300px !important;
     }
 
 

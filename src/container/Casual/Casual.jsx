@@ -149,7 +149,7 @@ function Casual() {
                                 <Typography variant="subtitle2" className="filtername" sx={{ mt: 3, fontWeight: 'bold' }}>
                                     Colors
                                 </Typography>
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, mt: 1 }}>
+                                <Box sx={{ display: "flex", flexWrap: "wrap" }} className="colorgap">
                                     {colors.map((v) => (
                                         <Box
                                             key={v}
@@ -250,10 +250,9 @@ function Casual() {
                                                         boxShadow: 0,
                                                         flexDirection: "column",
                                                         border: 'none',
-                                                        width: "100%",
-                                                        height: 300,
                                                         borderRadius: "25px"
                                                     }}
+                                                    className="cardbox"
 
                                                 >
                                                     <CardMedia

@@ -80,10 +80,10 @@ function Header() {
 
 
   return (
-    <div className="header">
-      <div className="mainhead ">
-        {showBanner && (
-          <Box className="topBar">
+    <header>
+      {showBanner && (
+        <Box className="topBar">
+          <div className="container">
             <Typography className="topText">
               Sign up and get 20% off to your first order.
               <span className="link"> Sign Up Now</span>
@@ -95,11 +95,13 @@ function Header() {
             >
               <CloseIcon />
             </IconButton>
-          </Box>
-        )}
+          </div>
+        </Box>
+      )}
 
-        <AppBar position="static" className="navbar">
-          <Toolbar className="toolbar">
+      <AppBar position="static" className="navbar">
+        <div className="container" >
+          <Toolbar sx={{px: 0}} className="toolbar">
 
             <Box className="leftSection">
               <Typography variant='h2' className="logo" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>SHOP.CO</Typography>
@@ -255,11 +257,11 @@ function Header() {
               }
             </Menu>
           </Toolbar>
-        </AppBar>
+        </div>
+      </AppBar>
 
-      </div>
       <Divider sx={{ borderColor: "#c5c5c5" }} />
-    </div>
+    </header>
   )
 }
 

@@ -17,7 +17,6 @@ import { useAddCategoryMutation, useDeleteCategoryMutation, useGetAllCategoryQue
 import { IMAGE_URL } from '../../../url/url';
 import ColorPicker from '../../Componet/ColorPicker';
 
-
 function Category(props) {
 
 
@@ -61,8 +60,6 @@ function Category(props) {
         values.color.forEach((c) => {
             formData.append("color[]", c);
         });
-        formData.append('rating', values.rating);
-
         values.category_img.forEach((img) => {
             formData.append('category_img', img);
         });
@@ -116,7 +113,6 @@ function Category(props) {
         description: string().required('Please enter Description'),
         oldPrice: number().positive().required(),
         discount: number().positive().required(),
-        rating: number().positive().required(),
         size: string().required(),
         color: array().required(),
         category_img: mixed()
@@ -173,7 +169,6 @@ function Category(props) {
         { field: 'price', headerName: 'Price', width: 150 },
         { field: 'oldPrice', headerName: 'Old Price', width: 150 },
         { field: 'discount', headerName: 'Discount', width: 150 },
-        { field: 'rating', headerName: 'Rating', width: 150 },
         { field: 'size', headerName: 'Size', width: 150 },
         {
             field: 'color',
@@ -282,7 +277,6 @@ function Category(props) {
                                 discount: '',
                                 color: [],
                                 size: '',
-                                rating: '',
                                 category_img: [],
                             }}
                             validationSchema={catSchema}
@@ -338,11 +332,6 @@ function Category(props) {
                                     id="discount"
                                     name="discount"
                                     label="Discount"
-                                />
-                                <TextInput
-                                    id="rating"
-                                    name="rating"
-                                    label="Rating"
                                 />
 
                                 <TextInput
