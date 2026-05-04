@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import '../../Css/header.css'
 import { Box, Button, Grid, Typography, Card, CardContent, CardMedia, Rating, TextField, IconButton, } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
@@ -10,6 +10,8 @@ import { FaArrowRightLong } from "react-icons/fa6"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useNavigate } from "react-router-dom";
+import { useGetAllCategoryQuery } from "../../Redux/Api/category.api";
+import { IMAGE_URL } from "../../url/url";
 
 
 const brands = [
@@ -52,34 +54,34 @@ const products = [
     },
 ];
 
-const productsTop = [
-    {
-        name: "Vertical Striped Shirt",
-        price: 212,
-        rating: 5.0,
-        oldPrice: 232,
-        discount: "-20%",
-        image: "../../public/images/img6.jpg",
-    },
-    {
-        name: "Courage Graphic T-Shirt",
-        price: 145,
-        rating: 4.0,
-        image: "../../public/images/img7.jpg",
-    },
-    {
-        name: "Loose Fit Bermuda Shorts",
-        price: 80,
-        rating: 3.0,
-        image: "../../public/images/img8.jpg",
-    },
-    {
-        name: "Faded Skinny Jeans",
-        price: 210,
-        rating: 4.5,
-        image: "../../public/images/img9.jpg",
-    },
-];
+// const productsTop = [
+//     {
+//         name: "Vertical Striped Shirt",
+//         price: 212,
+//         rating: 5.0,
+//         oldPrice: 232,
+//         discount: "-20%",
+//         image: "../../public/images/img6.jpg",
+//     },
+//     {
+//         name: "Courage Graphic T-Shirt",
+//         price: 145,
+//         rating: 4.0,
+//         image: "../../public/images/img7.jpg",
+//     },
+//     {
+//         name: "Loose Fit Bermuda Shorts",
+//         price: 80,
+//         rating: 3.0,
+//         image: "../../public/images/img8.jpg",
+//     },
+//     {
+//         name: "Faded Skinny Jeans",
+//         price: 210,
+//         rating: 4.5,
+//         image: "../../public/images/img9.jpg",
+//     },
+// ];
 
 const category = [
     {
@@ -129,12 +131,21 @@ const testimonials = [
 
 
 
+
 function Home() {
     const navigate = useNavigate();
+
+    const { data, isLoading, error } = useGetAllCategoryQuery();
+    console.log("data", data?.data);
 
     const handleCategoryClick = (category) => {
         navigate(`/category/${category.toLowerCase()}`);
     };
+
+    const [showAll, setShowAll] = useState(false);
+
+    const visibleCategories = showAll ? data?.data : data?.data?.slice(0, 4);
+
     return (
 
         <main>
@@ -204,7 +215,6 @@ function Home() {
                 </div>
 
             </section>
-
 
             <section className="newArrivals-section">
                 <div className="container">
@@ -297,7 +307,9 @@ function Home() {
                         </Typography>
                         <Grid container spacing={4} justifyContent="space-between">
                             {
-                                productsTop.map((v, i) => (
+                                visibleCategories?.map((v, i) => (
+                                    // console.log(v);
+
                                     <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
                                         <Card className="card">
                                             <Box sx={{
@@ -312,7 +324,7 @@ function Home() {
                                             }} >
                                                 <CardMedia
                                                     component="img"
-                                                    image={v.image}
+                                                    image={v.category_img}
                                                     alt={v.name}
                                                     sx={{
                                                         maxWidth: "100%",
@@ -349,7 +361,7 @@ function Home() {
                                                             </Typography>
 
                                                             <span className="discount">
-                                                                {v.discount}
+                                                                {v.discount}%
                                                             </span>
                                                         </>
                                                     )}
@@ -362,8 +374,12 @@ function Home() {
 
                         </Grid>
                         <Box className="btnn">
-                            <Button variant="outlined" className="btnView">
-                                View All
+                            <Button
+                                variant="outlined"
+                                className="btnView"
+                                onClick={() => setShowAll(!showAll)}
+                            >
+                                {showAll ? "Show Less" : "View All"}
                             </Button>
                         </Box>
                     </Box>
@@ -530,7 +546,6 @@ function Home() {
                 </Box>
 
             </section>
-
 
         </main>
     );

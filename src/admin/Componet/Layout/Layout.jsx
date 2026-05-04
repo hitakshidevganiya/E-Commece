@@ -25,6 +25,8 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { FaSection } from "react-icons/fa6";
 import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
+import { AiFillProduct } from "react-icons/ai";
+
 
 const drawerWidth = 240;
 
@@ -121,7 +123,8 @@ export default function Layout({ children }) {
 
   const listItems = [
     { label: 'DashBoard', icon: <DashboardIcon />, to: '/admin/DashBoard' },
-    { label: 'Category', icon: <CategoryIcon />, to: '/admin/Category' }
+    { label: 'Category', icon: <CategoryIcon />, to: '/admin/Category' },
+    { label: 'Product', icon: <AiFillProduct  style={{fontSize: "25px"}}  />, to: '/admin/Product' }
   ]
 
   return (
