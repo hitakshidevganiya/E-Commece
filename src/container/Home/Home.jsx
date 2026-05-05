@@ -10,8 +10,8 @@ import { FaArrowRightLong } from "react-icons/fa6"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useNavigate } from "react-router-dom";
-import { useGetAllCategoryQuery } from "../../Redux/Api/category.api";
 import { IMAGE_URL } from "../../url/url";
+import { useGetAllProductQuery } from "../../Redux/Api/product.api";
 
 
 const brands = [
@@ -23,36 +23,36 @@ const brands = [
 ];
 
 
-const products = [
-    {
-        name: "T-shirt with Tape Details",
-        price: 120,
-        rating: 4.5,
-        image: "../../public/images/img1.jpg",
-    },
-    {
-        name: "Skinny Fit Jeans",
-        price: 240,
-        oldPrice: 260,
-        discount: "-20%",
-        rating: 3.5,
-        image: "../../public/images/img2.jpg",
-    },
-    {
-        name: "Checkered Shirt",
-        price: 180,
-        rating: 4.5,
-        image: "../../public/images/img5.jpg",
-    },
-    {
-        name: "Sleeve Striped T-shirt",
-        price: 130,
-        oldPrice: 160,
-        discount: "-30%",
-        rating: 4.5,
-        image: "../../public/images/img4.jpg",
-    },
-];
+// const products = [
+//     {
+//         name: "T-shirt with Tape Details",
+//         price: 120,
+//         rating: 4.5,
+//         image: "../../public/images/img1.jpg",
+//     },
+//     {
+//         name: "Skinny Fit Jeans",
+//         price: 240,
+//         oldPrice: 260,
+//         discount: "-20%",
+//         rating: 3.5,
+//         image: "../../public/images/img2.jpg",
+//     },
+//     {
+//         name: "Checkered Shirt",
+//         price: 180,
+//         rating: 4.5,
+//         image: "../../public/images/img5.jpg",
+//     },
+//     {
+//         name: "Sleeve Striped T-shirt",
+//         price: 130,
+//         oldPrice: 160,
+//         discount: "-30%",
+//         rating: 4.5,
+//         image: "../../public/images/img4.jpg",
+//     },
+// ];
 
 // const productsTop = [
 //     {
@@ -135,7 +135,7 @@ const testimonials = [
 function Home() {
     const navigate = useNavigate();
 
-    const { data, isLoading, error } = useGetAllCategoryQuery();
+    const { data, isLoading, error } = useGetAllProductQuery();
     console.log("data", data?.data);
 
     const handleCategoryClick = (category) => {
@@ -224,7 +224,7 @@ function Home() {
                         </Typography>
                         <Grid container spacing={{ xs: 2, lg: 4 }} justifyContent="space-between">
                             {
-                                products.map((v, i) => (
+                                data?.data.map((v, i) => (
                                     //xs={6} sm={6} md={3}
                                     <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
                                         <Card className="card">
@@ -240,91 +240,11 @@ function Home() {
                                             }} >
                                                 <CardMedia
                                                     component="img"
-                                                    image={v.image}
-                                                    alt={v.name}
-                                                    sx={{
-                                                        maxWidth: "100%",
-                                                        maxHeight: "100%",
-                                                        objectFit: "contain",
-                                                        mixBlendMode: 'multiply'
-                                                    }}
-                                                />
-                                            </Box>
-
-
-                                            <CardContent className="content">
-                                                <Typography className="productName">
-                                                    {v.name}
-                                                </Typography>
-                                                <Box className="rating">
-                                                    <Rating
-                                                        value={v.rating}
-                                                        precision={0.5}
-                                                        className="ratingsize"
-                                                    />
-                                                    <Typography className="ratingText">
-                                                        {v.rating}/5
-                                                    </Typography>
-                                                </Box>
-                                                <Box className="priceRow">
-                                                    <Typography className="price">
-                                                        ${v.price}
-                                                    </Typography>
-
-                                                    {v.oldPrice && (
-                                                        <>
-                                                            <Typography className="oldPrice">
-                                                                ${v.oldPrice}
-                                                            </Typography>
-
-                                                            <span className="discount">
-                                                                {v.discount}
-                                                            </span>
-                                                        </>
-                                                    )}
-                                                </Box>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-                                ))
-                            }
-
-                        </Grid>
-                        <Box className="buttonWrapper">
-                            <Button variant="outlined" className="viewBtn">
-                                View All
-                            </Button>
-                        </Box>
-                    </Box>
-                </div>
-            </section>
-
-            <section className="topSelling-section">
-                <div className="container">
-                    <Box >
-                        <Typography className="maintitle">
-                            TOP SELLING
-                        </Typography>
-                        <Grid container spacing={4} justifyContent="space-between">
-                            {
-                                visibleCategories?.map((v, i) => (
-                                    // console.log(v);
-
-                                    <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
-                                        <Card className="card">
-                                            <Box sx={{
-                                                padding: 3,
-                                                bgcolor: "#F0EEED",
-                                                width: "100%",
-                                                height: 300,
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                                borderRadius: "25px"
-                                            }} >
-                                                <CardMedia
-                                                    component="img"
-                                                    image={v.category_img}
+                                                    image={
+                                                        v.product_img
+                                                            ? `${IMAGE_URL}images/product_img/${Array.isArray(v.product_img) ? v.product_img[0] : v.product_img}`
+                                                            : "https://via.placeholder.com/150"
+                                                    }
                                                     alt={v.name}
                                                     sx={{
                                                         maxWidth: "100%",
@@ -372,6 +292,93 @@ function Home() {
                                 ))
                             }
 
+                        </Grid>
+                        <Box className="buttonWrapper">
+                            <Button variant="outlined" className="viewBtn">
+                                View All
+                            </Button>
+                        </Box>
+                    </Box>
+                    
+                </div>
+            </section>
+
+            <section className="topSelling-section">
+                <div className="container">
+                    <Box >
+                        <Typography className="maintitle">
+                            TOP SELLING
+                        </Typography>
+                        <Grid container spacing={4} justifyContent="space-between">
+                            {
+                                visibleCategories?.map((v, i) => (
+                                    // console.log(v);
+
+                                    <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
+                                        <Card className="card">
+                                            <Box sx={{
+                                                padding: 3,
+                                                bgcolor: "#F0EEED",
+                                                width: "100%",
+                                                height: 300,
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                borderRadius: "25px"
+                                            }} >
+                                                <CardMedia
+                                                    component="img"
+                                                    image={
+                                                        v.product_img
+                                                            ? `${IMAGE_URL}images/product_img/${Array.isArray(v.product_img) ? v.product_img[0] : v.product_img}`
+                                                            : "https://via.placeholder.com/150"
+                                                    }
+                                                    alt={v.name}
+                                                    sx={{
+                                                        maxWidth: "100%",
+                                                        maxHeight: "100%",
+                                                        objectFit: "contain",
+                                                        mixBlendMode: 'multiply'
+                                                    }}
+                                                />
+                                            </Box>
+
+                                            <CardContent className="content">
+                                                <Typography className="productName">
+                                                    {v.name}
+                                                </Typography>
+                                                <Box className="rating">
+                                                    <Rating
+                                                        value={v.rating}
+                                                        precision={0.5}
+                                                        className="ratingsize"
+                                                    />
+                                                    <Typography className="ratingText">
+                                                        {v.rating}/5
+                                                    </Typography>
+                                                </Box>
+                                                <Box className="priceRow">
+                                                    <Typography className="price">
+                                                        ${v.price}
+                                                    </Typography>
+
+                                                    {v.oldPrice && (
+                                                        <>
+                                                            <Typography className="oldPrice">
+                                                                ${v.oldPrice}
+                                                            </Typography>
+
+                                                            <span className="discount">
+                                                                {v.discount}%
+                                                            </span>
+                                                        </>
+                                                    )}
+                                                </Box>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                ))
+                            }
                         </Grid>
                         <Box className="btnn">
                             <Button

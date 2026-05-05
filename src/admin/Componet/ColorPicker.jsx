@@ -2,21 +2,23 @@ import { SketchPicker } from "react-color";
 import { useFormikContext } from "formik";
 import { useState } from "react";
 
-const ColorPicker = () => {
+const ColorPicker = ({ name }) => {
     const { values, setFieldValue } = useFormikContext();
+
     const [showPicker, setShowPicker] = useState(false);
+    const [selectedColor, setSelectedColor] = useState("#000");
 
-    const colors = values.color || [];
+    const colors = values[name] || [];
 
-    const addColor = (color) => {
-        if (!colors.includes(color.hex)) {
-            setFieldValue("color", [...colors, color.hex]);
+    const addColor = () => {
+        if (!colors.includes(selectedColor)) {
+            setFieldValue(name, [...colors, selectedColor]);
         }
     };
 
     const removeColor = (removeColor) => {
         const filtered = colors.filter(c => c !== removeColor);
-        setFieldValue("color", filtered);
+        setFieldValue(name, filtered);
     };
 
     return (
@@ -24,7 +26,12 @@ const ColorPicker = () => {
             <label>Colors</label>
 
             {/* Selected Colors */}
-            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "10px" }}>
+            <div style={{
+                display: "flex",
+                gap: "10px",
+                flexWrap: "wrap",
+                marginTop: "10px"
+            }}>
                 {colors.map((c, i) => (
                     <div
                         key={i}
@@ -41,10 +48,10 @@ const ColorPicker = () => {
                 ))}
             </div>
 
-            {/* Add Color Button */}
+            {/* Toggle Picker */}
             <button
                 type="button"
-                onClick={() => setShowPicker(!showPicker)}
+                onClick={() => setShowPicker(prev => !prev)}
                 style={{ marginTop: "10px" }}
             >
                 Pick Color
@@ -52,9 +59,25 @@ const ColorPicker = () => {
 
             {/* Picker */}
             {showPicker && (
-                <SketchPicker
-                    onChangeComplete={(color) => addColor(color)}
-                />
+                <div style={{ marginTop: "10px" }}>
+                    <SketchPicker
+                        color={selectedColor}
+                        onChange={(color) => setSelectedColor(color.hex)}  // only preview
+                    />
+
+                    {/* Add Button */}
+                    <button
+                        type="button"
+                        onClick={addColor}
+                        style={{
+                            marginTop: "10px",
+                            padding: "5px 10px",
+                            cursor: "pointer"
+                        }}
+                    >
+                        Add Color
+                    </button>
+                </div>
             )}
         </div>
     );

@@ -20,7 +20,6 @@ import { useGetAllCategoryQuery } from '../../../Redux/Api/category.api';
 
 function Product(props) {
 
-
     const [open, setOpen] = React.useState(false);
     const [update, setUpdate] = useState({});
 
@@ -34,7 +33,7 @@ function Product(props) {
         setOpen(false);
     };
 
-    const { data: cdata, isLoading: cisloading, error: cerror} = useGetAllCategoryQuery();
+    const { data: cdata, isLoading: cisloading, error: cerror } = useGetAllCategoryQuery();
     console.log(cdata?.data)
 
     const { data, isLoading, error } = useGetAllProductQuery();
@@ -50,16 +49,28 @@ function Product(props) {
 
         let formData = new FormData();
 
-        const price = values.oldPrice - (values.oldPrice * values.discount) / 100;
+        let finalPrice = 0;
+        let oldPrice = values.oldPrice || null;
+        let discount = values.discount || null;
 
+        if (oldPrice) {
+            finalPrice =
+                oldPrice - (oldPrice * discount) / 100;
+        } else {
+            finalPrice = values.price;
+            oldPrice = null;
+            discount = null;
+        }
 
         formData.append('category_id', values.category_id);
         formData.append('name', values.name);
         formData.append('description', values.description);
-        formData.append('price', Math.round(price));
-        formData.append('oldPrice', values.oldPrice);
-        formData.append('discount', values.discount);
-        formData.append('size', values.size);
+        formData.append('price', Math.round(finalPrice));
+        if (oldPrice) formData.append("oldPrice", oldPrice);
+        if (discount) formData.append("discount", discount);
+        if (values.size) {
+            formData.append('size', values.size);
+        }
         values.color.forEach((c) => {
             formData.append("color[]", c);
         });
@@ -71,6 +82,7 @@ function Product(props) {
             formData.append('_id', values._id);
 
             if (typeof values.product_img === 'object') {
+
                 updateProduct(formData);
             } else {
                 updateProduct(formData);
@@ -78,8 +90,6 @@ function Product(props) {
         } else {
             addProduct(formData);
         }
-
-
 
     }
 
@@ -98,11 +108,25 @@ function Product(props) {
     }
 
     let catSchema = object({
+        category_id: string().required('Plaese select parent category'),
         name: string().required('Please enter Course'),
         description: string().required('Please enter Description'),
-        oldPrice: number().positive().required(),
-        discount: number().positive().required(),
-        size: string().required(),
+        price: number().when("oldPrice", {
+            is: (oldPrice) => !oldPrice,
+            then: () => number().required("Price required"),
+            otherwise: () => number().notRequired(),
+        }),
+        oldPrice: number().nullable(),
+        discount: number().when("oldPrice", {
+            is: (oldPrice) => !!oldPrice,
+            then: () =>
+                number()
+                    .required("Discount required when oldPrice entered")
+                    .min(0)
+                    .max(100),
+            otherwise: () => number().nullable(),
+        }),
+        size: string().nullable().notRequired(),
         color: array().required(),
         product_img: mixed()
             .test("product_img", "product images only png and jpng file allowed", function (val) {
@@ -138,33 +162,70 @@ function Product(props) {
     const paginationModel = { page: 0, pageSize: 5 };
 
     const columns = [
-        // {
-        //     field: 'category_id',
-        //     headerName: 'Parent category',
-        //     width: 150,
-        //     renderCell: (params) => {
+        {
+            field: 'category_id',
+            headerName: 'Parent category',
+            width: 150,
+            align: 'center',
+            headerAlign: 'center',
+            renderCell: (params) => {
 
-        //         // console.log(params);
+                // console.log(params);
 
-        //         const c = data?.data?.find(v => v._id === params.row.category_id);
+                const c = cdata?.data?.find(v => v._id === params.row.category_id);
 
-        //         // console.log(c);
+                // console.log(c);
 
-        //         return c?.name
-        //     }
-        // },
-        { field: 'name', headerName: 'Name', width: 150 },
-        { field: 'description', headerName: 'Description', width: 150 },
-        { field: 'price', headerName: 'Price', width: 150 },
-        { field: 'oldPrice', headerName: 'Old Price', width: 150 },
-        { field: 'discount', headerName: 'Discount', width: 150 },
-        { field: 'size', headerName: 'Size', width: 150 },
+                return c?.name
+            }
+        },
+        { field: 'name', headerName: 'Name', width: 150, align: 'center', headerAlign: 'center' },
+        { field: 'description', headerName: 'Description', width: 150, align: 'center', headerAlign: 'center' },
+        {
+            field: 'price',
+            headerName: 'Price',
+            align: 'center',
+            headerAlign: 'center',
+            renderCell: (params) => (
+                `₹${params.value}`
+            )
+        },
+        {
+            field: 'oldPrice',
+            headerName: 'Old Price',
+            align: 'center',
+            headerAlign: 'center',
+            renderCell: (params) => (
+                params.value ? `₹${params.value}` : "-"
+            )
+        },
+        {
+            field: 'discount',
+            headerName: 'Discount',
+            align: 'center',
+            headerAlign: 'center',
+            renderCell: (params) => (
+                params.row.oldPrice ? `${params.value}%` : "-"
+            )
+        },
+        {
+            field: 'size',
+            headerName: 'Size',
+            width: 150,
+            align: 'center',
+            headerAlign: 'center',
+            renderCell: (params) => (
+                params.value ? params.value : "-"
+            )
+        },
         {
             field: 'color',
             headerName: 'Color',
             width: 200,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: (params) => (
-                <div style={{ display: 'flex', gap: '5px' }}>
+                <div style={{ display: 'flex', gap: '5px', justifyContent: "center", alignItems: "center", width: "100%", height: "100%", }}>
                     {params.value?.map((c, i) => (
                         <div
                             key={i}
@@ -179,11 +240,12 @@ function Product(props) {
                 </div>
             )
         },
-
         {
             field: 'product_img',
             headerName: 'Category img',
             width: 250,
+            align: 'center',
+            headerAlign: 'center',
 
             renderCell: (params) => (
                 <>
@@ -204,24 +266,14 @@ function Product(props) {
                             />
                         ))
                     }
-
-                    {/* <img
-                        src={params.row?.course_img?.url?.includes('blob') ? params.row?.course_img : params.row?.course_img?.url}
-                        style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                    /> */}
-
-                    {/* <img
-                        src={typeof params.row?.course_img === "object" ? params.row?.course_img?.url : params.row?.course_img}
-                        style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                    /> */}
                 </>
             )
         },
-
-        // { field: 'statu  s', headerName: 'Status', width: 150 },
         {
             headerName: 'Action',
             width: 150,
+            align: 'center',
+            headerAlign: 'center',
             renderCell: (params) => (
                 <>
 
@@ -239,9 +291,19 @@ function Product(props) {
 
     const catgetData = [{ value: '', label: '--Select Categories--' }];
 
-    data?.data?.forEach((v) => {
+    cdata?.data?.forEach((v) => {
         catgetData.push({ value: v._id, label: v.name });
     });
+
+    const sizedata = [
+        { value: '', label: '--Select Size--' },
+        { value: 'XS', label: 'XS' },
+        { value: 'S', label: 'S' },
+        { value: 'M', label: 'M' },
+        { value: 'L', label: 'L' },
+        { value: 'XL', label: 'XL' },
+        { value: 'XXL', label: 'XXL' },
+    ]
 
     return (
         <>
@@ -284,9 +346,9 @@ function Product(props) {
 
                             <Form id='subscription-form'>
 
-                                {/* <TextInput
-                                    id="parent_category_id"
-                                    name="parent_category_id"
+                                <TextInput
+                                    id="category_id"
+                                    name="category_id"
                                     // label="Select Categories"
                                     select
                                     slotProps={{
@@ -295,7 +357,7 @@ function Product(props) {
                                         },
                                     }}
                                     data={catgetData}
-                                /> */}
+                                />
 
                                 <TextInput
                                     id="name"
@@ -309,6 +371,12 @@ function Product(props) {
                                     label="Description"
                                     multiline
                                     rows={4}
+                                />
+
+                                <TextInput
+                                    id="price"
+                                    name="price"
+                                    label="Price"
                                 />
 
                                 <TextInput
@@ -326,7 +394,14 @@ function Product(props) {
                                 <TextInput
                                     id="size"
                                     name="size"
-                                    label="Size"
+                                    // label="Select Categories"
+                                    select
+                                    slotProps={{
+                                        select: {
+                                            native: true,
+                                        },
+                                    }}
+                                    data={sizedata}
                                 />
 
 
@@ -356,7 +431,7 @@ function Product(props) {
                 </Dialog>
 
                 <DataGrid
-                    rows={data?.data || []}
+                    rows={data?.data}
                     columns={columns}
                     initialState={{ pagination: { paginationModel } }}
                     pageSizeOptions={[5, 10]}
