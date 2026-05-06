@@ -68,16 +68,18 @@ function Product(props) {
         formData.append('price', Math.round(finalPrice));
         if (oldPrice) formData.append("oldPrice", oldPrice);
         if (discount) formData.append("discount", discount);
-        if (values.size) {
-            formData.append('size', values.size);
-        }
-        values.color.forEach((c) => {
-            formData.append("color[]", c);
-        });
-        values.product_img.forEach((img) => {
-            formData.append('product_img', img);
-        });
+        values.variants.forEach((v, i) => {
+            formData.append(`variants[${i}][color]`, v.color);
+            formData.append(`variants[${i}][stock]`, v.stock);
 
+            v.size.forEach((s, j) => {
+                formData.append(`variants[${i}][size][${j}]`, s);
+            });
+
+            v.product_img.forEach((img) => {
+                formData.append(`variants[${i}][product_img]`, img);
+            });
+        });
         if (Object.keys(update).length > 0) {
             formData.append('_id', values._id);
 
@@ -126,8 +128,14 @@ function Product(props) {
                     .max(100),
             otherwise: () => number().nullable(),
         }),
-        size: string().nullable().notRequired(),
-        color: array().required(),
+        variants: array().of(
+            object({
+                color: string().required("Color required"),
+                size: array().min(1, "Select at least 1 size"),
+                stock: number().required("Stock required"),
+                product_img: mixed().required("Image required")
+            })
+        ),
         product_img: mixed()
             .test("product_img", "product images only png and jpng file allowed", function (val) {
                 console.log("valval", val);
@@ -215,7 +223,9 @@ function Product(props) {
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
-                params.value ? params.value : "-"
+                Array.isArray(params.value) && params.value.length > 0
+                    ? params.value.join(", ")
+                    : "-"
             )
         },
         {
@@ -225,19 +235,21 @@ function Product(props) {
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
-                <div style={{ display: 'flex', gap: '5px', justifyContent: "center", alignItems: "center", width: "100%", height: "100%", }}>
-                    {params.value?.map((c, i) => (
-                        <div
-                            key={i}
-                            style={{
-                                width: '20px',
-                                height: '20px',
-                                backgroundColor: c,
-                                border: '1px solid #ccc'
-                            }}
-                        />
-                    ))}
-                </div>
+                params.value && params.value.length > 0 ? (
+                    <div style={{ display: 'flex', gap: '5px', justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
+                        {params.value.map((c, i) => (
+                            <div
+                                key={i}
+                                style={{
+                                    width: '20px',
+                                    height: '20px',
+                                    backgroundColor: c,
+                                    border: '1px solid #ccc'
+                                }}
+                            />
+                        ))}
+                    </div>
+                ) : "-"
             )
         },
         {
@@ -297,13 +309,14 @@ function Product(props) {
 
     const sizedata = [
         { value: '', label: '--Select Size--' },
-        { value: 'XS', label: 'XS' },
-        { value: 'S', label: 'S' },
-        { value: 'M', label: 'M' },
-        { value: 'L', label: 'L' },
-        { value: 'XL', label: 'XL' },
-        { value: 'XXL', label: 'XXL' },
+        { value: 'X-Small', label: 'X-Small' },
+        { value: 'Small', label: 'Small' },
+        { value: 'Medium', label: 'Medium' },
+        { value: 'Large', label: 'Large' },
+        { value: 'X-Large', label: 'X-Large' }
     ]
+
+
 
     return (
         <>
@@ -326,9 +339,15 @@ function Product(props) {
                                 price: '',
                                 oldPrice: '',
                                 discount: '',
-                                color: [],
-                                size: '',
-                                product_img: [],
+                                variants: [
+                                    {
+                                        color: "",
+                                        size: [],
+                                        stock: "",
+                                        product_img: [],
+                                    }
+                                ],
+
                             }}
                             validationSchema={catSchema}
                             onSubmit={(values, { resetForm }) => {
@@ -343,82 +362,100 @@ function Product(props) {
                             }}
                         >
 
+                            {({ values, setFieldValue }) => (
+                                <Form id='subscription-form'>
 
-                            <Form id='subscription-form'>
+                                    <TextInput
+                                        id="category_id"
+                                        name="category_id"
+                                        // label="Select Categories"
+                                        select
+                                        slotProps={{
+                                            select: {
+                                                native: true,
+                                            },
+                                        }}
+                                        data={catgetData}
+                                    />
 
-                                <TextInput
-                                    id="category_id"
-                                    name="category_id"
-                                    // label="Select Categories"
-                                    select
-                                    slotProps={{
-                                        select: {
-                                            native: true,
-                                        },
-                                    }}
-                                    data={catgetData}
-                                />
+                                    <TextInput
+                                        id="name"
+                                        name="name"
+                                        label="Name"
+                                    />
 
-                                <TextInput
-                                    id="name"
-                                    name="name"
-                                    label="Name"
-                                />
+                                    <TextInput
+                                        id="description"
+                                        name="description"
+                                        label="Description"
+                                        multiline
+                                        rows={4}
+                                    />
 
-                                <TextInput
-                                    id="description"
-                                    name="description"
-                                    label="Description"
-                                    multiline
-                                    rows={4}
-                                />
+                                    <TextInput
+                                        id="price"
+                                        name="price"
+                                        label="Price"
+                                    />
 
-                                <TextInput
-                                    id="price"
-                                    name="price"
-                                    label="Price"
-                                />
+                                    <TextInput
+                                        id="oldPrice"
+                                        name="oldPrice"
+                                        label="Old Price"
+                                    />
 
-                                <TextInput
-                                    id="oldPrice"
-                                    name="oldPrice"
-                                    label="Old Price"
-                                />
+                                    <TextInput
+                                        id="discount"
+                                        name="discount"
+                                        label="Discount"
+                                    />
 
-                                <TextInput
-                                    id="discount"
-                                    name="discount"
-                                    label="Discount"
-                                />
+                                    {values.variants.map((v, i) => (
+                                        <div key={i} style={{ border: "1px solid #ccc", marginBottom: 10, padding: 10 }}>
 
-                                <TextInput
-                                    id="size"
-                                    name="size"
-                                    // label="Select Categories"
-                                    select
-                                    slotProps={{
-                                        select: {
-                                            native: true,
-                                        },
-                                    }}
-                                    data={sizedata}
-                                />
+                                            <ColorPicker name={`variants[${i}].color`} />
 
+                                            <TextInput
+                                                name={`variants[${i}].size`}
+                                                select
+                                                slotProps={{
+                                                    select: {
+                                                        native: true,
+                                                        multiple: true
+                                                    }
+                                                }}
+                                                data={sizedata}
+                                            />
 
-                                <ColorPicker
-                                    id="color"
-                                    name="color"
-                                    label="Color"
-                                />
+                                            <TextInput
+                                                name={`variants[${i}].stock`}
+                                                label="Stock"
+                                            />
+
+                                            <UploadFile
+                                                name={`variants[${i}].product_img`}
+                                                type="file"
+                                                multiple
+                                            />
 
 
-                                <UploadFile
-                                    name="product_img"
-                                    type='file'
-                                    multiple
-                                />
 
-                            </Form>
+                                        </div>
+                                    ))}
+
+                                    <Button
+                                        onClick={() =>
+                                            setFieldValue("variants", [
+                                                ...values.variants,
+                                                { color: "", size: [], stock: "", product_img: [] }
+                                            ])
+                                        }
+                                    >
+                                        Add Variant
+                                    </Button>
+
+                                </Form>
+                            )}
                         </Formik>
 
                     </DialogContent>

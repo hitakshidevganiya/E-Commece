@@ -227,7 +227,10 @@ function Home() {
                                 data?.data.map((v, i) => (
                                     //xs={6} sm={6} md={3}
                                     <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
-                                        <Card className="card">
+                                        <Card
+                                            className="card"
+                                            onClick={() => navigate(`/product/${v._id}`)}
+                                        >
                                             <Box sx={{
                                                 padding: 3,
                                                 bgcolor: "#F0EEED",
@@ -250,7 +253,8 @@ function Home() {
                                                         maxWidth: "100%",
                                                         maxHeight: "100%",
                                                         objectFit: "contain",
-                                                        mixBlendMode: 'multiply'
+                                                        mixBlendMode: 'multiply',
+                                                        cursor: "pointer"
                                                     }}
                                                 />
                                             </Box>
@@ -299,7 +303,7 @@ function Home() {
                             </Button>
                         </Box>
                     </Box>
-                    
+
                 </div>
             </section>
 

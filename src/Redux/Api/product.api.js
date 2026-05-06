@@ -8,6 +8,10 @@ export const productApi = createApi({
     }),
 
     endpoints: (builder) => ({
+        getProduct: builder.query({
+            query: (id) => `product/getProduct/${id}`,
+            providesTags: ['Product']
+        }),
         getAllProduct: builder.query({
             query: () => "product/getAllProduct",
             providesTags: ['Product']
@@ -40,6 +44,7 @@ export const productApi = createApi({
 
 
 export const {
+    useGetProductQuery,
     useGetAllProductQuery,
     useAddProductMutation,
     useUpdateProductMutation,

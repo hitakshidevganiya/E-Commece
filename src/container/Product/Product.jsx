@@ -7,12 +7,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { MdOutlineTune } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { Avatar, Box, Button, Card, CardContent, CardMedia, Chip, Divider, Grid, IconButton, Rating, Tab, Tabs, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { useGetProductQuery } from '../../Redux/Api/product.api';
+import { IMAGE_URL } from '../../url/url';
+import { useAddToCartMutation } from "../../Redux/Api/cart.api";
+import { useNavigate } from "react-router-dom";
 
-const images = [
-    "../../../public/images/image 2.png",
-    "../../../public/images/image 5.png",
-    "../../../public/images/image 6 (1).png"
-];
+
 
 const reviews = [
     {
@@ -54,6 +55,7 @@ const reviews = [
 
 ];
 
+
 const products = [
     {
         name: "Polo with Contrast Trims",
@@ -90,46 +92,74 @@ function Product() {
     const [size, setSize] = useState("Large");
     const [qty, setQty] = useState(1);
 
+    const [addToCart] = useAddToCartMutation();
+    const navigate = useNavigate();
+
+    const { id } = useParams();
+
     const [selectedSize, setSelectedSize] = useState(null);
 
     const sizes = ["Small", "Medium", "Large", "X-Large"];
+
+    const { data, isLoading } = useGetProductQuery(id);
+
+
+    const product = data?.data;
+    console.log(product?.product_img[2]);
+
+    const handleAddToCart = async () => {
+        if (!selectedSize) {
+            alert("Select size");
+            return;
+        }
+
+        try {
+            await addToCart({
+                productId: product._id,
+                name: product.name,
+                price: product.price,
+                image: product.product_img?.[0],
+                qty: qty,
+                size: selectedSize,
+            }).unwrap();
+
+            navigate("/cart");
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <>
 
             <div className="container">
 
-
                 <main>
                     <section className="men-product">
-                        {/* <Divider /> */}
                         <Box sx={{ mt: 10 }} >
                             <Grid container spacing={4} >
                                 <Grid container size={7} alignItems="stretch" >
 
                                     <Grid size={3} rowSpacing={{ md: 4, lg: 4, xl: 6 }} container display="flex" direction="column" >
 
-                                        <Grid>
-                                            <Box className="imgBox">
-                                                <img src="../../../public/images/image 2.png" alt="" className="imgsize" />
-                                            </Box>
-                                        </Grid>
-                                        <Grid>
-                                            <Box className="imgBox">
-                                                <img src="../../../public/images/image 5.png" alt="" className="imgsize" />
-                                            </Box>
-                                        </Grid>
-                                        <Grid >
-                                            <Box className="imgBox">
-                                                <img src="../../../public/images/image 6 (1).png" alt="" className="imgsize" />
-                                            </Box>
-                                        </Grid>
+                                        {product?.product_img?.map((img, i) => (
+                                            <Grid key={i}>
+                                                <Box className="imgBox">
+                                                    <img
+                                                        src={`${IMAGE_URL}/${img}`}
+                                                        alt=""
+                                                        className="imgsize"
+                                                    />
+                                                </Box>
+                                            </Grid>
+                                        ))}
 
                                     </Grid>
 
                                     <Grid size={9} display='flex'>
                                         <Box className="probigimg">
-                                            <img src="../../../public/images/image 1.png" alt="" style={{ borderRadius: 25 }}  />
+                                            <img src={`${IMAGE_URL}/${product?.product_img?.[0]}`} alt="" style={{ borderRadius: 25 }} />
                                         </Box>
                                     </Grid>
 
@@ -148,7 +178,7 @@ function Product() {
                                         mt={2}
                                         className="promaintitle"
                                     >
-                                        ONE LIFE GRAPHIC T-SHIRT
+                                        {product?.name}
                                     </Typography>
 
                                     <Box display="flex" alignItems="center" gap={1} mb={2}>
@@ -162,15 +192,15 @@ function Product() {
                                             fontWeight="bold"
                                             className="proPrice"
                                         >
-                                            $260
+                                            ${product?.price}
                                         </Typography>
                                         <Typography
                                             sx={{ textDecoration: "line-through", color: "gray" }}
                                             className="proPrice"
                                         >
-                                            $300
+                                            ${product?.oldPrice}
                                         </Typography>
-                                        <Typography color="error" className="discount">-40%</Typography>
+                                        <Typography color="error" className="discount"> {product?.discount}%</Typography>
                                     </Box>
 
                                     <Typography
@@ -178,7 +208,7 @@ function Product() {
                                         mb={3}
                                         className="descr"
                                     >
-                                        This graphic t-shirt which is perfect for any occasion. crafted from a soft and breathable fabric, it offers superior comfort and style.
+                                        {product?.description}
                                     </Typography>
 
                                     <Divider />
@@ -188,7 +218,7 @@ function Product() {
                                             Select Colors
                                         </Typography>
                                         <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                            {["#4b5320", "#2f4f4f", "#1c1c3c"].map((color, i) => (
+                                            {product?.color.map((color, i) => (
                                                 <Box
                                                     key={i}
                                                     sx={{
@@ -211,7 +241,7 @@ function Product() {
 
                                     <Typography mb={1} mt={3}>Choose Size</Typography>
                                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
-                                        {sizes.map((v) => (
+                                        {product?.size.map((v) => (
                                             <Chip
                                                 key={v}
                                                 label={v}
@@ -255,6 +285,7 @@ function Product() {
                                                 textTransform: "capitalize",
                                             }}
                                             className="cartbtn"
+                                            onClick={handleAddToCart}
                                         >
                                             Add to Cart
                                         </Button>
@@ -405,11 +436,9 @@ function Product() {
                                     ))
                                 }
                             </Grid>
-
                         </Box>
                     </section>
                 </main>
-
             </div>
         </>
     )

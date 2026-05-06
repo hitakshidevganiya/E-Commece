@@ -4,6 +4,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { HiArrowLongRight } from "react-icons/hi2";
 import Remove from '@mui/icons-material/Remove';
 import Add from '@mui/icons-material/Add';
+import { useDeleteCartMutation, useGetCartQuery, useUpdateCartMutation } from "../../Redux/Api/cart.api";
 
 const cartItems = [
     {
@@ -34,6 +35,28 @@ const cartItems = [
 
 function Cart() {
     const [qty, setQty] = useState(1);
+    const { data, isLoading } = useGetCartQuery();
+    const [updateCart] = useUpdateCartMutation();
+    const [deleteCart] = useDeleteCartMutation();
+
+    const cartItems = data?.data || [];
+
+    if (isLoading) return <h2>Loading...</h2>;
+
+    const handleQty = (id, qty) => {
+        if (qty < 1) return;
+        updateCart({ id, qty });
+    };
+
+    const handleRemove = (id) => {
+        deleteCart(id);
+    };
+
+    const total = cartItems.reduce(
+        (sum, item) => sum + item.price * item.qty,
+        0
+    );
+
 
     return (
 
