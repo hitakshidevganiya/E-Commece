@@ -10,8 +10,8 @@ import { Avatar, Box, Button, Card, CardContent, CardMedia, Chip, Divider, Grid,
 import { useParams } from "react-router-dom";
 import { useGetProductQuery } from '../../Redux/Api/product.api';
 import { IMAGE_URL } from '../../url/url';
-import { useAddToCartMutation } from "../../Redux/Api/cart.api";
 import { useNavigate } from "react-router-dom";
+import { useAddToCartMutation } from "../../Redux/Api/cart.api";
 
 
 
@@ -103,30 +103,36 @@ function Product() {
 
     const { data, isLoading } = useGetProductQuery(id);
 
-
     const product = data?.data;
     console.log(product?.product_img[2]);
 
     const handleAddToCart = async () => {
-        if (!selectedSize) {
-            alert("Select size");
-            return;
-        }
-
         try {
-            await addToCart({
+            if (!product) {
+                return alert("Product not loaded");
+            }
+
+            if (!selectedSize) {
+                return alert("Please select size");
+            }
+
+            const res = await addToCart({
                 productId: product._id,
                 name: product.name,
                 price: product.price,
                 image: product.product_img?.[0],
-                qty: qty,
+                qty: Number(qty),
                 size: selectedSize,
             }).unwrap();
 
+            console.log("SUCCESS:", res);
             navigate("/cart");
 
         } catch (err) {
-            console.log(err);
+            console.log("FULL ERROR:", err);
+
+            // 👇 IMPORTANT: proper RTK error handling
+            alert(err?.data?.message || err?.message || "Add to cart failed");
         }
     };
 

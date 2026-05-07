@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Box, Button, Card, Divider, Grid, IconButton, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, Divider, Grid, IconButton, InputBase, TextField, Typography } from "@mui/material";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { HiArrowLongRight } from "react-icons/hi2";
 import Remove from '@mui/icons-material/Remove';
 import Add from '@mui/icons-material/Add';
-import { useDeleteCartMutation, useGetCartQuery, useUpdateCartMutation } from "../../Redux/Api/cart.api";
+import { useDeleteCartMutation, useGetAllCartQuery, useUpdateCartMutation } from "../../Redux/Api/cart.api";
+import { FiTag } from "react-icons/fi";
+
+
 
 const cartItems = [
     {
@@ -35,9 +38,12 @@ const cartItems = [
 
 function Cart() {
     const [qty, setQty] = useState(1);
-    const { data, isLoading } = useGetCartQuery();
+    const { data, isLoading } = useGetAllCartQuery();
     const [updateCart] = useUpdateCartMutation();
     const [deleteCart] = useDeleteCartMutation();
+
+    console.log(data?.data);
+    
 
     const cartItems = data?.data || [];
 
@@ -63,18 +69,15 @@ function Cart() {
 
 
         <div className="cartmain">
-            {/* <Divider /> */}
             <Box className="cart-page">
                 <div className="container">
 
-                    {/* Title */}
                     <Typography variant="h3" className="cart-title">
                         YOUR CART
                     </Typography>
 
                     <Grid container spacing={{ xs: 1, md: 3 }}>
 
-                        {/* LEFT SIDE */}
                         <Grid size={{ xs: 12, sm: 8 }} >
                             <Card className="cart-card">
 
@@ -82,7 +85,6 @@ function Cart() {
                                     <Box key={item.id}>
                                         <Box className="cart-item">
 
-                                            {/* LEFT */}
                                             <Box className="item-left">
                                                 <img src={item.img} alt="" className="item-img" />
 
@@ -105,7 +107,6 @@ function Cart() {
                                                 </Box>
                                             </Box>
 
-                                            {/* RIGHT */}
                                             <Box className="item-right">
                                                 <IconButton color="error">
                                                     <DeleteOutlineIcon />
@@ -131,7 +132,6 @@ function Cart() {
                             </Card>
                         </Grid>
 
-                        {/* RIGHT SIDE */}
                         <Grid size={{ xs: 12, sm: 4 }}>
                             <Card className="summary-card">
 
@@ -161,24 +161,27 @@ function Cart() {
                                     <Typography className="totaldoo">$467</Typography>
                                 </Box>
 
-                                {/* Promo */}
                                 <Box className="promo">
-                                    <TextField
-                                        size="small"
-                                        placeholder="Add promo code"
-                                        fullWidth
-                                        className="promocode"
-                                    />
+                                    <Box className="promo-input">
+
+                                        <FiTag className="promo-icon" />
+
+                                        <InputBase
+                                            placeholder="Add promo code"
+                                            className="promocode"
+                                            fullWidth
+                                        />
+
+                                    </Box>
                                     <Button className="apply-btn">
                                         Apply
                                     </Button>
                                 </Box>
 
-                                {/* Checkout */}
+
                                 <Button className="checkout-btn" fullWidth>
                                     Go to Checkout <HiArrowLongRight className="arrRight" />
                                 </Button>
-
                             </Card>
                         </Grid>
 

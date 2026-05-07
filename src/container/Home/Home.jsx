@@ -285,7 +285,7 @@ function Home() {
                                                             </Typography>
 
                                                             <span className="discount">
-                                                                {v.discount}%
+                                                                -{v.discount}%
                                                             </span>
                                                         </>
                                                     )}

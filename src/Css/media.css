@@ -150,93 +150,9 @@
         margin-bottom: 50px !important;
     }
 
-    .checkout-btn {
-        padding: 8px !important;
-        font-size: 11px !important;
-        margin-top: 14px !important;
-    }
+    
 
-    .cart-title {
-        margin-bottom: 16px !important;
-        font-size: 20px !important;
-
-    }
-
-    .apply-btn {
-        font-size: 11px !important;
-        padding: 3px 10px !important;
-    }
-
-    .css-1pzfmz2-MuiInputBase-input-MuiOutlinedInput-input {
-        padding: 7px !important;
-        font-size: 14px !important;
-    }
-
-    .arrRight {
-        margin-left: 10px;
-        font-size: 25px;
-    }
-
-    .summary-title {
-        margin-bottom: 13px !important;
-        font-size: 15px !important;
-    }
-
-    .row {
-        margin: 8px 0;
-    }
-
-    .subname {
-        font-size: 13px !important;
-    }
-
-    .total {
-        font-size: 8px !important;
-
-    }
-
-    .totaldoo {
-        font-size: 18px !important;
-        color: black;
-    }
-
-    .discountcart {
-        font-size: 13px !important;
-    }
-
-    .subtotal {
-        font-size: 13px !important;
-    }
-
-    .dividercss {
-        margin: 15px 0 !important;
-    }
-
-    .item-img {
-        width: 70px;
-    }
-
-    .cart-item {
-        padding: 5px 0;
-    }
-
-    .cart-card {
-        padding: 0 10px !important;
-    }
-
-
-    .item-title {
-        font-size: 13px !important;
-    }
-
-    .item-sub {
-        font-size: 10px !important;
-    }
-
-    .price {
-        margin-top: 6px !important;
-        font-size: 13px !important;
-    }
+    
 
     .logo {
         font-size: 29px !important;
@@ -441,92 +357,10 @@
         margin-bottom: 70px !important;
     }
 
-    .checkout-btn {
-        padding: 11px !important;
-        font-size: 13px !important;
-        margin-top: 17px !important;
-    }
+    
 
-    .cart-title {
-        margin-bottom: 20px !important;
-        font-size: 26px !important;
+    
 
-    }
-
-    .apply-btn {
-        font-size: 12px !important;
-        padding: 4px 15px !important;
-    }
-
-    .css-1pzfmz2-MuiInputBase-input-MuiOutlinedInput-input {
-        padding: 10px !important;
-        font-size: 15px !important;
-    }
-
-    .arrRight {
-        margin-left: 10px;
-        font-size: 25px;
-    }
-
-    .summary-title {
-        margin-bottom: 13px !important;
-        font-size: 15px !important;
-    }
-
-    .row {
-        margin: 9px 0;
-    }
-
-    .subname {
-        font-size: 13px !important;
-    }
-
-    .total {
-        font-size: 8px !important;
-
-    }
-
-    .totaldoo {
-        font-size: 18px !important;
-        color: black;
-    }
-
-    .discountcart {
-
-        font-size: 13px !important;
-
-    }
-
-    .subtotal {
-
-        font-size: 13px !important;
-    }
-
-    .dividercss {
-        margin: 15px 0 !important;
-    }
-
-    .item-img {
-        width: 90px;
-    }
-
-    .cart-item {
-        padding: 10px 0;
-    }
-
-    .item-title {
-        font-size: 14px !important;
-    }
-
-    .item-sub {
-        font-size: 12px !important;
-    }
-
-    .price {
-        font-weight: 700;
-        margin-top: 6px !important;
-        font-size: 16px !important;
-    }
 
     .logo {
         font-size: 29px !important;
@@ -753,25 +587,7 @@
         font-size: 10px !important;
     }
 
-    .row {
-        margin: 6px 0;
-    }
-
-    .apply-btn {
-        font-size: 9px !important;
-        padding: 4px 10px !important;
-    }
-
-    .checkout-btn {
-        padding: 9px !important;
-        font-size: 10px !important;
-        margin-top: 15px !important;
-    }
-
-    .arrRight {
-        margin-left: 10px;
-        font-size: 20px;
-    }
+    
 
     .css-q2strv-MuiPaper-root-MuiCard-root {
         height: 179px !important;
@@ -950,94 +766,12 @@
         font-size: 35px !important;
     }
 
-
-    .allReviews {
-        width: 80%;
-    }
-
-    .checkout-btn {
-        padding: 6px !important;
-        margin-top: 20px !important;
-    }
-
-    .cart-title {
-        margin-bottom: 20px !important;
-        font-size: 30px !important;
-
-    }
-
-    .retext {
-        height: 110px;
-    }
-
-    .arrRight {
-        margin-left: 10px;
-        font-size: 25px;
-    }
-
-    .css-igghdu {
-        margin-bottom: 90px !important;
-    }
-
-    .summary-title {
-        margin-bottom: 16px !important;
-        font-size: 18px !important;
-    }
-
-    .row {
-        margin: 16px 0;
-
-    }
-
-    .subname {
-        font-size: 15px !important;
-    }
-
-    .total {
-        font-size: 10px !important;
-
-    }
-
-    .totaldoo {
-        font-size: 22px !important;
-    }
-
-    .discountcart {
-        font-size: 16px !important;
-
-    }
-
-    .subtotal {
-        font-size: 16px !important;
-    }
-
-    .dividercss {
-        margin: 30px 0 !important;
-    }
-
-    .item-img {
-        width: 130px;
-    }
-
-    .cart-item {
-        padding: 20px 0;
-    }
+    
 
 
-    .item-title {
-        font-size: 17px !important;
-    }
+    
 
-    .item-sub {
-        font-size: 14px !important;
-
-    }
-
-    .price {
-        font-weight: 700;
-        margin-top: 6px !important;
-        font-size: 18px !important;
-    }
+    
 
     .css-q2strv-MuiPaper-root-MuiCard-root {
         height: 179px !important;
@@ -1334,10 +1068,6 @@
 
     }
 
-    .checkout-btn {
-        padding: 8px !important;
-    }
-
     .cart-title {
         margin-bottom: 25px !important;
         font-size: 32px !important;
@@ -1612,9 +1342,6 @@
         font-size: 17px !important;
     }
 
-    .checkout-btn {
-        padding: 12px !important;
-    }
 
     .cart-title {
         margin-bottom: 30px !important;
