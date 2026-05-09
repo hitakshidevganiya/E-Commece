@@ -602,18 +602,26 @@
 
     .imgBox {
         width: 100%;
+        height: 92%;
         overflow: hidden;
+        background-color: #F0EEED;
+        border-radius: 20px;
+
     }
 
     .imgsize {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        mix-blend-mode: multiply;
+        padding: 15px;
     }
 
     .probigimg {
         width: 100%;
-        height: 95%;
+        height: 87%;
+        background-color: #F0EEED;
+        border-radius: 20px;
     }
 
     .proPrice {

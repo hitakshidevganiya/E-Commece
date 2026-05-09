@@ -11,7 +11,8 @@ import { useParams } from "react-router-dom";
 import { useGetProductQuery } from '../../Redux/Api/product.api';
 import { IMAGE_URL } from '../../url/url';
 import { useNavigate } from "react-router-dom";
-import { useAddToCartMutation } from "../../Redux/Api/cart.api";
+import { useAddCartMutation } from "../../Redux/Api/cart.api";
+
 
 
 
@@ -92,12 +93,14 @@ function Product() {
     const [size, setSize] = useState("Large");
     const [qty, setQty] = useState(1);
 
-    const [addToCart] = useAddToCartMutation();
+    const [addToCart] = useAddCartMutation();
     const navigate = useNavigate();
 
     const { id } = useParams();
 
     const [selectedSize, setSelectedSize] = useState(null);
+
+    const [selectedImage, setSelectedImage] = useState("");
 
     const sizes = ["Small", "Medium", "Large", "X-Large"];
 
@@ -105,6 +108,7 @@ function Product() {
 
     const product = data?.data;
     console.log(product?.product_img[2]);
+    console.log(`${IMAGE_URL}images/product_img/${product?.product_img?.[0]}`);
 
     const handleAddToCart = async () => {
         try {
@@ -147,13 +151,26 @@ function Product() {
                             <Grid container spacing={4} >
                                 <Grid container size={7} alignItems="stretch" >
 
-                                    <Grid size={3} rowSpacing={{ md: 4, lg: 4, xl: 6 }} container display="flex" direction="column" >
+                                    <Grid size={3} rowSpacing={{ md: 4, lg: 1 }} container display="flex" direction="column" >
 
                                         {product?.product_img?.map((img, i) => (
                                             <Grid key={i}>
-                                                <Box className="imgBox">
+                                                <Box
+                                                    className="imgBox"
+                                                    onClick={() => setSelectedImage(img)}
+                                                    sx={{
+                                                        cursor: "pointer",
+                                                        border:
+                                                            selectedImage === img
+                                                                ? "2px solid black"
+                                                                : "2px solid transparent",
+                                                        borderRadius: "10px",
+                                                        transition: "0.3s"
+                                                    }}
+                                                >
                                                     <img
-                                                        src={`${IMAGE_URL}/${img}`}
+                                                        src={`${IMAGE_URL}images/product_img/${img}`}
+
                                                         alt=""
                                                         className="imgsize"
                                                     />
@@ -165,7 +182,19 @@ function Product() {
 
                                     <Grid size={9} display='flex'>
                                         <Box className="probigimg">
-                                            <img src={`${IMAGE_URL}/${product?.product_img?.[0]}`} alt="" style={{ borderRadius: 25 }} />
+                                            <img
+                                                src={`${IMAGE_URL}images/product_img/${selectedImage || product?.product_img?.[0]}`}
+                                                alt=""
+                                                style={{
+                                                    borderRadius: 50,
+                                                    height: "100% ",
+                                                    width: "100%",
+                                                    objectFit: "cover",
+                                                    mixBlendMode: "multiply",
+                                                    alignItems: "center",
+                                                    alignContent: "center",
+                                                    padding: "50px"
+                                                }} />
                                         </Box>
                                     </Grid>
 

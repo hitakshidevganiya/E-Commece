@@ -8,13 +8,13 @@ import Casual from './container/Casual/Casual'
 import Cart from './container/Cart/Cart'
 import Auth from './container/Auth/Auth'
 import { Provider } from 'react-redux'
-import { configStore } from './Redux/store'
 import { SnackbarProvider } from 'notistack'
 import Alert from './componet/Alert/Alert'
 import AdminRoutes from './Routes/AdminRoutes'
 import PrivateRoutes from './Routes/PrivateRoutes'
 import UserRoutes from './Routes/UserRoutes'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { configStore } from './Redux/Store'
 
 
 

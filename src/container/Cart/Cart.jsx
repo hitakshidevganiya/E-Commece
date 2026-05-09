@@ -4,8 +4,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { HiArrowLongRight } from "react-icons/hi2";
 import Remove from '@mui/icons-material/Remove';
 import Add from '@mui/icons-material/Add';
-import { useDeleteCartMutation, useGetAllCartQuery, useUpdateCartMutation } from "../../Redux/Api/cart.api";
+import { useAddCartMutation, useDeleteCartMutation, useGetAllCartQuery, useUpdateCartMutation } from "../../Redux/Api/cart.api";
 import { FiTag } from "react-icons/fi";
+import { IMAGE_URL } from "../../url/url";
 
 
 
@@ -37,36 +38,56 @@ const cartItems = [
 ];
 
 function Cart() {
-    const [qty, setQty] = useState(1);
-    const { data, isLoading } = useGetAllCartQuery();
+
+    const { data, isLoading, isError } = useGetAllCartQuery();
+
     const [updateCart] = useUpdateCartMutation();
     const [deleteCart] = useDeleteCartMutation();
 
-    console.log(data?.data);
-    
-
     const cartItems = data?.data || [];
+
+    console.log("cart", cartItems);
 
     if (isLoading) return <h2>Loading...</h2>;
 
-    const handleQty = (id, qty) => {
+    const handleQty = async (id, qty) => {
+
         if (qty < 1) return;
-        updateCart({ id, qty });
+
+        try {
+
+            await updateCart({
+                _id: id,
+                qty
+            }).unwrap();
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const handleRemove = async (id) => {
+
+        try {
+
+            await deleteCart(id).unwrap();
+
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    const handleRemove = (id) => {
-        deleteCart(id);
-    };
+    const subtotal = cartItems.reduce((sum, item) => {
+        return sum + (Number(item.price) * Number(item.qty));
+    }, 0);
 
-    const total = cartItems.reduce(
-        (sum, item) => sum + item.price * item.qty,
-        0
-    );
+    const discount = subtotal * 0.2;
+
+    const deliveryFee = subtotal > 0 ? 15 : 0;
+
+    const finalTotal = subtotal - discount + deliveryFee;
 
 
     return (
-
-
 
         <div className="cartmain">
             <Box className="cart-page">
@@ -82,11 +103,14 @@ function Cart() {
                             <Card className="cart-card">
 
                                 {cartItems.map((item, index) => (
-                                    <Box key={item.id}>
+                                    <Box key={item._id}>
                                         <Box className="cart-item">
 
                                             <Box className="item-left">
-                                                <img src={item.img} alt="" className="item-img" />
+                                                <img src={`${IMAGE_URL}/images/product_img/${item.product_img?.[0]}`}
+                                                    alt=""
+                                                    className="item-img"
+                                                />
 
                                                 <Box>
                                                     <Typography className="item-title">
@@ -108,16 +132,23 @@ function Cart() {
                                             </Box>
 
                                             <Box className="item-right">
-                                                <IconButton color="error">
+                                                <IconButton
+                                                    color="error"
+                                                    onClick={() => handleRemove(item._id)}
+                                                >
                                                     <DeleteOutlineIcon />
                                                 </IconButton>
 
                                                 <Box className="qty-box"  >
-                                                    <IconButton >
+                                                    <IconButton
+                                                        onClick={() => handleQty(item._id, item.qty - 1)}
+                                                    >
                                                         <Remove />
                                                     </IconButton>
-                                                    <Typography>1</Typography>
-                                                    <IconButton>
+                                                    <Typography>{item.qty}</Typography>
+                                                    <IconButton
+                                                        onClick={() => handleQty(item._id, item.qty + 1)}
+                                                    >
                                                         <Add />
                                                     </IconButton>
                                                 </Box>
@@ -141,24 +172,24 @@ function Cart() {
 
                                 <Box className="row">
                                     <Typography className="subname">Subtotal</Typography>
-                                    <Typography className="subtotal">$565</Typography>
+                                    <Typography className="subtotal"> ₹{subtotal}</Typography>
                                 </Box>
 
                                 <Box className="row">
                                     <Typography className="subname">Discount (-20%)</Typography>
-                                    <Typography className="discountcart">-$113</Typography>
+                                    <Typography className="discountcart"> -₹{discount}</Typography>
                                 </Box>
 
                                 <Box className="row">
                                     <Typography className="subname">Delivery Fee</Typography>
-                                    <Typography className="subtotal">$15</Typography>
+                                    <Typography className="subtotal"> ₹{deliveryFee}</Typography>
                                 </Box>
 
                                 <Divider className="dividercss" />
 
                                 <Box className="row total">
                                     <Typography className="totalname">Total</Typography>
-                                    <Typography className="totaldoo">$467</Typography>
+                                    <Typography className="totaldoo"> ₹{finalTotal}</Typography>
                                 </Box>
 
                                 <Box className="promo">

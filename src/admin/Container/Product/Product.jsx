@@ -77,7 +77,7 @@ function Product(props) {
             });
 
             v.product_img.forEach((img) => {
-                formData.append(`variants[${i}][product_img]`, img);
+                formData.append("product_img", img);
             });
         });
         if (Object.keys(update).length > 0) {
@@ -130,41 +130,18 @@ function Product(props) {
         }),
         variants: array().of(
             object({
-                color: string().required("Color required"),
-                size: array().min(1, "Select at least 1 size"),
-                stock: number().required("Stock required"),
-                product_img: mixed().required("Image required")
+                color: mixed().required("Color required"),
+
+                size: array()
+                    .min(1, "Select at least 1 size"),
+
+                stock: number()
+                    .required("Stock required"),
+
+                product_img: array()
+                    .min(1, "At least one image required")
             })
-        ),
-        product_img: mixed()
-            .test("product_img", "product images only png and jpng file allowed", function (val) {
-                console.log("valval", val);
-
-                if (typeof val === "object") {
-                    return true
-                }
-
-                if (typeof val?.url === 'string') {
-                    return true
-                }
-
-                const fileSupport = ['image/jpeg', 'image/png', 'image/jpg']
-
-                return fileSupport.includes(val?.type?.toLowerCase())
-            })
-            .test("product_img", "Only 2MB file allowed ", function (val) {
-                console.log(val.name);
-
-                if (typeof val === "object") {
-                    return true
-                }
-
-                if (typeof val?.url === 'string') {
-                    return true
-                }
-
-                return val?.size <= 2 * 1024 * 1024
-            })
+        )
     })
 
     const paginationModel = { page: 0, pageSize: 5 };

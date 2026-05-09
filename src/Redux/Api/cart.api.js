@@ -3,18 +3,9 @@ import { BASE_URL } from "../../url/url";
 
 export const cartApi = createApi({
     reducerPath: "cartApi",
-    baseQuery: fetchBaseQuery({ baseUrl:BASE_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
 
     endpoints: (builder) => ({
-        addToCart: builder.mutation({
-            query: (data) => ({
-                url: "cart/addCart",
-                method: "POST",
-                body: data,
-            }),
-            invalidatesTags: ["Cart"],
-        }),
-
         getCart: builder.query({
             query: () => "cart/getCart",
             providesTags: ["Cart"],
@@ -25,6 +16,14 @@ export const cartApi = createApi({
             providesTags: ["Cart"],
         }),
 
+        addCart: builder.mutation({
+            query: (data) => ({
+                url: "cart/addCart",
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: ["Cart"],
+        }),
 
         updateCart: builder.mutation({
             query: ({ id, qty }) => ({
@@ -46,7 +45,7 @@ export const cartApi = createApi({
 });
 
 export const {
-    useAddToCartMutation,
+    useAddCartMutation,
     useGetCartQuery,
     useGetAllCartQuery,
     useUpdateCartMutation,

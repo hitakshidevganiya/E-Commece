@@ -18,24 +18,9 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 function UploadFile(props) {
+
     const [field, meta, helpers] = useField(props);
     const { setValue } = helpers;
-
-    let filepath = [];
-
-    if (Array.isArray(field.value)) {
-        filepath = field.value.map((file) => {
-            if (file instanceof File) {
-                return URL.createObjectURL(file);
-            }
-
-            if (typeof file === "string") {
-                return `${IMAGE_URL}images/category_img/${file}`;
-            }
-
-            return "";
-        });
-    }
 
     return (
         <>
@@ -44,38 +29,58 @@ function UploadFile(props) {
                 variant="contained"
                 startIcon={<CloudUploadIcon />}
             >
-                Upload file
+                Upload File
+
                 <VisuallyHiddenInput
-                    {...props}
                     type="file"
                     multiple
-                    onChange={(event) => {
-                        const files = Array.from(event.target.files);
+                    onChange={(e) => {
 
-                        if (!files.length) return;
+                        const files = Array.from(e.target.files);
 
-                        setValue([...(field.value || []), ...files]);
+                        console.log("FILES :", files);
+
+                        setValue(files);
                     }}
                 />
             </Button>
 
             <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-                {filepath.map((v, i) => (
-                    <img
-                        key={i}
-                        src={v}
-                        width="60"
-                        height="60"
-                        style={{ objectFit: "cover", borderRadius: "6px" }}
-                    />
-                ))}
+                {
+                    Array.isArray(field.value) &&
+                    field.value.map((file, i) => {
+
+                        let imgPath = "";
+
+                        if (file instanceof File) {
+                            imgPath = URL.createObjectURL(file);
+                        } else {
+                            imgPath = `${IMAGE_URL}images/product_img/${file}`;
+                        }
+
+                        return (
+                            <img
+                                key={i}
+                                src={imgPath}
+                                width="60"
+                                height="60"
+                                style={{
+                                    objectFit: "cover",
+                                    borderRadius: "5px"
+                                }}
+                            />
+                        )
+                    })
+                }
             </div>
 
-            {meta.error && meta.touched && (
-                <p style={{ color: 'red' }}>{meta.error}</p>
-            )}
+            {
+                meta.touched && meta.error && (
+                    <p style={{ color: "red" }}>{meta.error}</p>
+                )
+            }
         </>
-    );
+    )
 }
 
 export default UploadFile;
