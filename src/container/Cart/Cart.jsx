@@ -103,14 +103,39 @@ function Cart() {
                             <Card className="cart-card">
 
                                 {cartItems.map((item, index) => (
+                                    // console.log(item)
+
                                     <Box key={item._id}>
                                         <Box className="cart-item">
 
-                                            <Box className="item-left">
-                                                <img src={`${IMAGE_URL}/images/product_img/${item.product_img?.[0]}`}
-                                                    alt=""
-                                                    className="item-img"
-                                                />
+                                            <Box
+                                                className="item-left"
+                                            >
+                                                <Box
+
+                                                    sx={{
+                                                        backgroundColor: "#F0EEED",
+                                                        borderRadius: "12px",
+                                                        width: "130px",
+                                                        height: "130px",
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        justifyContent: "center",
+                                                        overflow: "hidden",
+                                                    }}
+
+                                                >
+                                                    <img src={`${IMAGE_URL}images/product_img/${item.image}`}
+                                                        alt=""
+                                                        className="item-img"
+                                                        style={{
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            objectFit: "contain",
+                                                            mixBlendMode: "multiply"
+                                                        }}
+                                                    />
+                                                </Box>
 
                                                 <Box>
                                                     <Typography className="item-title">

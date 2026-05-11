@@ -170,7 +170,6 @@ function Product() {
                                                 >
                                                     <img
                                                         src={`${IMAGE_URL}images/product_img/${img}`}
-
                                                         alt=""
                                                         className="imgsize"
                                                     />
@@ -194,10 +193,10 @@ function Product() {
                                                     alignItems: "center",
                                                     alignContent: "center",
                                                     padding: "50px"
-                                                }} />
+                                                }} 
+                                                />
                                         </Box>
                                     </Grid>
-
                                 </Grid>
 
                                 <Grid size={5} sx={{
@@ -265,7 +264,7 @@ function Product() {
                                                         transition: "0.3s",
                                                         "&:hover": {
                                                             transform: "scale(1.2)"
-                                                        }
+                                                        } 
                                                     }}
                                                 />
                                             ))}
