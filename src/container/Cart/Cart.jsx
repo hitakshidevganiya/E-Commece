@@ -102,88 +102,97 @@ function Cart() {
                         <Grid size={{ xs: 12, sm: 8 }} >
                             <Card className="cart-card">
 
-                                {cartItems.map((item, index) => (
-                                    // console.log(item)
+                                {cartItems.map((item, index) => {
+                                    console.log("FINAL URL:",
+                                        `${IMAGE_URL}${item.image
+                                            ?.replace(/\\/g, "/")
+                                            ?.replace("public", "")}`
+                                    );
+                                    return (
+                                        <Box key={item._id}>
+                                            <Box className="cart-item">
 
-                                    <Box key={item._id}>
-                                        <Box className="cart-item">
-
-                                            <Box
-                                                className="item-left"
-                                            >
                                                 <Box
-
-                                                    sx={{
-                                                        backgroundColor: "#F0EEED",
-                                                        borderRadius: "12px",
-                                                        width: "130px",
-                                                        height: "130px",
-                                                        display: "flex",
-                                                        alignItems: "center",
-                                                        justifyContent: "center",
-                                                        overflow: "hidden",
-                                                    }}
-
+                                                    className="item-left"
                                                 >
-                                                    <img src={`${IMAGE_URL}images/product_img/${item.image}`}
-                                                        alt=""
-                                                        className="item-img"
-                                                        style={{
-                                                            width: "100%",
-                                                            height: "100%",
-                                                            objectFit: "contain",
-                                                            mixBlendMode: "multiply"
+                                                    <Box
+
+                                                        sx={{
+                                                            backgroundColor: "#F0EEED",
+                                                            borderRadius: "12px",
+                                                            width: "130px",
+                                                            height: "130px",
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                            justifyContent: "center",
+                                                            overflow: "hidden",
                                                         }}
-                                                    />
+
+                                                    >
+                                                        <img
+                                                            src={`${IMAGE_URL}${item.image
+                                                                ?.replace(/\\/g, "/")
+                                                                ?.replace("/public", "")
+                                                                ?.replace("public", "")}`}
+                                                            alt=""
+                                                            className="item-img"
+                                                            style={{
+                                                                width: "100%",
+                                                                height: "100%",
+                                                                objectFit: "contain",
+                                                                mixBlendMode: "multiply"
+                                                            }}  
+                                                        />
+                                                    </Box>
+
+                                                    <Box>
+                                                        <Typography className="item-title">
+                                                            {item.name}
+                                                        </Typography>
+
+                                                        <Typography className="item-sub">
+                                                            Size: {item.size}
+                                                        </Typography>
+
+                                                        <Typography className="item-sub">
+                                                            Color: {item.color}
+                                                        </Typography>
+
+                                                        <Typography className="price">
+                                                            ${item.price}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
 
-                                                <Box>
-                                                    <Typography className="item-title">
-                                                        {item.name}
-                                                    </Typography>
+                                                <Box className="item-right">
+                                                    <IconButton
+                                                        color="error"
+                                                        onClick={() => handleRemove(item._id)}
+                                                    >
+                                                        <DeleteOutlineIcon />
+                                                    </IconButton>
 
-                                                    <Typography className="item-sub">
-                                                        Size: {item.size}
-                                                    </Typography>
-
-                                                    <Typography className="item-sub">
-                                                        Color: {item.color}
-                                                    </Typography>
-
-                                                    <Typography className="price">
-                                                        ${item.price}
-                                                    </Typography>
+                                                    <Box className="qty-box"  >
+                                                        <IconButton
+                                                            onClick={() => handleQty(item._id, item.qty - 1)}
+                                                        >
+                                                            <Remove />
+                                                        </IconButton>
+                                                        <Typography>{item.qty}</Typography>
+                                                        <IconButton
+                                                            onClick={() => handleQty(item._id, item.qty + 1)}
+                                                        >
+                                                            <Add />
+                                                        </IconButton>
+                                                    </Box>
                                                 </Box>
+
                                             </Box>
 
-                                            <Box className="item-right">
-                                                <IconButton
-                                                    color="error"
-                                                    onClick={() => handleRemove(item._id)}
-                                                >
-                                                    <DeleteOutlineIcon />
-                                                </IconButton>
-
-                                                <Box className="qty-box"  >
-                                                    <IconButton
-                                                        onClick={() => handleQty(item._id, item.qty - 1)}
-                                                    >
-                                                        <Remove />
-                                                    </IconButton>
-                                                    <Typography>{item.qty}</Typography>
-                                                    <IconButton
-                                                        onClick={() => handleQty(item._id, item.qty + 1)}
-                                                    >
-                                                        <Add />
-                                                    </IconButton>
-                                                </Box>
-                                            </Box>
-
+                                            {index !== cartItems.length - 1 && <Divider />}
                                         </Box>
-
-                                        {index !== cartItems.length - 1 && <Divider />}
-                                    </Box>
-                                ))}
+                                    )
+                                })}
 
                             </Card>
                         </Grid>

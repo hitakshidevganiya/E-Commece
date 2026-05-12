@@ -100,15 +100,15 @@ function Product() {
 
     const [selectedSize, setSelectedSize] = useState(null);
 
-    const [selectedImage, setSelectedImage] = useState("");
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const sizes = ["Small", "Medium", "Large", "X-Large"];
 
     const { data, isLoading } = useGetProductQuery(id);
 
     const product = data?.data;
-    console.log(product?.product_img[2]);
-    console.log(`${IMAGE_URL}images/product_img/${product?.product_img?.[0]}`);
+    // console.log(product?.product_img[2]);
+    // console.log(`${IMAGE_URL}images/product_img/${product?.product_img?.[0]}`);
 
     const handleAddToCart = async () => {
         try {
@@ -124,7 +124,7 @@ function Product() {
                 productId: product._id,
                 name: product.name,
                 price: product.price,
-                image: product.product_img?.[0],
+                image: product?.variants?.[0]?.product_img?.[0],
                 qty: Number(qty),
                 size: selectedSize,
             }).unwrap();
@@ -135,7 +135,6 @@ function Product() {
         } catch (err) {
             console.log("FULL ERROR:", err);
 
-            // 👇 IMPORTANT: proper RTK error handling
             alert(err?.data?.message || err?.message || "Add to cart failed");
         }
     };
@@ -151,9 +150,14 @@ function Product() {
                             <Grid container spacing={4} >
                                 <Grid container size={7} alignItems="stretch" >
 
-                                    <Grid size={3} rowSpacing={{ md: 4, lg: 1 }} container display="flex" direction="column" >
-
-                                        {product?.product_img?.map((img, i) => (
+                                    <Grid
+                                        size={3}
+                                        rowSpacing={{ md: 4, lg: 1 }}
+                                        container
+                                        display="flex"
+                                        direction="column"
+                                    >
+                                        {product?.variants?.[0]?.product_img?.map((img, i) => (
                                             <Grid key={i}>
                                                 <Box
                                                     className="imgBox"
@@ -169,34 +173,37 @@ function Product() {
                                                     }}
                                                 >
                                                     <img
-                                                        src={`${IMAGE_URL}images/product_img/${img}`}
+                                                        src={`${IMAGE_URL}${img.replace(/\\/g, "/").replace("public/", "")}`}
                                                         alt=""
                                                         className="imgsize"
                                                     />
                                                 </Box>
                                             </Grid>
                                         ))}
-
                                     </Grid>
 
-                                    <Grid size={9} display='flex'>
+                                    <Grid size={9} display="flex">
                                         <Box className="probigimg">
                                             <img
-                                                src={`${IMAGE_URL}images/product_img/${selectedImage || product?.product_img?.[0]}`}
+                                                src={`${IMAGE_URL}${(
+                                                    selectedImage ||
+                                                    product?.variants?.[0]?.product_img?.[0]
+                                                )
+                                                    ?.replace(/\\/g, "/")
+                                                    .replace("public/", "")}`}
                                                 alt=""
                                                 style={{
                                                     borderRadius: 50,
-                                                    height: "100% ",
+                                                    height: "100%",
                                                     width: "100%",
                                                     objectFit: "cover",
                                                     mixBlendMode: "multiply",
-                                                    alignItems: "center",
-                                                    alignContent: "center",
                                                     padding: "50px"
-                                                }} 
-                                                />
+                                                }}
+                                            />
                                         </Box>
                                     </Grid>
+
                                 </Grid>
 
                                 <Grid size={5} sx={{
@@ -252,7 +259,7 @@ function Product() {
                                             Select Colors
                                         </Typography>
                                         <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                            {product?.color.map((color, i) => (
+                                            {product?.color?.map((color, i) => (
                                                 <Box
                                                     key={i}
                                                     sx={{
@@ -264,7 +271,7 @@ function Product() {
                                                         transition: "0.3s",
                                                         "&:hover": {
                                                             transform: "scale(1.2)"
-                                                        } 
+                                                        }
                                                     }}
                                                 />
                                             ))}
@@ -275,24 +282,24 @@ function Product() {
 
                                     <Typography mb={1} mt={3}>Choose Size</Typography>
                                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
-                                        {product?.size.map((v) => (
-                                            <Chip
-                                                key={v}
-                                                label={v}
-                                                clickable
-                                                onClick={() => setSelectedSize(v)}
-                                                sx={{
-                                                    bgcolor: selectedSize === v ? "black" : "#ebebeb",
-                                                    color: selectedSize === v ? "white" : "black",
-                                                    // border: "1px solid black",
-                                                    "&:hover": {
-                                                        bgcolor: selectedSize === v ? "black" : "#f5f5f5",
-                                                    }
-                                                }}
-                                                className="sizename"
-
-                                            />
-                                        ))}
+                                        {
+                                            JSON.parse(product?.variants?.[0]?.size?.[0] || "[]").map((v, i) => (
+                                                <Chip
+                                                    key={i}
+                                                    label={v}
+                                                    clickable
+                                                    onClick={() => setSelectedSize(v)}
+                                                    sx={{
+                                                        bgcolor: selectedSize === v ? "black" : "#ebebeb",
+                                                        color: selectedSize === v ? "white" : "black",
+                                                        "&:hover": {
+                                                            bgcolor: selectedSize === v ? "black" : "#f5f5f5",
+                                                        }
+                                                    }}
+                                                    className="sizename"
+                                                />
+                                            ))
+                                        }
                                     </Box>
 
                                     <Divider sx={{ mt: 3 }} />

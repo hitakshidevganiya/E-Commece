@@ -241,18 +241,21 @@ function Product(props) {
                     {/* {console.log(params)} */}
 
                     {
-                        Array.isArray(params.row.product_img) &&
-                        params.row.product_img.map((v, i) => (
-                            <img
-                                key={i}
-                                src={`${IMAGE_URL}images/product_img/${v}`}
-                                style={{
-                                    width: '50px',
-                                    height: '50px',
-                                    objectFit: 'cover',
-                                    margin: '0 4px'
-                                }}
-                            />
+                        params.row?.variants.map((v) => (
+                            v.product_img?.map((v1, i) => {
+                                return (
+                                    <img
+                                        key={i}
+                                        src={IMAGE_URL + v1}
+                                        style={{
+                                            width: '50px',
+                                            height: '50px',
+                                            objectFit: 'cover',
+                                            margin: '0 4px'
+                                        }}
+                                    />
+                                )
+                            })
                         ))
                     }
                 </>
