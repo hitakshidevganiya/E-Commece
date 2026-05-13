@@ -132,8 +132,7 @@ function Cart() {
                                                         <img
                                                             src={`${IMAGE_URL}${item.image
                                                                 ?.replace(/\\/g, "/")
-                                                                ?.replace("/public", "")
-                                                                ?.replace("public", "")}`}
+                                                                ?.replace("public/", "")}`}
                                                             alt=""
                                                             className="item-img"
                                                             style={{
