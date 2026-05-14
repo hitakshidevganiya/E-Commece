@@ -7,6 +7,7 @@ import Add from '@mui/icons-material/Add';
 import { useAddCartMutation, useDeleteCartMutation, useGetAllCartQuery, useUpdateCartMutation } from "../../Redux/Api/cart.api";
 import { FiTag } from "react-icons/fi";
 import { IMAGE_URL } from "../../url/url";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -40,6 +41,8 @@ const cartItems = [
 function Cart() {
 
     const { data, isLoading, isError } = useGetAllCartQuery();
+
+    const navigate = useNavigate();
 
     const [updateCart] = useUpdateCartMutation();
     const [deleteCart] = useDeleteCartMutation();
@@ -140,7 +143,7 @@ function Cart() {
                                                                 height: "100%",
                                                                 objectFit: "contain",
                                                                 mixBlendMode: "multiply"
-                                                            }}  
+                                                            }}
                                                         />
                                                     </Box>
 
@@ -243,8 +246,24 @@ function Cart() {
                                 </Box>
 
 
-                                <Button className="checkout-btn" fullWidth>
-                                    Go to Checkout <HiArrowLongRight className="arrRight" />
+                                <Button
+                                    className="checkout-btn"
+                                    fullWidth
+                                    onClick={() =>
+                                        navigate("/checkout", {
+                                            state: {
+                                                cartItems,
+                                                subtotal,
+                                                discount,
+                                                deliveryFee,
+                                                finalTotal,
+                                            },
+                                        })
+                                    }
+                                >
+                                    Go to Checkout
+
+                                    <HiArrowLongRight className="arrRight" />
                                 </Button>
                             </Card>
                         </Grid>

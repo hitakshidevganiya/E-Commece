@@ -8,6 +8,9 @@ import Product from "../container/Product/Product";
 import Casual from "../container/Casual/Casual";
 import Cart from "../container/Cart/Cart";
 import Auth from "../container/Auth/Auth";
+import CheckOut from "../container/Checkout/CheckOut";
+import Payment from "../container/Payment/Payment";
+import Success from "../container/Success/Success";
 
 function UserRoutes() {
     return (
@@ -20,8 +23,10 @@ function UserRoutes() {
                 <Route path='/category/casual' element={<Casual />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/men/tshirt' element={<Product />} />
-                <Route path='/auth' element={<Auth />}
-                 />
+                <Route path='/auth' element={<Auth />}/>
+                <Route path='/checkOut' element={<CheckOut />}/>
+                <Route path='/payment' element={<Payment />}/>
+                <Route path='/success' element={<Success />}/>
             </Routes>
             <About />
             <Footer />
