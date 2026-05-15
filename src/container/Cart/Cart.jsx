@@ -81,13 +81,18 @@ function Cart() {
 
     const subtotal = cartItems.reduce((sum, item) => {
         return sum + (Number(item.price) * Number(item.qty));
-    }, 0);
+    }, 0).toFixed(2);
 
-    const discount = subtotal * 0.2;
+
+    const discount = (subtotal * 0.2).toFixed(2);
 
     const deliveryFee = subtotal > 0 ? 15 : 0;
 
-    const finalTotal = subtotal - discount + deliveryFee;
+    const finalTotal = (
+        Number(subtotal) -
+        Number(discount) +
+        deliveryFee
+    ).toFixed(2);
 
 
     return (

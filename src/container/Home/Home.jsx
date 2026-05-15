@@ -146,6 +146,12 @@ function Home() {
 
     const visibleCategories = showAll ? data?.data : data?.data?.slice(0, 4);
 
+    const [showAllNew, setShowAllNew] = useState(false);
+
+    const visibleNewArrivals = showAllNew
+        ? data?.data
+        : data?.data?.slice(0, 4);
+
     return (
 
         <main>
@@ -224,7 +230,7 @@ function Home() {
                         </Typography>
                         <Grid container spacing={{ xs: 2, lg: 4 }} justifyContent="space-between">
                             {
-                                data?.data.map((v, i) => (
+                                visibleNewArrivals?.map((v, i) => (
                                     //xs={6} sm={6} md={3}
                                     <Grid size={{ xs: 6, sm: 6, md: 3 }} key={i}>
                                         <Card
@@ -245,8 +251,8 @@ function Home() {
                                                     component="img"
                                                     image={
                                                         v.variants[0]?.product_img ?
-                                                        IMAGE_URL + v.variants[0]?.product_img[0] : ""
-                                                            
+                                                            IMAGE_URL + v.variants[0]?.product_img[0] : ""
+
                                                     }
                                                     alt={v.name}
                                                     sx={{
@@ -263,7 +269,7 @@ function Home() {
                                                 <Typography className="productName">
                                                     {v.name}
                                                 </Typography>
-                                                <Box className="rating">
+                                                {/* <Box className="rating">
                                                     <Rating
                                                         value={v.rating}
                                                         precision={0.5}
@@ -272,7 +278,7 @@ function Home() {
                                                     <Typography className="ratingText">
                                                         {v.rating}/5
                                                     </Typography>
-                                                </Box>
+                                                </Box> */}
                                                 <Box className="priceRow">
                                                     <Typography className="price">
                                                         ${v.price}
@@ -298,8 +304,12 @@ function Home() {
 
                         </Grid>
                         <Box className="buttonWrapper">
-                            <Button variant="outlined" className="viewBtn">
-                                View All
+                            <Button
+                                variant="outlined"
+                                className="viewBtn"
+                                onClick={() => setShowAllNew(!showAllNew)}
+                            >
+                                {showAllNew ? "Show Less" : "View All"}
                             </Button>
                         </Box>
                     </Box>
@@ -351,16 +361,7 @@ function Home() {
                                                 <Typography className="productName">
                                                     {v.name}
                                                 </Typography>
-                                                <Box className="rating">
-                                                    <Rating
-                                                        value={v.rating}
-                                                        precision={0.5}
-                                                        className="ratingsize"
-                                                    />
-                                                    <Typography className="ratingText">
-                                                        {v.rating}/5
-                                                    </Typography>
-                                                </Box>
+
                                                 <Box className="priceRow">
                                                     <Typography className="price">
                                                         ${v.price}
