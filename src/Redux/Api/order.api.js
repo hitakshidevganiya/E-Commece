@@ -16,9 +16,9 @@ export const orderApi = createApi({
             query: (id) => "order/getOrder",
             providesTags: ["order"]
         }),
-        addOrder : builder.mutation({
+        createOrder : builder.mutation({
             query: (data) => ({
-                url: "order/addOrder",
+                url: "order/createOrder",
                 method: "POST",
                 body: data
             }),
@@ -46,7 +46,7 @@ export const orderApi = createApi({
 export const {
     useGetorderQuery,
     useGetAllOrdersQuery,
-    useAddOrderMutation,
+    useCreateOrderMutation,
     useUpdateOrderMutation,
     useDeleteOrderMutation
 } = orderApi

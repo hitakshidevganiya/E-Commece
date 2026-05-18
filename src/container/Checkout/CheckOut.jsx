@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Box,
     Button,
@@ -34,12 +34,6 @@ function CheckOut() {
     } = location.state || {};
 
 
-
-
-
-
-    // ================= FORM STATE =================
-
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -50,54 +44,52 @@ function CheckOut() {
         postalCode: "",
     });
 
+    useEffect(() => {
 
+        const savedData =
+            localStorage.getItem("billingData");
 
+        if (savedData) {
 
+            setFormData(JSON.parse(savedData));
+        }
 
-    // ================= ERROR STATE =================
+    }, []);
 
     const [errors, setErrors] = useState({});
-
-
-
-
-
-    // ================= HANDLE CHANGE =================
 
     const handleChange = (e) => {
 
         const { name, value } = e.target;
 
-        setFormData({
+        const updatedData = {
+
             ...formData,
+
             [name]: value,
-        });
+        };
 
+        setFormData(updatedData);
 
+        localStorage.setItem(
 
+            "billingData",
 
+            JSON.stringify(updatedData)
+        );
 
-        // ERROR REMOVE
         setErrors({
+
             ...errors,
+
             [name]: "",
         });
     };
 
 
-
-
-
-
-    // ================= VALIDATION =================
-
     const validateForm = () => {
 
         let newErrors = {};
-
-
-
-
 
         if (!formData.firstName) {
             newErrors.firstName =
@@ -135,43 +127,20 @@ function CheckOut() {
         }
 
 
-
-
-
-
         setErrors(newErrors);
-
-
-
-
 
         return Object.keys(newErrors)
             .length === 0;
     };
 
 
-
-
-
-
-    // ================= PROCEED PAYMENT =================
-
     const handleProceed = () => {
 
         const isValid = validateForm();
 
-
-
-
-
         if (!isValid) {
             return;
         }
-
-
-
-
-
 
         navigate("/payment", {
             state: {
@@ -184,10 +153,6 @@ function CheckOut() {
             },
         });
     };
-
-
-
-
 
 
     return (
@@ -220,8 +185,6 @@ function CheckOut() {
                     >
                         Back To Cart
                     </Button>
-
-
 
 
 
@@ -584,8 +547,8 @@ function CheckOut() {
 
                             </Card>
 
-                        </Grid> 
-                        
+                        </Grid>
+
                         {/* RIGHT SIDE */}
                         <Grid size={{ xs: 12, md: 4 }}>
 

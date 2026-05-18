@@ -111,11 +111,11 @@ function Cart() {
                             <Card className="cart-card">
 
                                 {cartItems.map((item, index) => {
-                                    console.log("FINAL URL:",
-                                        `${IMAGE_URL}${item.image
-                                            ?.replace(/\\/g, "/")
-                                            ?.replace("public", "")}`
-                                    );
+                                    // console.log("FINAL URL:",
+                                    //     `${IMAGE_URL}${item.image
+                                    //         ?.replace(/\\/g, "/")
+                                    //         ?.replace("public", "")}`
+                                    // );
                                     return (
                                         <Box key={item._id}>
                                             <Box className="cart-item">

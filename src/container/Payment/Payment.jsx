@@ -2,46 +2,42 @@ import React from "react";
 
 import {
     Box,
-    Button,
     Card,
-    Divider,
-    Grid,
-    Typography,
+    Typography
 } from "@mui/material";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import axios from "axios";
 
-function Payment() {
+import {
+    PayPalButtons
+} from "@paypal/react-paypal-js";
+import { useCreateOrderMutation } from "../../Redux/Api/order.api";
+
+const Payment = () => {
 
     const navigate = useNavigate();
 
     const location = useLocation();
 
-
-
-
+    const [addOrder] = useCreateOrderMutation();
 
     const {
+
+        cartItems,
+
         subtotal,
+
         discount,
+
         deliveryFee,
+
         finalTotal,
+
+        billingData
+
     } = location.state || {};
-
-
-
-
-
-    const handlePayment = () => {
-
-        alert("Payment Successful");
-
-        navigate("/success");
-    };
-
-
 
 
 
@@ -52,277 +48,234 @@ function Payment() {
                 width: "100%",
                 minHeight: "100vh",
                 backgroundColor: "#F9F9F9",
-                py: 5,
+                py: 5
             }}
         >
 
             <div className="container">
 
-                <Button
-                    startIcon={<KeyboardBackspaceIcon />}
-                    onClick={() => navigate(-1)}
+                <Card
                     sx={{
-                        mb: 3,
-                        color: "#000",
-                        fontWeight: 600,
-                        textTransform: "capitalize",
+                        maxWidth: "700px",
+                        margin: "auto",
+                        padding: "30px",
+                        borderRadius: "20px"
                     }}
                 >
-                    Back
-                </Button>
+
+                    <Typography
+                        variant="h4"
+                        sx={{
+                            fontWeight: 700,
+                            mb: 3
+                        }}
+                    >
+                        Complete Payment
+                    </Typography>
 
 
 
+                    {/* USER DETAILS */}
+
+                    <Typography sx={{ mb: 1 }}>
+                        Name :
+                        {" "}
+                        {billingData?.firstName}
+                        {" "}
+                        {billingData?.lastName}
+                    </Typography>
+
+                    <Typography sx={{ mb: 1 }}>
+                        Email :
+                        {" "}
+                        {billingData?.email}
+                    </Typography>
+
+                    <Typography sx={{ mb: 1 }}>
+                        Phone :
+                        {" "}
+                        {billingData?.phone}
+                    </Typography>
+
+                    <Typography sx={{ mb: 3 }}>
+                        Address :
+                        {" "}
+                        {billingData?.address}
+                    </Typography>
 
 
-                <Typography
-                    variant="h3"
-                    sx={{
-                        fontWeight: 700,
-                        mb: 4,
-                    }}
-                >
-                    Payment
-                </Typography>
 
+                    {/* PRODUCTS */}
 
+                    {
+                        cartItems?.map((item) => (
 
+                            <Box
+                                key={item._id}
+                                sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    mb: 2
+                                }}
+                            >
 
+                                <Typography>
+                                    {item.name}
+                                </Typography>
 
-                <Grid container spacing={3}>
+                                <Typography>
+                                    ₹{item.price * item.qty}
+                                </Typography>
 
+                            </Box>
+                        ))
+                    }
 
+                    <hr />
 
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            mt: 2
+                        }}
+                    >
 
-
-                    {/* LEFT SIDE */}
-                    <Grid size={{ xs: 12, md: 8 }}>
-
-                        <Card
+                        <Typography
+                            variant="h5"
                             sx={{
-                                p: 4,
-                                borderRadius: "20px",
+                                fontWeight: 700
                             }}
                         >
+                            Total
+                        </Typography>
 
-                            <Typography
-                                variant="h5"
-                                sx={{
-                                    fontWeight: 700,
-                                    mb: 3,
-                                }}
-                            >
-                                Select Payment Method
-                            </Typography>
-
-
-
-
-
-                            <Box
-                                sx={{
-                                    border: "1px solid #E5E5E5",
-                                    borderRadius: "15px",
-                                    p: 3,
-                                    mb: 3,
-                                    display: "flex",
-                                    justifyContent:
-                                        "space-between",
-                                    alignItems: "center",
-                                }}
-                            >
-
-                                <Typography
-                                    sx={{
-                                        fontWeight: 700,
-                                    }}
-                                >
-                                    PayPal
-                                </Typography>
-
-
-
-
-
-                                <img
-                                    src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
-                                    alt=""
-                                    style={{
-                                        width: "70px",
-                                    }}
-                                />
-
-                            </Box>
-
-
-
-
-
-                            <Button
-                                fullWidth
-                                variant="contained"
-                                onClick={handlePayment}
-                                sx={{
-                                    py: 1.7,
-                                    borderRadius: "12px",
-                                    backgroundColor: "#000",
-                                    fontWeight: 700,
-                                    fontSize: "16px",
-                                    textTransform: "capitalize",
-                                }}
-                            >
-                                Pay ₹{finalTotal}
-                            </Button>
-
-                        </Card>
-
-                    </Grid>
-
-
-
-
-
-
-
-
-
-                    {/* RIGHT SIDE */}
-                    <Grid size={{ xs: 12, md: 4 }}>
-
-                        <Card
+                        <Typography
+                            variant="h5"
                             sx={{
-                                p: 3,
-                                borderRadius: "20px",
+                                fontWeight: 700
                             }}
                         >
+                            ₹{finalTotal}
+                        </Typography>
 
-                            <Typography
-                                variant="h5"
-                                sx={{
-                                    fontWeight: 700,
-                                    mb: 3,
-                                }}
-                            >
-                                Payment Summary
-                            </Typography>
+                    </Box>
 
 
 
+                    {/* PAYPAL BUTTON */}
 
+                    <Box sx={{ mt: 4 }}>
 
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    justifyContent:
-                                        "space-between",
-                                    mb: 2,
-                                }}
-                            >
+                        <PayPalButtons
 
-                                <Typography>
-                                    Subtotal
-                                </Typography>
+                            createOrder={async () => {
 
-                                <Typography>
-                                    ₹{subtotal}
-                                </Typography>
+                                try {
 
-                            </Box>
+                                    const response =
+                                        await axios.post(
 
+                                            "http://localhost:8080/api/v1/payment/createOrder",
 
+                                            {
+                                                products: cartItems,
+                                                total: finalTotal
+                                            }
+                                        );
 
+                                    return response.data.orderId;
 
+                                } catch (error) {
 
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    justifyContent:
-                                        "space-between",
-                                    mb: 2,
-                                }}
-                            >
-
-                                <Typography>
-                                    Discount
-                                </Typography>
-
-                                <Typography color="error">
-                                    -₹{discount}
-                                </Typography>
-
-                            </Box>
+                                    console.log(error);
+                                }
+                            }}
 
 
 
+                            onApprove={async (data) => {
 
+                                try {
 
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    justifyContent:
-                                        "space-between",
-                                    mb: 2,
-                                }}
-                            >
+                                    // PAYMENT CAPTURE
+                                    const response =
+                                        await axios.post(
 
-                                <Typography>
-                                    Delivery Fee
-                                </Typography>
+                                            "http://localhost:8080/api/v1/payment/capturePayment",
 
-                                <Typography>
-                                    ₹{deliveryFee}
-                                </Typography>
+                                            {
 
-                            </Box>
+                                                orderId: data.orderID,
 
+                                                products: cartItems,
 
+                                                total: finalTotal,
 
-
-
-                            <Divider sx={{ my: 2 }} />
+                                                billingData
+                                            }
+                                        );
 
 
 
+                                    // SAVE ORDER IN DATABASE
+                                    const orderData = {
+
+                                        products: cartItems.map((item) => item._id),
+
+                                        paymentId:
+                                            response.data.capture.id,
+
+                                        payerId:
+                                            response.data.capture.payer
+                                                .payer_id,
+
+                                        amount: finalTotal,
+
+                                        status: "completed",
+
+                                        billingData
+                                    };
 
 
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    justifyContent:
-                                        "space-between",
-                                }}
-                            >
 
-                                <Typography
-                                    variant="h6"
-                                    fontWeight={700}
-                                >
-                                    Total
-                                </Typography>
+                                    await addOrder(orderData);
 
 
 
+                                    alert("Payment Successful");
 
 
-                                <Typography
-                                    variant="h6"
-                                    fontWeight={700}
-                                >
-                                    ₹{finalTotal}
-                                </Typography>
 
-                            </Box>
+                                    navigate("/success");
 
-                        </Card>
+                                } catch (error) {
 
-                    </Grid>
+                                    console.log(error);
 
-                </Grid>
+                                    alert("Payment Failed");
+                                }
+                            }}
+
+
+
+                            onError={(err) => {
+
+                                console.log(err);
+
+                                alert("Payment Failed");
+                            }}
+
+                        />
+
+                    </Box>
+
+                </Card>
 
             </div>
 
         </Box>
     );
-}
+};
 
 export default Payment;
