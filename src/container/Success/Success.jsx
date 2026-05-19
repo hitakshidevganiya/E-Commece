@@ -1,86 +1,89 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-import {
-    Box,
-    Button,
-    Typography,
-} from "@mui/material";
+const Success = () => {
 
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+    const location = useLocation();
 
-import { useNavigate } from "react-router-dom";
+    useEffect(() => {
 
-function Success() {
+        const saveOrder = async () => {
 
-    const navigate = useNavigate();
+            try {
+
+                const query =
+                    new URLSearchParams(location.search);
+
+                const token = query.get("token");
+
+                console.log("TOKEN :", token);
+
+                if (!token) {
+
+                    alert("Token Not Found");
+
+                    return;
+                }
+
+                const billingData =
+                    JSON.parse(
+                        localStorage.getItem("billingData")
+                    );
+
+                const cartItems =
+                    JSON.parse(
+                        localStorage.getItem("cartItems")
+                    );
+
+                const finalTotal =
+                    localStorage.getItem("finalTotal");
+
+                const response = await axios.post(
+
+                    "http://localhost:8080/api/v1/payment/capturePayment",
+
+                    {
+                        orderId: token,
+
+                        products:
+                            cartItems.map(
+                                (item) => item._id
+                            ),
+
+                        total: finalTotal,
+
+                        billingData
+                    }
+                );
+
+                console.log(response.data);
+
+                alert("Order Saved Successfully");
+
+            } catch (error) {
+
+                console.log(error);
+
+                alert("Payment Capture Failed");
+            }
+        };
+
+        saveOrder();
+
+    }, []);
 
     return (
 
-        <Box
-            sx={{
-                width: "100%",
-                minHeight: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                backgroundColor: "#F9F9F9",
+        <div
+            style={{
+                textAlign: "center",
+                marginTop: "100px"
             }}
         >
-
-            <CheckCircleIcon
-                sx={{
-                    fontSize: "100px",
-                    color: "green",
-                }}
-            />
-
-
-
-
-
-            <Typography
-                variant="h3"
-                sx={{
-                    fontWeight: 700,
-                    mt: 2,
-                }}
-            >
-                Payment Successful
-            </Typography>
-
-
-
-
-
-            <Typography
-                sx={{
-                    mt: 2,
-                    color: "#666",
-                }}
-            >
-                Thank you for your order
-            </Typography>
-
-
-
-
-
-            <Button
-                variant="contained"
-                onClick={() => navigate("/")}
-                sx={{
-                    mt: 4,
-                    backgroundColor: "#000",
-                    borderRadius: "10px",
-                    px: 4,
-                }}
-            >
-                Go To Home
-            </Button>
-
-        </Box>
+            <h1>Payment Successful ✅</h1>
+        </div>
     );
-}
+};
 
 export default Success;

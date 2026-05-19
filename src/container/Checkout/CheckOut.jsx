@@ -14,6 +14,7 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { IMAGE_URL } from "../../url/url";
+import axios from "axios";
 
 function CheckOut() {
 
@@ -134,24 +135,36 @@ function CheckOut() {
     };
 
 
-    const handleProceed = () => {
+    const handleProceed = async () => {
 
         const isValid = validateForm();
 
-        if (!isValid) {
-            return;
-        }
+        if (!isValid) return;
 
-        navigate("/payment", {
-            state: {
-                cartItems,
-                subtotal,
-                discount,
-                deliveryFee,
-                finalTotal,
-                billingData: formData,
-            },
-        });
+        try {
+
+            localStorage.setItem(
+                "billingData",
+                JSON.stringify(formData)
+            );
+
+            const response = await axios.post(
+
+                "http://localhost:8080/api/v1/payment/createOrder",
+
+                {
+                    products: cartItems,
+                    total: finalTotal
+                }
+            );
+
+            window.location.href =
+                response.data.approveUrl;
+
+        } catch (error) {
+
+            console.log(error);
+        }
     };
 
 

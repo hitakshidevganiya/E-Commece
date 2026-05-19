@@ -103,8 +103,6 @@ const Payment = () => {
                         {billingData?.address}
                     </Typography>
 
-
-
                     {/* PRODUCTS */}
 
                     {
@@ -237,15 +235,9 @@ const Payment = () => {
                                         billingData
                                     };
 
-
-
-                                    await addOrder(orderData);
-
-
+                                    await addOrder(orderData).unwrap();
 
                                     alert("Payment Successful");
-
-
 
                                     navigate("/success");
 

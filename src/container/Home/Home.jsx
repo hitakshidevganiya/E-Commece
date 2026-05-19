@@ -343,9 +343,9 @@ function Home() {
                                                 <CardMedia
                                                     component="img"
                                                     image={
-                                                        v.product_img
-                                                            ? `${IMAGE_URL}images/product_img/${Array.isArray(v.product_img) ? v.product_img[0] : v.product_img}`
-                                                            : "https://via.placeholder.com/150"
+                                                        v.variants[0]?.product_img ?
+                                                            IMAGE_URL + v.variants[0]?.product_img[0] : ""
+
                                                     }
                                                     alt={v.name}
                                                     sx={{
